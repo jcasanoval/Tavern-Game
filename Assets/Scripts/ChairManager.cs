@@ -1,27 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ChairManager : MonoBehaviour
 {
-    public Transform chairParent;
     private List<Chair> chairs = new List<Chair>();
 
-    void Start() {
-        FindAllChairs();
-        Debug.Log("Found " + chairs.Count + " chairs.");
-    }
-
-    void FindAllChairs()
+    void Start()
     {
-        if (chairParent != null)
-        {
-            chairs.AddRange(chairParent.GetComponentsInChildren<Chair>());
-        }
-        else
-        {
-            Debug.LogError("Chair parent not assigned!");
-        }
+        chairs = FindObjectsOfType<Chair>().ToList();
+        Debug.Log("Found " + chairs.Count + " chairs.");
     }
 
     public Vector3? GetAvailableChairPosition(GameObject customer)
