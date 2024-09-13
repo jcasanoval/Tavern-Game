@@ -52,6 +52,8 @@ public class Customer : MonoBehaviour
 
         yield return new WaitForSeconds(5f);
 
+        FindAnyObjectByType<GoldManager>().AddGold(1);
+
         chairManager.FreeChairForCustomer(this.gameObject);
 
         Exit();
