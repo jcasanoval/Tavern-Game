@@ -55,7 +55,7 @@ public class Customer : MonoBehaviour
         FindAnyObjectByType<GoldManager>().AddGold(1);
 
         chairManager.FreeChairForCustomer(this.gameObject);
-
+        transform.localScale = new Vector3(-transform.localScale.x,transform.localScale.y,transform.localScale.z);
         Exit();
     }
 
