@@ -9,10 +9,17 @@ public class Customer : MonoBehaviour
     private Transform exit;
     private ChairManager chairManager;
 
+    public SpriteRenderer spriteRenderer;
+    public SpriteHolder spriteHolder;
+
     void Start()
     {
         chairManager = FindObjectOfType<ChairManager>();
         agent = GetComponent<NavMeshAgent>();
+        spriteRenderer = gameObject.GetComponentInChildren<SpriteRenderer>();
+        spriteRenderer.sprite = spriteHolder.GetRandomSprite();
+
+
 
         GameObject exitObject = GameObject.FindGameObjectWithTag("Finish");
         if (exitObject != null)

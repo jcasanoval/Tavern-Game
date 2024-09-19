@@ -5,6 +5,7 @@ using UnityEngine;
 public class CustomerSpawner : MonoBehaviour
 {
     public GameObject customerPrefab;
+    public GameObject spriteHolder;
     public float spawnInterval = 5f;
     private Transform spawnPoint;
 
@@ -35,7 +36,8 @@ public class CustomerSpawner : MonoBehaviour
     {
         if (customerPrefab != null && spawnPoint != null)
         {
-            Instantiate(customerPrefab, spawnPoint.position, spawnPoint.rotation);
+            GameObject customer = Instantiate(customerPrefab, spawnPoint.position, spawnPoint.rotation);
+            customer.GetComponent<Customer>().spriteHolder = spriteHolder.GetComponent<SpriteHolder>();
         }
         else
         {

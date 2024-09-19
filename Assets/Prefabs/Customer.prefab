@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5963907055141488614}
   - component: {fileID: 7389917226346319064}
   m_Layer: 0
-  m_Name: Enanos
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
