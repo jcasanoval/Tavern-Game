@@ -7,7 +7,22 @@ public class PlayerInteraction : MonoBehaviour
     {
         get
         {
-            return nearbyInteractables.Count > 0 ? nearbyInteractables[0] : null;
+            if (nearbyInteractables.Count == 0) return null;
+
+            Interactable closest = nearbyInteractables[0];
+            float closestDistance = Vector3.Distance(transform.position, closest.transform.position);
+
+            foreach (var interactable in nearbyInteractables)
+            {
+                float distance = Vector3.Distance(transform.position, interactable.transform.position);
+                if (distance < closestDistance)
+                {
+                    closestDistance = distance;
+                    closest = interactable;
+                }
+            }
+
+            return closest;
         }
     }
 

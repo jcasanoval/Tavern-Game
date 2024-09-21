@@ -2,28 +2,28 @@ using UnityEngine;
 
 public class Chair : MonoBehaviour
 {
-    private bool isOccupied = false;
+    private bool isReserved = false;
     private GameObject currentCustomer;
 
     public void AssignCustomer(GameObject customer)
     {
-        isOccupied = true;
+        isReserved = true;
         currentCustomer = customer;
     }
 
     public void FreeChair()
     {
-        isOccupied = false;
+        isReserved = false;
         currentCustomer = null;
     }
 
-    public bool IsOccupied()
+    public bool IsReserved()
     {
-        return isOccupied;
+        return isReserved;
     }
 
-    public bool IsOccupiedBy(GameObject customer)
+    public bool IsReservedBy(GameObject customer)
     {
-        return isOccupied && currentCustomer == customer;
+        return isReserved && currentCustomer == customer;
     }
 }

@@ -13,7 +13,7 @@ public class GoldManager : MonoBehaviour
         set
         {
             gold = value;
-            goldDisplay.text = gold.ToString();
+            goldDisplay.text = "$" + gold.ToString();
         }
     }
 

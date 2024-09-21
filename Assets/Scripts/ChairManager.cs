@@ -17,7 +17,7 @@ public class ChairManager : MonoBehaviour
     {
         foreach (Chair chair in chairs)
         {
-            if (!chair.IsOccupied())
+            if (!chair.IsReserved())
             {
                 chair.AssignCustomer(customer);
                 return chair.transform.position;
@@ -28,14 +28,18 @@ public class ChairManager : MonoBehaviour
 
     public void FreeChairForCustomer(GameObject customer)
     {
-        foreach (Chair chair in chairs)
-        {
-            if (chair.IsOccupiedBy(customer))
-            {
-                chair.FreeChair();
-                return;
-            }
-        }
+        GetChairByCustomer(customer)?.FreeChair();
     }
 
+    private Chair GetChairByCustomer(GameObject customer)
+    {
+        foreach (Chair chair in chairs)
+        {
+            if (chair.IsReservedBy(customer))
+            {
+                return chair;
+            }
+        }
+        return null;
+    }
 }
