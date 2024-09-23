@@ -4,6 +4,8 @@ using TMPro;
 public class Barrel : Interactable
 {
     private HandController handController;
+    private DayCycleManager dayCycleManager;
+    private GoldManager goldManager;
     public TextMeshProUGUI beerDisplay;
 
     private int Stock
@@ -25,14 +27,23 @@ public class Barrel : Interactable
     {
         Stock = 10;
         handController = FindObjectOfType<HandController>();
+        dayCycleManager = FindObjectOfType<DayCycleManager>();
+        goldManager = FindObjectOfType<GoldManager>();
     }
 
     public override void Interact()
     {
-        if (handController.HasFreeHands() && Stock > 0)
+        if (dayCycleManager.IsOpen())
         {
-            Stock--;
-            handController.HoldMug();
+            if (handController.HasFreeHands() && Stock > 0)
+            {
+                Stock--;
+                handController.HoldMug();
+            }
+        }
+        else if (goldManager.SpendGold(1))
+        {
+            Stock++;
         }
     }
 }

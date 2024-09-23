@@ -85,7 +85,7 @@ public class Customer : MonoBehaviour
             animator.SetTrigger("DrinkBeer");
             yield return new WaitForSeconds(10f);
 
-            FindAnyObjectByType<GoldManager>().AddGold(1);
+            FindAnyObjectByType<GoldManager>().AddGold(2);
         }
         animator.SetTrigger("Stand");
 
