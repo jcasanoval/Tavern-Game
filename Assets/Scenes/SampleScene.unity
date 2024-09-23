@@ -387,6 +387,7 @@ MonoBehaviour:
   customerPrefab: {fileID: 3811069259392465634, guid: 73665d3c5b34c2844983befd8a012164, type: 3}
   spriteHolder: {fileID: 1072016925}
   spawnInterval: 1
+  raceHolder: {fileID: 1632624975}
 --- !u!4 &254013698
 Transform:
   m_ObjectHideFlags: 0
@@ -412,7 +413,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1759337794738088140, guid: c9c5bd66c830c4846b30ff83756e9c90, type: 3}
       propertyPath: startsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1919259722495604965, guid: c9c5bd66c830c4846b30ff83756e9c90, type: 3}
       propertyPath: m_Name
@@ -548,7 +549,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53dbe895e9065794bac14b4a187943da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handController: {fileID: 0}
   beerDisplay: {fileID: 1813059706}
 --- !u!135 &492744806
 SphereCollider:
@@ -1341,7 +1341,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1759337794738088140, guid: c9c5bd66c830c4846b30ff83756e9c90, type: 3}
       propertyPath: startsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1919259722495604965, guid: c9c5bd66c830c4846b30ff83756e9c90, type: 3}
       propertyPath: m_Name
@@ -1430,10 +1430,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 917bd02fd0626894ab13fcf79bb4d10e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprites:
-  - {fileID: 21300000, guid: 21dfad905b1f2bd41ba20f9257ae1306, type: 3}
-  - {fileID: 21300000, guid: 98ab1fbb0e7584046a34ed5c9911fc79, type: 3}
-  - {fileID: 21300000, guid: 93fd7e452640073469d2acd30c15fc4c, type: 3}
+  sprites: []
 --- !u!4 &1072016927
 Transform:
   m_ObjectHideFlags: 0
@@ -2033,6 +2030,54 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1571581594}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1632624974
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1632624976}
+  - component: {fileID: 1632624975}
+  m_Layer: 0
+  m_Name: RaceHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1632624975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1632624974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5dcb420104d8aa4a91cbd56e109d08f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteHolders:
+  - {fileID: -6815017488866639930, guid: 92bea8e3ed91ce445b56bc4170b5a430, type: 3}
+  - {fileID: -6106915680766941305, guid: 631cd85764244dc43959829397ad8c94, type: 3}
+  - {fileID: 4066646871194004508, guid: 434a3b03b977d534a88a0f6526cdeaa4, type: 3}
+--- !u!4 &1632624976
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1632624974}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.73835045, y: -1.9164257, z: -0.21239376}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1655784226
 GameObject:
   m_ObjectHideFlags: 0
@@ -2546,3 +2591,4 @@ SceneRoots:
   - {fileID: 1040725670}
   - {fileID: 1121376847}
   - {fileID: 1268427412}
+  - {fileID: 1632624976}

@@ -22,7 +22,7 @@ public class Customer : MonoBehaviour
         chairManager = FindObjectOfType<ChairManager>();
         agent = GetComponent<NavMeshAgent>();
         spriteRenderer = gameObject.GetComponentInChildren<SpriteRenderer>();
-        spriteRenderer.sprite = spriteHolder.GetRandomSprite();
+        spriteRenderer.sprite = spriteHolder.GetProfile();
         animator = gameObject.GetComponent<Animator>();
 
         GameObject exitObject = GameObject.FindGameObjectWithTag("Finish");
@@ -64,6 +64,7 @@ public class Customer : MonoBehaviour
         float waitTime = Random.Range(10f, 20f);
         float elapsedTime = 0f;
         animator.SetTrigger("Sit");
+        
 
         while (elapsedTime < waitTime && !isServed)
         {
@@ -78,12 +79,12 @@ public class Customer : MonoBehaviour
         else
         {
             Debug.Log("Customer is drinking the beer.");
-            animator.SetTrigger("Drink");
+            animator.SetTrigger("DrinkBeer");
             yield return new WaitForSeconds(10f);
-            animator.SetTrigger("Leave");
 
             FindAnyObjectByType<GoldManager>().AddGold(1);
         }
+        animator.SetTrigger("Stand");
 
         isSitting = false;
 
@@ -127,17 +128,17 @@ public class Customer : MonoBehaviour
 
     public void AnimationSit()
     {
-        spriteRenderer.sprite = spriteHolder.GetRandomSprite();
+        spriteRenderer.sprite = spriteHolder.GetSitting(transform.localScale.x > 0);
     }
 
     public void AnimationDrink()
     {
-        spriteRenderer.sprite = spriteHolder.GetRandomSprite();
+        spriteRenderer.sprite = spriteHolder.GetDrinking(transform.localScale.x > 0);
     }
 
     public void AnimationLeave()
     {
-        spriteRenderer.sprite = spriteHolder.GetRandomSprite();
+        spriteRenderer.sprite = spriteHolder.GetProfile();
     }
 
 

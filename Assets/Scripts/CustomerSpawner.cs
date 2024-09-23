@@ -8,6 +8,7 @@ public class CustomerSpawner : MonoBehaviour
     public GameObject spriteHolder;
     public float spawnInterval = 5f;
     private Transform spawnPoint;
+    public RaceHolder raceHolder;
 
     void Start()
     {
@@ -37,7 +38,7 @@ public class CustomerSpawner : MonoBehaviour
         if (customerPrefab != null && spawnPoint != null)
         {
             GameObject customer = Instantiate(customerPrefab, spawnPoint.position, spawnPoint.rotation);
-            customer.GetComponent<Customer>().spriteHolder = spriteHolder.GetComponent<SpriteHolder>();
+            customer.GetComponent<Customer>().spriteHolder = raceHolder.GetRandomSpriteHolder();
         }
         else
         {
