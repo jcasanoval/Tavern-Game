@@ -77,6 +77,7 @@ public class TableInteractuable : Interactable
         {
             Debug.Log("Table purchased");
             SetFurniture(true);
+            GetComponent<TableAnimation>().Animate();
         }
         else
         {
