@@ -9,9 +9,11 @@ public class CustomerSpawner : MonoBehaviour
     public float spawnInterval = 5f;
     private Transform spawnPoint;
     public RaceHolder raceHolder;
+    private DayCycleManager dayCycleManager;
 
     void Start()
     {
+        dayCycleManager = FindObjectOfType<DayCycleManager>();
         GameObject spawnPointObject = GameObject.FindGameObjectWithTag("Respawn");
         if (spawnPointObject != null)
         {
@@ -28,8 +30,15 @@ public class CustomerSpawner : MonoBehaviour
     {
         while (true)
         {
-            SpawnCustomer();
-            yield return new WaitForSeconds(spawnInterval);
+            if (!dayCycleManager.IsClosing()) 
+            {
+                SpawnCustomer();
+                yield return new WaitForSeconds(spawnInterval);
+            }
+            else
+            {
+                yield return null;
+            }
         }
     }
 
