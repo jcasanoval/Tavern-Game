@@ -26,6 +26,7 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
+    [SerializeField]
     private List<Interactable> nearbyInteractables = new List<Interactable>();
 
     private void OnTriggerEnter(Collider other)
