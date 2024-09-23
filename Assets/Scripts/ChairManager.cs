@@ -36,7 +36,7 @@ public class ChairManager : MonoBehaviour
         GetChairByCustomer(customer)?.FreeChair();
     }
 
-    private Chair GetChairByCustomer(GameObject customer)
+    public Chair GetChairByCustomer(GameObject customer)
     {
         foreach (Chair chair in chairs)
         {

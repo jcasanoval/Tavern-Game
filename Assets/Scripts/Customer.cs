@@ -9,6 +9,8 @@ public class Customer : MonoBehaviour
     private Transform exit;
     private ChairManager chairManager;
 
+    private Chair lastSatChair;
+
     public SpriteRenderer spriteRenderer;
     public SpriteHolder spriteHolder;
 
@@ -45,6 +47,7 @@ public class Customer : MonoBehaviour
         {
             agent.destination = chairPosition.Value;
             StartCoroutine(WaitForBeerOrLeave());
+            lastSatChair = chairManager.GetChairByCustomer(this.gameObject);
         }
         else
         {
@@ -128,12 +131,12 @@ public class Customer : MonoBehaviour
 
     public void AnimationSit()
     {
-        spriteRenderer.sprite = spriteHolder.GetSitting(transform.localScale.x > 0);
+        spriteRenderer.sprite = spriteHolder.GetSitting(lastSatChair.Direction.y < 0);
     }
 
     public void AnimationDrink()
     {
-        spriteRenderer.sprite = spriteHolder.GetDrinking(transform.localScale.x > 0);
+        spriteRenderer.sprite = spriteHolder.GetDrinking(lastSatChair.Direction.y < 0);
     }
 
     public void AnimationLeave()

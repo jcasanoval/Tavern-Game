@@ -5,6 +5,8 @@ public class Chair : MonoBehaviour
     private bool isReserved = false;
     private GameObject currentCustomer;
 
+    public Vector2 Direction = Vector2.up;
+
     public void AssignCustomer(GameObject customer)
     {
         isReserved = true;
