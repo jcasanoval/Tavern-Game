@@ -11,7 +11,7 @@ public class TableInteractuable : Interactable
     private GameObject positionMarker;
 
     [SerializeField]
-    private bool startsActive = false;
+    private bool isActive = false;
 
     [SerializeField]
     [Range(1, 20)]
@@ -21,7 +21,7 @@ public class TableInteractuable : Interactable
     void Start()
     {
         FindFurniture();
-        SetFurniture(startsActive);
+        SetFurniture(isActive);
     }
 
     private void FindFurniture()
@@ -51,16 +51,19 @@ public class TableInteractuable : Interactable
 
         positionMarker.SetActive(!active);
 
-        if (active)
-        {
-            enabled = false;
-        }
-
         FindObjectOfType<ChairManager>().RefreshChairs();
+
+        isActive = active;
     }
 
     public override void Interact()
     {
+        if (isActive)
+        {
+            Debug.Log("Table already purchased");
+            return;
+        }
+
         Debug.Log("Interacting with table");
         var madePurchase = FindAnyObjectByType<GoldManager>().SpendGold(price);
 
