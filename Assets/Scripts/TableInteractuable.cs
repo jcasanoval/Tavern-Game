@@ -58,6 +58,12 @@ public class TableInteractuable : Interactable
 
     public override void Interact()
     {
+        if (FindObjectOfType<DayCycleManager>().IsOpen())
+        {
+            Debug.Log("Cannot purchase table while open");
+            return;
+        }
+
         if (isActive)
         {
             Debug.Log("Table already purchased");
