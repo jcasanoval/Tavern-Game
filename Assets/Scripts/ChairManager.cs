@@ -9,8 +9,13 @@ public class ChairManager : MonoBehaviour
 
     void Start()
     {
-        chairs = FindObjectsOfType<Chair>().ToList();
+        RefreshChairs();
         Debug.Log("Found " + chairs.Count + " chairs.");
+    }
+
+    public void RefreshChairs()
+    {
+        chairs = FindObjectsOfType<Chair>().ToList();
     }
 
     public Vector3? GetAvailableChairPosition(GameObject customer)
