@@ -12,6 +12,8 @@ public class Customer : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     public SpriteHolder spriteHolder;
 
+    public Animator animator;
+
     private bool isServed = false;
     private bool isSitting = false;
 
@@ -21,6 +23,7 @@ public class Customer : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         spriteRenderer = gameObject.GetComponentInChildren<SpriteRenderer>();
         spriteRenderer.sprite = spriteHolder.GetRandomSprite();
+        animator = gameObject.GetComponent<Animator>();
 
         GameObject exitObject = GameObject.FindGameObjectWithTag("Finish");
         if (exitObject != null)
@@ -60,6 +63,7 @@ public class Customer : MonoBehaviour
 
         float waitTime = Random.Range(10f, 20f);
         float elapsedTime = 0f;
+        animator.SetTrigger("Sit");
 
         while (elapsedTime < waitTime && !isServed)
         {
@@ -74,7 +78,9 @@ public class Customer : MonoBehaviour
         else
         {
             Debug.Log("Customer is drinking the beer.");
+            animator.SetTrigger("Drink");
             yield return new WaitForSeconds(10f);
+            animator.SetTrigger("Leave");
 
             FindAnyObjectByType<GoldManager>().AddGold(1);
         }
@@ -116,4 +122,23 @@ public class Customer : MonoBehaviour
 
         Destroy(gameObject);
     }
+
+    //Animation Controls
+
+    public void AnimationSit()
+    {
+        spriteRenderer.sprite = spriteHolder.GetRandomSprite();
+    }
+
+    public void AnimationDrink()
+    {
+        spriteRenderer.sprite = spriteHolder.GetRandomSprite();
+    }
+
+    public void AnimationLeave()
+    {
+        spriteRenderer.sprite = spriteHolder.GetRandomSprite();
+    }
+
+
 }
