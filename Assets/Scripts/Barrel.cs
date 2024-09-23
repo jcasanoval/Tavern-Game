@@ -3,7 +3,7 @@ using TMPro;
 
 public class Barrel : Interactable
 {
-    public HandController handController;
+    private HandController handController;
     public TextMeshProUGUI beerDisplay;
 
     private int Stock
