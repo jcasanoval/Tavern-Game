@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class DayCycleManager : MonoBehaviour
 {
+    public float nightTime = 22f;
     private bool isOpen;
-    public float nightTime = 30f;
+    private AudioSource backgroundNoiseAudioSource;
+
+    void Awake()
+    {
+        backgroundNoiseAudioSource = GetComponent<AudioSource>();
+    }
 
     void Start()
     {
@@ -14,6 +20,7 @@ public class DayCycleManager : MonoBehaviour
 
     public void Open()
     {
+        backgroundNoiseAudioSource.Play();
         isOpen = true;
         StartCoroutine(Close());
     }
@@ -35,5 +42,12 @@ public class DayCycleManager : MonoBehaviour
         yield return new WaitForSeconds(nightTime);
 
         isOpen = false;
+
+        while (IsOpen())
+        {
+            yield return null;
+        }
+
+        backgroundNoiseAudioSource.Stop();
     }
 }

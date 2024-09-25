@@ -6,6 +6,8 @@ public class Barrel : Interactable
     private HandController handController;
     private DayCycleManager dayCycleManager;
     private GoldManager goldManager;
+    private AudioSource serveBeerAudioSource;
+    public int initialStock = 5;
     public TextMeshProUGUI beerDisplay;
 
     private int Stock
@@ -21,11 +23,16 @@ public class Barrel : Interactable
         }
     }
 
-    private int stock = 0;
+    private int stock;
+
+    void Awake()
+    {
+        serveBeerAudioSource = GetComponent<AudioSource>();
+    }
 
     void Start()
     {
-        Stock = 10;
+        Stock = initialStock;
         handController = FindObjectOfType<HandController>();
         dayCycleManager = FindObjectOfType<DayCycleManager>();
         goldManager = FindObjectOfType<GoldManager>();
@@ -39,6 +46,7 @@ public class Barrel : Interactable
             {
                 Stock--;
                 handController.HoldMug();
+                serveBeerAudioSource.Play();
             }
         }
         else if (goldManager.SpendGold(1))

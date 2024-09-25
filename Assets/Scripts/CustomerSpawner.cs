@@ -6,7 +6,8 @@ public class CustomerSpawner : MonoBehaviour
 {
     public GameObject customerPrefab;
     public GameObject spriteHolder;
-    public float spawnInterval = 5f;
+    public float lowestSpawnInterval = 1f;
+    public float highestSpawnInterval = 3f;
     private Transform spawnPoint;
     public RaceHolder raceHolder;
     private DayCycleManager dayCycleManager;
@@ -33,7 +34,8 @@ public class CustomerSpawner : MonoBehaviour
             if (!dayCycleManager.IsClosing()) 
             {
                 SpawnCustomer();
-                yield return new WaitForSeconds(spawnInterval);
+                float waitTime = Random.Range(lowestSpawnInterval, highestSpawnInterval);
+                yield return new WaitForSeconds(waitTime);
             }
             else
             {
