@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DayCycleManager : MonoBehaviour
 {
-    public float nightTime = 22f;
+    public float nightTime = 20f;
     private bool isOpen;
     private AudioSource backgroundNoiseAudioSource;
 
