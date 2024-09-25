@@ -11,11 +11,7 @@ public class DayCycleManager : MonoBehaviour
     void Awake()
     {
         backgroundNoiseAudioSource = GetComponent<AudioSource>();
-    }
-
-    void Start()
-    {
-        Open();
+        isOpen = false;
     }
 
     public void Open()

@@ -1736,7 +1736,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 7f31f2e5c2823254984f269345487e31, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.7
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1875,9 +1875,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.00031116605
+    y: 0
     width: 1
-    height: 0.99937767
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
