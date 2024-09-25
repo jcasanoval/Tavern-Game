@@ -386,7 +386,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   customerPrefab: {fileID: 3811069259392465634, guid: 73665d3c5b34c2844983befd8a012164, type: 3}
   spriteHolder: {fileID: 1072016925}
-  spawnInterval: 1
+  lowestSpawnInterval: 1
+  highestSpawnInterval: 3
   raceHolder: {fileID: 1632624975}
 --- !u!4 &254013698
 Transform:
@@ -550,6 +551,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53dbe895e9065794bac14b4a187943da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initialStock: 5
   beerDisplay: {fileID: 1813059706}
 --- !u!135 &492744806
 SphereCollider:
@@ -584,7 +586,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 7f31f2e5c2823254984f269345487e31, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.3
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2723,7 +2725,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 211111a7e2bfd1b499427984ca1a6be2, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.3
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -2893,7 +2895,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6b2d64246a478245b8e1ca52ce8094d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nightTime: 15
+  nightTime: 22
 --- !u!82 &2049693609
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2906,7 +2908,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 5d83e2bb135996d4c8487b1ca7430a28, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.3
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 1
   Mute: 0
