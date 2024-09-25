@@ -22,15 +22,18 @@ public class TableAnimation : MonoBehaviour
     [Range(0.1f, 1f)]
     private float bouncebackDuration = 0.1f;
 
+    private AudioSource createTableAudioSource;
+
     // Start is called before the first frame update
     void Start()
     {
+        createTableAudioSource = GetComponent<AudioSource>();
         initialPosition = transform.position;
     }
 
-
     public void Animate()
     {
+        createTableAudioSource.Play();
         StartCoroutine(AnimateTable());
     }
 

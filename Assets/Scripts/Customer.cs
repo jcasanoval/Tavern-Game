@@ -11,6 +11,8 @@ public class Customer : MonoBehaviour
 
     private Chair lastSatChair;
 
+    private AudioSource moneyTipAudioSource;
+
     public SpriteRenderer spriteRenderer;
     public SpriteHolder spriteHolder;
 
@@ -18,6 +20,11 @@ public class Customer : MonoBehaviour
 
     private bool isServed = false;
     private bool isSitting = false;
+
+    void Awake()
+    {
+        moneyTipAudioSource = GetComponent<AudioSource>();
+    }
 
     void Start()
     {
@@ -86,6 +93,7 @@ public class Customer : MonoBehaviour
             yield return new WaitForSeconds(10f);
 
             FindAnyObjectByType<GoldManager>().AddGold(2);
+            moneyTipAudioSource.Play();
         }
         animator.SetTrigger("Stand");
 

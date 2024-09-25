@@ -5,7 +5,7 @@ using UnityEngine;
 public class HandController : MonoBehaviour
 {
     [SerializeField] private GameObject mug;
-
+    
     void Start() {
         mug.SetActive(false);
     }

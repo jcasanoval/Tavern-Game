@@ -5,6 +5,12 @@ public class CustomerInteractable : Interactable
     private Customer customer;
 
     private HandController handController;
+    private AudioSource placeBeerAudioSource;
+    
+    void Awake()
+    {
+        placeBeerAudioSource = GetComponent<AudioSource>();
+    }
 
     void Start()
     {
@@ -16,6 +22,7 @@ public class CustomerInteractable : Interactable
     {
         if (!handController.HasFreeHands() && customer.ServeBeer())
         {
+            placeBeerAudioSource.Play();
             handController.ReleaseMug();
         }
     }
