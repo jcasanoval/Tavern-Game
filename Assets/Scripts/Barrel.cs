@@ -38,7 +38,7 @@ public class Barrel : Interactable
         goldManager = FindObjectOfType<GoldManager>();
     }
 
-    public override void Interact()
+    public override bool Interact()
     {
         if (dayCycleManager.IsOpen())
         {
@@ -47,11 +47,14 @@ public class Barrel : Interactable
                 Stock--;
                 handController.HoldMug();
                 serveBeerAudioSource.Play();
+                return true;
             }
         }
         else if (goldManager.SpendGold(1))
         {
             Stock++;
+            return true;
         }
+        return false;
     }
 }

@@ -56,32 +56,32 @@ public class TableInteractuable : Interactable
         isActive = active;
     }
 
-    public override void Interact()
+    public override bool Interact()
     {
         if (FindObjectOfType<DayCycleManager>().IsOpen())
         {
             Debug.Log("Cannot purchase table while open");
-            return;
+            return false;
         }
 
         if (isActive)
         {
             Debug.Log("Table already purchased");
-            return;
+            return false;
         }
 
         Debug.Log("Interacting with table");
         var madePurchase = FindAnyObjectByType<GoldManager>().SpendGold(price);
 
-        if (madePurchase)
-        {
-            Debug.Log("Table purchased");
-            SetFurniture(true);
-            GetComponent<TableAnimation>().Animate();
-        }
-        else
+        if (!madePurchase)
         {
             Debug.Log("Not enough gold to purchase table");
+            return false;
         }
+
+        Debug.Log("Table purchased");
+        SetFurniture(true);
+        GetComponent<TableAnimation>().Animate();
+        return true;
     }
 }

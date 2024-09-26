@@ -18,12 +18,14 @@ public class CustomerInteractable : Interactable
         handController = FindObjectOfType<HandController>();
     }
 
-    public override void Interact()
+    public override bool Interact()
     {
         if (!handController.HasFreeHands() && customer.ServeBeer())
         {
             placeBeerAudioSource.Play();
             handController.ReleaseMug();
+            return true;
         }
+        return false;
     }
 }

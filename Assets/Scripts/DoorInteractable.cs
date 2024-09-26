@@ -20,10 +20,12 @@ public class DoorInteractable : Interactable
         }
     }
 
-    public override void Interact()
+    public override bool Interact()
     {
         if (!dayCycleManager.IsOpen()) {
             dayCycleManager.Open();
+            return true;
         }
+        return false;
     }
 }

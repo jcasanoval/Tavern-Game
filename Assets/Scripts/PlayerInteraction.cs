@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class PlayerInteraction : MonoBehaviour
 {
@@ -9,20 +10,7 @@ public class PlayerInteraction : MonoBehaviour
         {
             if (nearbyInteractables.Count == 0) return null;
 
-            Interactable closest = nearbyInteractables[0];
-            float closestDistance = Vector3.Distance(transform.position, closest.transform.position);
-
-            foreach (var interactable in nearbyInteractables)
-            {
-                float distance = Vector3.Distance(transform.position, interactable.transform.position);
-                if (distance < closestDistance)
-                {
-                    closestDistance = distance;
-                    closest = interactable;
-                }
-            }
-
-            return closest;
+            return nearbyInteractables.OrderBy(i => Vector3.Distance(transform.position, i.transform.position)).FirstOrDefault();
         }
     }
 
@@ -50,11 +38,18 @@ public class PlayerInteraction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && currentInteractable != null)
+        if (Input.GetKeyDown(KeyCode.E) && nearbyInteractables.Count > 0)
         {
-            currentInteractable.Interact();
+            var sortedInteractables = nearbyInteractables.OrderBy(i => Vector3.Distance(transform.position, i.transform.position));
+
+            foreach (var interactable in sortedInteractables)
+            {
+                if (interactable.Interact())
+                {
+                    break;
+                }
+            }
+
         }
     }
-
-
 }
