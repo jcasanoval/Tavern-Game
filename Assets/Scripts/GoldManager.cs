@@ -21,7 +21,7 @@ public class GoldManager : MonoBehaviour
 
     private void Start()
     {
-        Gold = 0;
+        Gold = 50;
     }
 
     public void AddGold(int amount)
