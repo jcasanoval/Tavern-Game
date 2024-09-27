@@ -12,6 +12,8 @@ public class Customer : MonoBehaviour
     private Chair lastSatChair;
 
     private AudioSource moneyTipAudioSource;
+    private AudioSource angryAudioSource;
+    private AudioSource[] audioSources;
 
     public SpriteRenderer spriteRenderer;
     public SpriteHolder spriteHolder;
@@ -23,7 +25,9 @@ public class Customer : MonoBehaviour
 
     void Awake()
     {
-        moneyTipAudioSource = GetComponent<AudioSource>();
+        audioSources = GetComponents<AudioSource>();
+        moneyTipAudioSource = audioSources[0];
+        angryAudioSource = audioSources[1];
     }
 
     void Start()
@@ -85,6 +89,7 @@ public class Customer : MonoBehaviour
         if (!isServed)
         {
             Debug.Log("Customer is leaving because they were not served.");
+            angryAudioSource.Play();
         }
         else
         {
