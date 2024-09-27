@@ -5,6 +5,12 @@ using UnityEngine;
 public class DoorInteractable : Interactable
 {
     private DayCycleManager dayCycleManager;
+    private AudioSource doorOpenAudioSource;
+
+    void Awake()
+    {
+        doorOpenAudioSource = GetComponent<AudioSource>();
+    }
 
     void Start()
     {
@@ -12,11 +18,11 @@ public class DoorInteractable : Interactable
     }
 
     void Update() {
-        if (dayCycleManager.IsClosing()) {
-            GetComponentsInParent<Renderer>()[0].material.color = Color.red;
+        if (dayCycleManager.IsOpen()) {
+            GetComponentsInParent<Renderer>()[0].material.color = Color.green;
         }
         else {
-            GetComponentsInParent<Renderer>()[0].material.color = Color.green;
+            GetComponentsInParent<Renderer>()[0].material.color = Color.red;
         }
     }
 
@@ -24,6 +30,7 @@ public class DoorInteractable : Interactable
     {
         if (!dayCycleManager.IsOpen()) {
             dayCycleManager.Open();
+            doorOpenAudioSource.Play();
             return true;
         }
         return false;

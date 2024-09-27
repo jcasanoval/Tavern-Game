@@ -7,10 +7,14 @@ public class DayCycleManager : MonoBehaviour
     public float nightTime = 20f;
     private bool isOpen;
     private AudioSource backgroundNoiseAudioSource;
+    private AudioSource doorCloseAudioSource;
+    private AudioSource[] audioSources;
 
     void Awake()
     {
-        backgroundNoiseAudioSource = GetComponent<AudioSource>();
+        audioSources = GetComponents<AudioSource>();
+        backgroundNoiseAudioSource = audioSources[0];
+        doorCloseAudioSource = audioSources[1];
         isOpen = false;
     }
 
@@ -45,5 +49,6 @@ public class DayCycleManager : MonoBehaviour
         }
 
         backgroundNoiseAudioSource.Stop();
+        doorCloseAudioSource.Play();
     }
 }
