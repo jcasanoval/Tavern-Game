@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4309840022146151530}
   - component: {fileID: 5363222683454362409}
   - component: {fileID: -5176780044597332412}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Chair
   m_TagString: Furniture
   m_Icon: {fileID: 0}
@@ -105,8 +105,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.65304697, y: 0.5032804, z: 0.72163796}
+  m_Center: {x: 0.00090066786, y: 0.24835977, z: -0.003696152}
 --- !u!114 &-5176780044597332412
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -20,8 +20,24 @@ public class Customer : MonoBehaviour
 
     public Animator animator;
 
+    private static float maxWaitTime = 20f;
+
     private bool isServed = false;
-    private bool isSitting = false;
+    public bool isSitting = false;
+
+    private float timeWaited = 0f;
+
+    public float PatienceLevel
+    {
+        get
+        {
+            if (isServed)
+            {
+                return 1;
+            }
+            return 1 - (timeWaited / maxWaitTime);
+        }
+    }
 
     void Awake()
     {
@@ -75,14 +91,13 @@ public class Customer : MonoBehaviour
 
         isSitting = true;
 
-        float waitTime = Random.Range(10f, 20f);
-        float elapsedTime = 0f;
+        timeWaited = Random.Range(0, maxWaitTime / 2);
         animator.SetTrigger("Sit");
-        
 
-        while (elapsedTime < waitTime && !isServed)
+
+        while (timeWaited < maxWaitTime && !isServed)
         {
-            elapsedTime += Time.deltaTime;
+            timeWaited += Time.deltaTime;
             yield return null;
         }
 
@@ -105,7 +120,7 @@ public class Customer : MonoBehaviour
         isSitting = false;
 
         chairManager.FreeChairForCustomer(this.gameObject);
-        transform.localScale = new Vector3(-transform.localScale.x,transform.localScale.y,transform.localScale.z);
+        transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
         Exit();
     }
 
