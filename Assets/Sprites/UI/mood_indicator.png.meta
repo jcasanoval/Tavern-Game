@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e7e190e7cdaa81f47b509da0febb4ebc
+guid: 86e20486c895249f1805ac2a09531186
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -44,11 +44,11 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
-  spriteExtrude: 2
+  spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100.01
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -93,30 +93,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: mood_indicators_0
+      name: mood_indicator_0
       rect:
         serializedVersion: 2
-        x: 56
-        y: 339
-        width: 137
-        height: 137
+        x: 5
+        y: 319
+        width: 221
+        height: 197
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +111,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3ed2ea6ad2aa4ae4a8f0499319e9b2ec
-      internalID: 1180639513
+      spriteID: f174fa1dbfeb443d28f2605292e6cb83
+      internalID: 18650091
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mood_indicators_1
+      name: mood_indicator_1
       rect:
         serializedVersion: 2
-        x: 243
-        y: 338
-        width: 138
-        height: 137
+        x: 227
+        y: 329
+        width: 210
+        height: 193
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,20 +132,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e81a51f2f6a94f84ebf0503d7509fc86
-      internalID: -2116728920
+      spriteID: e6dc6761c92ee439694056f9c6e6a30f
+      internalID: 81897832
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mood_indicators_2
+      name: mood_indicator_2
       rect:
         serializedVersion: 2
-        x: 431
+        x: 439
         y: 337
-        width: 137
-        height: 137
+        width: 198
+        height: 188
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,20 +153,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6b0be3cbb3a558b40b8350a7bc2f6ec4
-      internalID: 2021613814
+      spriteID: 99195f0888f3144759a8960007b1bfa0
+      internalID: 469962556
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mood_indicators_3
+      name: mood_indicator_3
       rect:
         serializedVersion: 2
-        x: 619
-        y: 340
-        width: 137
-        height: 137
+        x: 632
+        y: 333
+        width: 185
+        height: 187
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -187,20 +174,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f65b13f546a43b4489d483c86ca39c9f
-      internalID: 1859466721
+      spriteID: 02e6a774e115a44fba2b14f7ae43ba3e
+      internalID: 644753091
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mood_indicators_4
+      name: mood_indicator_4
       rect:
         serializedVersion: 2
-        x: 806
-        y: 339
-        width: 137
-        height: 137
+        x: 818
+        y: 323
+        width: 173
+        height: 184
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -208,8 +195,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9ae0a36fb33d1f6488dc5f5154d58bea
-      internalID: 526388739
+      spriteID: 3f097b0ed546f47b29f2f23759c8ac97
+      internalID: 366965957
       vertices: []
       indices: 
       edges: []
@@ -217,19 +204,19 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 4e65ba9a710f30c40910008dfe6d07e5
-    internalID: 1427130404
+    spriteID: ecf6af28788fc4c93a2f3275831ce4fc
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      mood_indicators_0: 1180639513
-      mood_indicators_1: -2116728920
-      mood_indicators_2: 2021613814
-      mood_indicators_3: 1859466721
-      mood_indicators_4: 526388739
+      mood_indicator_0: 18650091
+      mood_indicator_1: 81897832
+      mood_indicator_2: 469962556
+      mood_indicator_3: 644753091
+      mood_indicator_4: 366965957
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

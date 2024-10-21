@@ -726,10 +726,10 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.369863, y: 1.369863}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &4119906319449409237
@@ -745,9 +745,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprites:
-  - {fileID: 1180639513, guid: e7e190e7cdaa81f47b509da0febb4ebc, type: 3}
-  - {fileID: -2116728920, guid: e7e190e7cdaa81f47b509da0febb4ebc, type: 3}
-  - {fileID: 2021613814, guid: e7e190e7cdaa81f47b509da0febb4ebc, type: 3}
-  - {fileID: 1859466721, guid: e7e190e7cdaa81f47b509da0febb4ebc, type: 3}
-  - {fileID: 526388739, guid: e7e190e7cdaa81f47b509da0febb4ebc, type: 3}
+  - {fileID: 18650091, guid: 86e20486c895249f1805ac2a09531186, type: 3}
+  - {fileID: 81897832, guid: 86e20486c895249f1805ac2a09531186, type: 3}
+  - {fileID: 469962556, guid: 86e20486c895249f1805ac2a09531186, type: 3}
+  - {fileID: 644753091, guid: 86e20486c895249f1805ac2a09531186, type: 3}
+  - {fileID: 366965957, guid: 86e20486c895249f1805ac2a09531186, type: 3}
   customer: {fileID: 0}
