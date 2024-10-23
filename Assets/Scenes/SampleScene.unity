@@ -2083,7 +2083,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.4053037, y: 0.000000022489354, z: -0.000000009970681, w: 0.9141821}
+  m_LocalRotation: {x: 0.4053037, y: 0.000000027244754, z: -0.000000012078992, w: 0.9141821}
   m_LocalPosition: {x: -0.25, y: 6.4900002, z: -10.809999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3668,7 +3668,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1144674864}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.40530366, y: 0.000000020389608, z: -0.0000000052346008, w: 0.9141821}
+  m_LocalRotation: {x: 0.40530366, y: 0.000000027244754, z: -0.000000012078992, w: 0.9141821}
   m_LocalPosition: {x: -0.25, y: 6.4900002, z: -10.809999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4565,8 +4565,8 @@ MonoBehaviour:
   m_VerticalDamping: 0
   m_ScreenX: 0.5
   m_ScreenY: 0.5
-  m_DeadZoneWidth: 0.1
-  m_DeadZoneHeight: 0.1
+  m_DeadZoneWidth: 0.78
+  m_DeadZoneHeight: 0.77
   m_SoftZoneWidth: 0.8
   m_SoftZoneHeight: 0.8
   m_BiasX: 0
@@ -5098,6 +5098,7 @@ GameObject:
   - component: {fileID: 1722478124}
   - component: {fileID: 1722478123}
   - component: {fileID: 1722478122}
+  - component: {fileID: 1722478127}
   m_Layer: 0
   m_Name: DetectionZone
   m_TagString: Untagged
@@ -5217,6 +5218,27 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!65 &1722478127
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1722478120}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 11.9, y: 1, z: 11.07}
+  m_Center: {x: -9.9, y: -0.98, z: 0}
 --- !u!1 &1803719297
 GameObject:
   m_ObjectHideFlags: 0
