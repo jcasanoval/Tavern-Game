@@ -6,10 +6,12 @@ public class CustomerInteractable : Interactable
 
     private HandController handController;
     private AudioSource placeBeerAudioSource;
+    private PlayerInteraction playerInteraction;
     
     void Awake()
     {
         placeBeerAudioSource = GetComponent<AudioSource>();
+        playerInteraction = FindObjectOfType<PlayerInteraction>();
     }
 
     void Start()
@@ -27,5 +29,9 @@ public class CustomerInteractable : Interactable
             return true;
         }
         return false;
+    }
+
+    void OnDestroy() {
+        playerInteraction.RemoveInteractable(this);
     }
 }

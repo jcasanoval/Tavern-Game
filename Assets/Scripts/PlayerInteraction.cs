@@ -52,4 +52,11 @@ public class PlayerInteraction : MonoBehaviour
 
         }
     }
+
+    public void RemoveInteractable(Interactable interactable)
+    {
+        if (nearbyInteractables.Contains(interactable)) {
+            nearbyInteractables.Remove(interactable);
+        }
+    }
 }
