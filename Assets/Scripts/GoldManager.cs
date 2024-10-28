@@ -4,6 +4,7 @@ using UnityEngine;
 public class GoldManager : MonoBehaviour
 {
     public TextMeshProUGUI goldDisplay;
+    public int startingGold = 5;
     private int Gold
     {
         get
@@ -21,7 +22,7 @@ public class GoldManager : MonoBehaviour
 
     private void Start()
     {
-        Gold = 5;
+        Gold = startingGold;
     }
 
     public void AddGold(int amount)

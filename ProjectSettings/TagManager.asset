@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Furniture
+  - Employee
   layers:
   - Default
   - TransparentFX
@@ -15,7 +16,7 @@ TagManager:
   - Walkable Furniture
   - Customer Walkable Furniture
   - Customer
-  - 
+  - Employee
   - 
   - 
   - 

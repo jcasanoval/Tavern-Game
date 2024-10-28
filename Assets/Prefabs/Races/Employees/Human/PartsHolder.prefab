@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3946736831444190824
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 451937767779669729}
+  - component: {fileID: 4088364752334611453}
+  m_Layer: 0
+  m_Name: PartsHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &451937767779669729
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3946736831444190824}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4088364752334611453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3946736831444190824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a935ff26e47261a4bb410bd8cca4c4d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parts:
+  - {fileID: 5585406425949455557, guid: 3b323ec4042935b40b90dc2bae0e7045, type: 3}
+  - {fileID: 5585406425949455557, guid: 6416019e7bb15b8419712837c432b8da, type: 3}
+  - {fileID: 5585406425949455557, guid: 1f45035f55d55074f87a199d3bc13be3, type: 3}
+  - {fileID: 5585406425949455557, guid: 988665c9a0614a14fa6691c7bf51df21, type: 3}
+  - {fileID: 5585406425949455557, guid: 2052844acbae71d4c957c828a8b80cd1, type: 3}
+  - {fileID: 5585406425949455557, guid: 876f9df15ca46854da495d40ebc862e9, type: 3}
+  - {fileID: 5585406425949455557, guid: 415f7baa2d6f53148877010f5795b121, type: 3}
+  - {fileID: 5585406425949455557, guid: 359451fcf861ad44cbd3457fa0aa3e48, type: 3}

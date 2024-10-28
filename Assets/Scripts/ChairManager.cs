@@ -6,11 +6,13 @@ using UnityEngine;
 public class ChairManager : MonoBehaviour
 {
     private List<Chair> chairs = new List<Chair>();
+    private EmployeeManager employeeManager;
 
     void Start()
     {
         RefreshChairs();
         Debug.Log("Found " + chairs.Count + " chairs.");
+        employeeManager = FindObjectOfType<EmployeeManager>();
     }
 
     public void RefreshChairs()
@@ -46,5 +48,9 @@ public class ChairManager : MonoBehaviour
             }
         }
         return null;
+    }
+
+    public void SitOnChair(Chair chair){
+        employeeManager.NotifyNewCustomer(chair.transform.position);
     }
 }

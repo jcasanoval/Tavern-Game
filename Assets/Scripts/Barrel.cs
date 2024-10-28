@@ -57,4 +57,20 @@ public class Barrel : Interactable
         }
         return false;
     }
+
+    public override bool NPCInteract(GameObject npc)
+    {
+        print("NPC " + npc.name + "Interacting with " + gameObject.name);
+        if(npc.tag != "Employee"){
+            return false;
+        }
+        Employee employee = npc.GetComponent<Employee>();
+        if (Stock > 0 && !employee.HasBeer)
+        {
+            Stock--;
+            employee.HasBeer = true;
+            return true;
+        }
+        return false;
+    }
 }

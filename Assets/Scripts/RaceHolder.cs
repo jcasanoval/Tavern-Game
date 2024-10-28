@@ -4,10 +4,17 @@ using UnityEngine;
 
 public class RaceHolder : MonoBehaviour
 {
-    public SpriteHolder[] spriteHolders;
+    public SpriteHolder[] customerHolders;
 
-    public SpriteHolder GetRandomSpriteHolder()
+    public SpriteHolder[] employeeHolders;
+
+    public SpriteHolder GetRandomCustomerSpriteHolder()
     {
-        return spriteHolders[Random.Range(0, spriteHolders.Length)];
+        return customerHolders[Random.Range(0, customerHolders.Length)];
+    }
+
+    public SpriteHolder GetRandomEmployeeSpriteHolder()
+    {
+        return employeeHolders[Random.Range(0, employeeHolders.Length)];
     }
 }

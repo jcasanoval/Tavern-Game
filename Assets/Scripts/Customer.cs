@@ -90,7 +90,7 @@ public class Customer : MonoBehaviour
         }
 
         isSitting = true;
-
+        chairManager.SitOnChair(lastSatChair);
         timeWaited = Random.Range(0, maxWaitTime / 2);
         animator.SetTrigger("Sit");
 
@@ -110,7 +110,7 @@ public class Customer : MonoBehaviour
         {
             Debug.Log("Customer is drinking the beer.");
             animator.SetTrigger("DrinkBeer");
-            yield return new WaitForSeconds(10f);
+            yield return new WaitForSeconds(Random.Range(3f, 10f));
 
             FindAnyObjectByType<GoldManager>().AddGold(2);
             moneyTipAudioSource.Play();

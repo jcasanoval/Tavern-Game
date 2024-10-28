@@ -7,4 +7,10 @@ public class Interactable : MonoBehaviour
         Debug.Log("Interacting with " + gameObject.name);
         return false;
     }
+
+    public virtual bool NPCInteract(GameObject npc)
+    {
+        Debug.Log("NPC Interacting with " + gameObject.name);
+        return false;
+    }
 }

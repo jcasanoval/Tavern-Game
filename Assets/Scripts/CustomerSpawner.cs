@@ -49,7 +49,7 @@ public class CustomerSpawner : MonoBehaviour
         if (customerPrefab != null && spawnPoint != null)
         {
             GameObject customer = Instantiate(customerPrefab, spawnPoint.position, spawnPoint.rotation);
-            customer.GetComponent<Customer>().spriteHolder = raceHolder.GetRandomSpriteHolder();
+            customer.GetComponent<Customer>().spriteHolder = raceHolder.GetRandomCustomerSpriteHolder();
         }
         else
         {

@@ -31,6 +31,23 @@ public class CustomerInteractable : Interactable
         return false;
     }
 
+    public override bool NPCInteract(GameObject npc)
+    {
+        print("NPC " + npc.name + "Interacting with " + gameObject.name);
+        if(npc.tag != "Employee"){
+            return false;
+        }
+        Employee employee = npc.GetComponent<Employee>();
+
+        if (employee.HasBeer && customer.ServeBeer())
+        {
+            placeBeerAudioSource.Play();
+            employee.HasBeer = false;
+            return true;
+        }
+        return false;
+    }
+
     void OnDestroy() {
         playerInteraction.RemoveInteractable(this);
     }
