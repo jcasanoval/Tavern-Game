@@ -614,10 +614,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chair_1
       objectReference: {fileID: 0}
-    - target: {fileID: 318951278965991642, guid: c7c9e47a7cf1f31428f74dbb38f53912, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 858447531897985440, guid: c7c9e47a7cf1f31428f74dbb38f53912, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
