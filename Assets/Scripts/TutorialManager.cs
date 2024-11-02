@@ -6,26 +6,23 @@ public class TutorialManager : MonoBehaviour
 {
     void Start()
     {
-        // this is just a test
-        // it changes the interaction of all barrels to the tutorial interaction for 1 second
-        Barrel[] barrels = FindObjectsOfType<Barrel>();
-        Debug.Log("Barrels: " + barrels.Length);
-        for (int i = 0; i < barrels.Length; i++)
+        Interactable[] interactable = FindObjectsOfType<Interactable>();
+        for (int i = 0; i < interactable.Length; i++)
         {
-            barrels[i].InteractFunctionality = barrels[i].TutorialInteractFunctionality;
+            interactable[i].InteractFunctionality = interactable[i].TutorialInteractFunctionality;
         }
 
-        // wait 1 sec
+        // TODO: Esto se va a borrar, está como ejemplo hasta que se implemente el tutorial
         StartCoroutine(ChangeBarrelInteractions());
     }
 
     IEnumerator ChangeBarrelInteractions()
     {
         yield return new WaitForSeconds(1);
-        Barrel[] barrels = FindObjectsOfType<Barrel>();
-        for (int i = 0; i < barrels.Length; i++)
+        Interactable[] interactable = FindObjectsOfType<Interactable>();
+        for (int i = 0; i < interactable.Length; i++)
         {
-            barrels[i].InteractFunctionality = barrels[i].DefaultInteractFunctionality;
+            interactable[i].InteractFunctionality = interactable[i].DefaultInteractFunctionality;
         }
     }
 }
