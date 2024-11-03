@@ -104,6 +104,7 @@ public class Customer : MonoBehaviour
         if (!isServed)
         {
             Debug.Log("Customer is leaving because they were not served.");
+            FindAnyObjectByType<PopularityManager>().IncreasePopularity(-0.2f);
             angryAudioSource.Play();
         }
         else
@@ -128,6 +129,7 @@ public class Customer : MonoBehaviour
     {
         if (!isServed && isSitting)
         {
+            FindAnyObjectByType<PopularityManager>().IncreasePopularity(PatienceLevel / 5);
             isServed = true;
             Debug.Log("Customer has been served a beer.");
             return true;

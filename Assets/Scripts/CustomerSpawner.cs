@@ -31,10 +31,13 @@ public class CustomerSpawner : MonoBehaviour
     {
         while (true)
         {
-            if (!dayCycleManager.IsClosing()) 
+            if (!dayCycleManager.IsClosing())
             {
                 SpawnCustomer();
                 float waitTime = Random.Range(lowestSpawnInterval, highestSpawnInterval);
+                var currentPopularity = FindObjectOfType<PopularityManager>().Popularity;
+                var waitModifier = 0.5f + (1.5f * (1 - (currentPopularity / 5.0f)));
+                waitTime *= waitModifier;
                 yield return new WaitForSeconds(waitTime);
             }
             else
