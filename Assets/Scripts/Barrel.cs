@@ -44,6 +44,6 @@ public class Barrel : Interactable
             employee.HasBeer = true;
             return true;
         }
-        return false;
+        return true;
     }
 }

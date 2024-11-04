@@ -5,6 +5,7 @@ using UnityEngine;
 public class SpriteHolder : MonoBehaviour
 {
     public Sprite[] sprites;
+    public string pairTag = "";
     // Start is called before the first frame update
     void Start()
     {

@@ -49,3 +49,4 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 7754dedc2bdb5d140b7264d00bc1d186, type: 3}
   - {fileID: 21300000, guid: aa766445382ac844bad5c7bc6ffed52a, type: 3}
   - {fileID: 21300000, guid: 437c3228b20ee0242941502559c7b910, type: 3}
+  pairTag: Legs
