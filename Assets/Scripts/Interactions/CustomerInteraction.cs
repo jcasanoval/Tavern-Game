@@ -1,0 +1,41 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class CustomerInteraction : IInteractFunctionality
+{
+    private Customer customer;
+    private CustomerInteractable customerInteractable;
+
+    private HandController handController;
+    private AudioSource placeBeerAudioSource;
+    private PlayerInteraction playerInteraction;
+    
+    void Awake()
+    {
+        customerInteractable = GetComponentInParent<CustomerInteractable>();
+        placeBeerAudioSource = customerInteractable.GetComponent<AudioSource>();
+        playerInteraction = FindObjectOfType<PlayerInteraction>();
+    }
+
+    void Start()
+    {
+        customer = customerInteractable.GetComponentInParent<Customer>();
+        handController = FindObjectOfType<HandController>();
+    }
+
+    public override bool Interact()
+    {
+        if (!handController.HasFreeHands() && customer.ServeBeer())
+        {
+            placeBeerAudioSource.Play();
+            handController.ReleaseMug();
+            return true;
+        }
+        return false;
+    }
+
+    void OnDestroy() {
+        playerInteraction.RemoveInteractable(customerInteractable);
+    }
+}

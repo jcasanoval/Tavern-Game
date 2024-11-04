@@ -9,7 +9,7 @@ public class Customer : MonoBehaviour
     private Transform exit;
     private ChairManager chairManager;
 
-    private Chair lastSatChair;
+    public Chair lastSatChair;
 
     private AudioSource moneyTipAudioSource;
     private AudioSource angryAudioSource;
@@ -44,15 +44,15 @@ public class Customer : MonoBehaviour
         audioSources = GetComponents<AudioSource>();
         moneyTipAudioSource = audioSources[0];
         angryAudioSource = audioSources[1];
-    }
-
-    void Start()
-    {
         chairManager = FindObjectOfType<ChairManager>();
         agent = GetComponent<NavMeshAgent>();
         spriteRenderer = gameObject.GetComponentInChildren<SpriteRenderer>();
-        spriteRenderer.sprite = spriteHolder.GetProfile();
         animator = gameObject.GetComponent<Animator>();
+    }
+
+    public void GoToTheBar()
+    {
+        spriteRenderer.sprite = spriteHolder.GetProfile();
 
         GameObject exitObject = GameObject.FindGameObjectWithTag("Finish");
         if (exitObject != null)
@@ -93,7 +93,6 @@ public class Customer : MonoBehaviour
         chairManager.SitOnChair(lastSatChair);
         timeWaited = Random.Range(0, maxWaitTime / 2);
         animator.SetTrigger("Sit");
-
 
         while (timeWaited < maxWaitTime && !isServed)
         {

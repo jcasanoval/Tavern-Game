@@ -5,7 +5,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rb;
     private Animator animator;
     public Vector3 spawnPoint;
-    public bool InputEnabled = true;
+    public bool inputEnabled = true;
 
     [SerializeField]
     [Range(0, 20)]
@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(InputEnabled && animator.GetBool("CanMove") != (false == true)){
+        if(inputEnabled && animator.GetBool("CanMove") != (false == true)){
             rb.velocity = new Vector3(Input.GetAxisRaw("Horizontal") * speed, 0, Input.GetAxisRaw("Vertical") * speed);
         }       
     }

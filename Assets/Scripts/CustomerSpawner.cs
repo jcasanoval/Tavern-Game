@@ -11,10 +11,12 @@ public class CustomerSpawner : MonoBehaviour
     private Transform spawnPoint;
     public RaceHolder raceHolder;
     private DayCycleManager dayCycleManager;
+    private TutorialManager tutorialManager;
 
     void Start()
     {
         dayCycleManager = FindObjectOfType<DayCycleManager>();
+        tutorialManager = FindObjectOfType<TutorialManager>();
         GameObject spawnPointObject = GameObject.FindGameObjectWithTag("Respawn");
         if (spawnPointObject != null)
         {
@@ -53,6 +55,17 @@ public class CustomerSpawner : MonoBehaviour
         {
             GameObject customer = Instantiate(customerPrefab, spawnPoint.position, spawnPoint.rotation);
             customer.GetComponent<Customer>().spriteHolder = raceHolder.GetRandomCustomerSpriteHolder();
+
+            if (tutorialManager.IsInTutorialMode)
+            {
+                customer.GetComponentInChildren<CustomerInteractable>().InteractFunctionality = customer.GetComponentInChildren<CustomerInteractable>().TutorialInteractFunctionality;
+            }
+            else
+            {
+                customer.GetComponentInChildren<CustomerInteractable>().InteractFunctionality = customer.GetComponentInChildren<CustomerInteractable>().DefaultInteractFunctionality;
+            }
+
+            customer.GetComponent<Customer>().GoToTheBar();
         }
         else
         {
@@ -60,4 +73,22 @@ public class CustomerSpawner : MonoBehaviour
         }
     }
 
+    public Customer SpawnHuman()
+    {
+        Customer customer = Instantiate(customerPrefab, spawnPoint.position, spawnPoint.rotation).GetComponent<Customer>();
+        customer.spriteHolder = raceHolder.customerHolders[2];
+
+        if (tutorialManager.IsInTutorialMode)
+        {
+            customer.GetComponentInChildren<CustomerInteractable>().InteractFunctionality = customer.GetComponentInChildren<CustomerInteractable>().TutorialInteractFunctionality;
+        }
+        else
+        {
+            customer.GetComponentInChildren<CustomerInteractable>().InteractFunctionality = customer.GetComponentInChildren<CustomerInteractable>().DefaultInteractFunctionality;
+        }
+
+        customer.spriteRenderer.sprite = customer.spriteHolder.GetProfile();
+
+        return customer;
+    }
 }
