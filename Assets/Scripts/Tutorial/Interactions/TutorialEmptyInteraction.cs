@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class IInteractFunctionality : MonoBehaviour
+public class TutorialEmptyInteraction : IInteractFunctionality
 {
-    public virtual bool Interact()
+    public override bool Interact()
     {
         Debug.Log("Interacting with " + gameObject.name);
         return false;

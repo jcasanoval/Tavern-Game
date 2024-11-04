@@ -1,4 +1,8 @@
-public class TutorialBarrelInteraction : IInteractFunctionality
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class TutorialCustomerInteraction : IInteractFunctionality
 {
     private TutorialManager tutorialManager;
     private HandController handController;
@@ -11,8 +15,8 @@ public class TutorialBarrelInteraction : IInteractFunctionality
 
     public override bool Interact()
     {
-        if (tutorialManager.IsInStep(TutorialStep.ExplainMovement)) {
-            handController.HoldMug();
+        if (tutorialManager.IsInStep(TutorialStep.TakeBeerToCustomer)) {
+            handController.ReleaseMug();
             tutorialManager.ProgressToNextStep();
             return true;
         }

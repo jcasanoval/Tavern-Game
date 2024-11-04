@@ -3,36 +3,21 @@ using UnityEngine;
 public class CustomerInteractable : Interactable
 {
     private Customer customer;
-
-    private HandController handController;
     private AudioSource placeBeerAudioSource;
-    private PlayerInteraction playerInteraction;
-
-    private EmployeeManager employeeManager;
     
     void Awake()
     {
         placeBeerAudioSource = GetComponent<AudioSource>();
-        playerInteraction = FindObjectOfType<PlayerInteraction>();
-        employeeManager = FindObjectOfType<EmployeeManager>();
     }
 
     void Start()
     {
         customer = GetComponentInParent<Customer>();
-        handController = FindObjectOfType<HandController>();
     }
 
     public override bool Interact()
     {
-        if (!handController.HasFreeHands() && customer.ServeBeer())
-        {
-            placeBeerAudioSource.Play();
-            handController.ReleaseMug();
-            employeeManager.NotifyCustomerServedByPlayer(customer.transform.position);
-            return true;
-        }
-        return false;
+        return InteractFunctionality.Interact();
     }
 
     public override bool NPCInteract(GameObject npc)
@@ -50,9 +35,5 @@ public class CustomerInteractable : Interactable
             return true;
         }
         return false;
-    }
-
-    void OnDestroy() {
-        playerInteraction.RemoveInteractable(this);
     }
 }

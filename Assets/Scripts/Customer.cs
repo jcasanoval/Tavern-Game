@@ -9,7 +9,7 @@ public class Customer : MonoBehaviour
     private Transform exit;
     private ChairManager chairManager;
 
-    private Chair lastSatChair;
+    public Chair lastSatChair;
 
     private AudioSource moneyTipAudioSource;
     private AudioSource angryAudioSource;
@@ -44,15 +44,15 @@ public class Customer : MonoBehaviour
         audioSources = GetComponents<AudioSource>();
         moneyTipAudioSource = audioSources[0];
         angryAudioSource = audioSources[1];
-    }
-
-    void Start()
-    {
         chairManager = FindObjectOfType<ChairManager>();
         agent = GetComponent<NavMeshAgent>();
         spriteRenderer = gameObject.GetComponentInChildren<SpriteRenderer>();
-        spriteRenderer.sprite = spriteHolder.GetProfile();
         animator = gameObject.GetComponent<Animator>();
+    }
+
+    public void GoToTheBar()
+    {
+        spriteRenderer.sprite = spriteHolder.GetProfile();
 
         GameObject exitObject = GameObject.FindGameObjectWithTag("Finish");
         if (exitObject != null)
@@ -94,7 +94,6 @@ public class Customer : MonoBehaviour
         timeWaited = Random.Range(0, maxWaitTime / 2);
         animator.SetTrigger("Sit");
 
-
         while (timeWaited < maxWaitTime && !isServed)
         {
             timeWaited += Time.deltaTime;
@@ -104,6 +103,7 @@ public class Customer : MonoBehaviour
         if (!isServed)
         {
             Debug.Log("Customer is leaving because they were not served.");
+            FindAnyObjectByType<PopularityManager>().IncreasePopularity(-0.2f);
             angryAudioSource.Play();
         }
         else
@@ -128,6 +128,7 @@ public class Customer : MonoBehaviour
     {
         if (!isServed && isSitting)
         {
+            FindAnyObjectByType<PopularityManager>().IncreasePopularity(PatienceLevel / 5);
             isServed = true;
             Debug.Log("Customer has been served a beer.");
             return true;
