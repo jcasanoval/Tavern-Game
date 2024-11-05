@@ -4,6 +4,16 @@ using System.Linq;
 
 public class PlayerInteraction : MonoBehaviour
 {
+    private TutorialManager tutorialManager;
+    [SerializeField]
+    private SpriteRenderer hoverIcon;
+    private Interactable lastHover;
+    
+    void Start()
+    {
+        tutorialManager = FindObjectOfType<TutorialManager>();
+    }
+
     private Interactable currentInteractable
     {
         get
@@ -23,6 +33,22 @@ public class PlayerInteraction : MonoBehaviour
         if (interactable != null)
         {
             nearbyInteractables.Add(interactable);
+
+            ShowHover(interactable);
+        }
+    }
+
+    private void ShowHover(Interactable interactable)
+    {
+        if (tutorialManager.IsInTutorialMode)
+        {
+            Sprite icon = interactable.GetHoverIcon();
+            if (icon != null)
+            {
+                hoverIcon.sprite = icon;
+                hoverIcon.enabled = true;
+                lastHover = interactable;
+            }
         }
     }
 
@@ -32,6 +58,16 @@ public class PlayerInteraction : MonoBehaviour
         if (interactable != null)
         {
             nearbyInteractables.Remove(interactable);
+
+            HideHover(interactable);
+        }
+    }
+    
+    public void HideHover(Interactable interactable)
+    {
+        if (lastHover == interactable)
+        {
+            hoverIcon.enabled = false;
         }
     }
 
