@@ -34,10 +34,12 @@ public class TutorialManager : MonoBehaviour
     private CustomerSpawner customerSpawner;
     private Customer friend;
     private ChairManager chairManager;
+    private float height;
 
     void Awake()
     {
         playerMovement = FindObjectOfType<PlayerMovement>();
+        height = playerMovement.transform.position.y;
         uncleTalkDestination = uncle.transform.position + new Vector3(1.5f, 0, -0.4f);
         messageManager = FindObjectOfType<MessageManager>();
         AudioSource[] audioSources = GetComponents<AudioSource>();
@@ -50,34 +52,56 @@ public class TutorialManager : MonoBehaviour
 
     void Start()
     {
+        uncle.SetActive(true);
+        chatBubble.SetActive(false);
+        playerMovement.inputEnabled = false;
+        playerNavMesh.enabled = true;
+
         Interactable[] interactable = FindObjectsOfType<Interactable>();
         for (int i = 0; i < interactable.Length; i++)
         {
-            interactable[i].InteractFunctionality = interactable[i].DefaultInteractFunctionality;
+            interactable[i].InteractFunctionality = interactable[i].TutorialInteractFunctionality;
         }
 
-        // Comentado para no molestar por ahora
-        // uncle.SetActive(true);
-        // chatBubble.SetActive(false);
-        // playerMovement.inputEnabled = false;
-        // playerNavMesh.enabled = true;
+        StartCoroutine(WaitAndStartIntroduction());
 
-        // Interactable[] interactable = FindObjectsOfType<Interactable>();
-        // for (int i = 0; i < interactable.Length; i++)
-        // {
-        //     interactable[i].InteractFunctionality = interactable[i].TutorialInteractFunctionality;
-        // }
-
-        // StartCoroutine(WaitAndStartIntroduction());
-
-        // IEnumerator WaitAndStartIntroduction()
-        // {
-        //     yield return new WaitForSeconds(1);
-        //     IsInTutorialMode = true;
-        //     currentStep = TutorialStep.GoWithUncle;
-        //     StartStep(currentStep);
-        // }
+        IEnumerator WaitAndStartIntroduction()
+        {
+            yield return new WaitForSeconds(1);
+            IsInTutorialMode = true;
+            currentStep = TutorialStep.GoWithUncle;
+            StartStep(currentStep);
+        }
     }
+
+    void Update()
+    {
+        if (IsInTutorialMode && Input.GetKeyDown(KeyCode.Escape))
+        {
+            uncle.SetActive(false);
+
+            door.position = new Vector3(6.02080011f,0.753099978f,-4.6262002f);
+            door.rotation = Quaternion.Euler(0, 0, 0);
+
+            Customer customer = FindObjectOfType<Customer>();
+            if (customer != null)
+            {
+                Destroy(customer.gameObject);
+            }
+
+            FinishTutorial();
+        }
+    }
+
+    void FixedUpdate()
+    {
+        if (IsInTutorialMode && !playerNavMesh.enabled)
+        {
+            Vector3 position = playerMovement.transform.position;
+            playerMovement.transform.position = new Vector3(position.x, height, position.z);
+        }
+    }
+
 
     public void ProgressToNextStep()
     {
@@ -118,7 +142,6 @@ public class TutorialManager : MonoBehaviour
                 break;
             case TutorialStep.UncleWalksAway:
                 UncleWalksAway();
-                
                 break;
             case TutorialStep.Completed:
                 FinishTutorial();
@@ -218,7 +241,6 @@ public class TutorialManager : MonoBehaviour
     private void EnableMovement()
     {
         playerNavMesh.enabled = false;
-        playerMovement.transform.position = new Vector3(playerMovement.transform.position.x, 1.3f, playerMovement.transform.position.z);
         playerMovement.inputEnabled = true;
     }
 
@@ -240,7 +262,6 @@ public class TutorialManager : MonoBehaviour
         moneyTipAudioSource.Play();
 
         playerMovement.inputEnabled = false;
-        playerMovement.transform.position = new Vector3(playerMovement.transform.position.x, 1.3f, playerMovement.transform.position.z);
         
         doorOpenAudioSource.Play();
         door.position = new Vector3(6.79f,0.753099978f,-5.5f);
@@ -265,8 +286,8 @@ public class TutorialManager : MonoBehaviour
         door.rotation = Quaternion.Euler(0, 0, 0);
         doorCloseAudioSource.Play();
 
-        playerNavMesh.destination = playerNavMesh.transform.position;
         playerNavMesh.enabled = true;
+        playerNavMesh.destination = playerNavMesh.transform.position;
 
         GoWithUncle();
     }
@@ -309,13 +330,21 @@ public class TutorialManager : MonoBehaviour
 
     private void FinishTutorial()
     {
+        StopAllCoroutines();
         EnableMovement();
-        IsInTutorialMode = false;
         Interactable[] interactable = FindObjectsOfType<Interactable>();
         for (int i = 0; i < interactable.Length; i++)
         {
             interactable[i].InteractFunctionality = interactable[i].DefaultInteractFunctionality;
         }
+
+        StartCoroutine(WaitAndDisableTutorialMode());
+    }
+
+    IEnumerator WaitAndDisableTutorialMode()
+    {
+        yield return new WaitForSeconds(1);
+        IsInTutorialMode = false;
     }
 
     #endregion

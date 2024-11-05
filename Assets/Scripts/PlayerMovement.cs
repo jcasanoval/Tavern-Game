@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if(inputEnabled && animator.GetBool("CanMove") != (false == true)){
             rb.velocity = new Vector3(Input.GetAxisRaw("Horizontal") * speed, 0, Input.GetAxisRaw("Vertical") * speed);
-        }       
+        }
     }
 
     public void Respawn(){
