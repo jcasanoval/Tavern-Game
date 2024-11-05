@@ -268,8 +268,8 @@ public class TutorialManager : MonoBehaviour
         door.rotation = Quaternion.Euler(0, 0, 0);
         doorCloseAudioSource.Play();
 
-        playerNavMesh.destination = playerNavMesh.transform.position;
         playerNavMesh.enabled = true;
+        playerNavMesh.destination = playerNavMesh.transform.position;
 
         GoWithUncle();
     }
@@ -313,12 +313,19 @@ public class TutorialManager : MonoBehaviour
     private void FinishTutorial()
     {
         EnableMovement();
-        IsInTutorialMode = false;
         Interactable[] interactable = FindObjectsOfType<Interactable>();
         for (int i = 0; i < interactable.Length; i++)
         {
             interactable[i].InteractFunctionality = interactable[i].DefaultInteractFunctionality;
         }
+
+        StartCoroutine(WaitAndDisableTutorialMode());
+    }
+
+    IEnumerator WaitAndDisableTutorialMode()
+    {
+        yield return new WaitForSeconds(1);
+        IsInTutorialMode = false;
     }
 
     #endregion
