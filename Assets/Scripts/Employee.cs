@@ -68,6 +68,17 @@ public class Employee : MonoBehaviour
         return true;
     }
 
+    public bool OnCancelNotify(Vector3 position)
+    {
+        if((targetPosition - (position - new Vector3(0,1,0))).magnitude < 0.5f){
+            agent.ResetPath();
+            targetPosition = GetNearestBarrel();
+            IsBusy = false;
+            return true;
+        }
+        return false;
+    }
+
     IEnumerator GrabABeer()
     {
         IsBusy = true;
@@ -96,7 +107,18 @@ public class Employee : MonoBehaviour
     }
 
     public Vector3 GetNearestBarrel(){
-        return FindObjectOfType<Barrel>().transform.position;
+        //TODO: Implement this
+        Vector3 nearestBarrel = Vector3.zero;
+        float minDistance = Mathf.Infinity;
+        foreach (Barrel barrel in FindObjectsOfType<Barrel>())
+        {
+            float distance = (barrel.transform.position - transform.position).magnitude;
+            if(distance < minDistance){
+                minDistance = distance;
+                nearestBarrel = barrel.transform.position;
+            }
+        }
+        return nearestBarrel;
     }
 
     public void GotBeer(){
@@ -105,6 +127,12 @@ public class Employee : MonoBehaviour
 
     public void ServeBeer(){
         HasBeer = false;
+    }
+
+    public void OnNightNotify(){
+        if(!HasBeer){
+            StartCoroutine(GrabABeer());
+        }
     }
 
 }

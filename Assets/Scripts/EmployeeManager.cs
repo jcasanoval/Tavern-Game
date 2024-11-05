@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
 
 public class EmployeeManager : Interactable
@@ -41,6 +42,33 @@ public class EmployeeManager : Interactable
         WaitingChairs.Add(position);
     }
 
+    public void NotifyCustomerServedByPlayer(Vector3 position)
+    {
+        print("Customer served by player Notification");
+        print(position);
+        Vector3 corrector = new Vector3(0,1,0);
+        foreach (Vector3 chair in WaitingChairs)
+        {
+            print(chair);
+            print((chair - (position - corrector)).magnitude);
+            if((chair - (position - corrector)).magnitude < 0.5f){
+                WaitingChairs.Remove(chair);
+                print("removed: " + chair);
+                return;
+            }
+        }
+        print("He was not waiting for service");
+        foreach (Employee employee in Employees)
+        {
+            if(employee.OnCancelNotify(position)){
+                return;
+            }
+        }
+        print("No employee was serving this customer");
+    }
+
+
+
     public void NotifyEmployeeFree(Employee employee)
     {
         if(WaitingChairs.Count == 0){
@@ -60,13 +88,21 @@ public class EmployeeManager : Interactable
     {
         if (dayCycleManager.IsOpen())
         {
-            return true;
+            return false;
         }
         else if (goldManager.SpendGold(costToBuyDude))
         {
             SummonEmployee();
             return true;
         }
-        return true;
+        return false;
+    }
+
+    public void StartNight()
+    {
+        foreach (Employee employee in Employees)
+        {
+            employee.OnNightNotify();
+        }
     }
 }

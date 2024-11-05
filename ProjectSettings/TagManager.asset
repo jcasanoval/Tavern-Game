@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Furniture
   - Employee
+  - Legs
+  - Arms
   layers:
   - Default
   - TransparentFX

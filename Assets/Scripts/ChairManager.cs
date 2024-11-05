@@ -53,4 +53,12 @@ public class ChairManager : MonoBehaviour
     public void SitOnChair(Chair chair){
         employeeManager.NotifyNewCustomer(chair.transform.position);
     }
+
+    public void AngrilyLeaveChair(GameObject customer)
+    {
+        Chair chair = GetChairByCustomer(customer);
+        
+        employeeManager.NotifyCustomerServedByPlayer(chair.transform.position);
+
+    }
 }

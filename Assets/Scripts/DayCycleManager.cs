@@ -10,6 +10,8 @@ public class DayCycleManager : MonoBehaviour
     private AudioSource doorCloseAudioSource;
     private AudioSource[] audioSources;
 
+    private EmployeeManager employeeManager;
+
     public Transform door;
 
     void Awake()
@@ -17,6 +19,7 @@ public class DayCycleManager : MonoBehaviour
         audioSources = GetComponents<AudioSource>();
         backgroundNoiseAudioSource = audioSources[0];
         doorCloseAudioSource = audioSources[1];
+        employeeManager = FindObjectOfType<EmployeeManager>();
         isOpen = false;
     }
 
@@ -25,6 +28,7 @@ public class DayCycleManager : MonoBehaviour
         backgroundNoiseAudioSource.Play();
         isOpen = true;
         StartCoroutine(Close());
+        employeeManager.StartNight();
     }
 
     public bool IsOpen()

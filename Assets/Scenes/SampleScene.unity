@@ -2401,9 +2401,9 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
+    x: 0.0003874302
     y: 0
-    width: 1
+    width: 0.99922514
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
@@ -4614,6 +4614,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 006f8e338cc8131469cd23ea7680f602, type: 3}
   - {fileID: 21300000, guid: 8204382285134d7428c84c9958db6fa6, type: 3}
   - {fileID: 21300000, guid: aa83d4f6b4782a64fbb91e619d273f15, type: 3}
+  pairTag: 
 --- !u!4 &1072016927
 Transform:
   m_ObjectHideFlags: 0

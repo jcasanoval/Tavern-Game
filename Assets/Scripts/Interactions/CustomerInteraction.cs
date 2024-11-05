@@ -10,12 +10,14 @@ public class CustomerInteraction : IInteractFunctionality
     private HandController handController;
     private AudioSource placeBeerAudioSource;
     private PlayerInteraction playerInteraction;
+    private EmployeeManager employeeManager;
     
     void Awake()
     {
         customerInteractable = GetComponentInParent<CustomerInteractable>();
         placeBeerAudioSource = customerInteractable.GetComponent<AudioSource>();
         playerInteraction = FindObjectOfType<PlayerInteraction>();
+        employeeManager = FindObjectOfType<EmployeeManager>();
     }
 
     void Start()
@@ -30,6 +32,7 @@ public class CustomerInteraction : IInteractFunctionality
         {
             placeBeerAudioSource.Play();
             handController.ReleaseMug();
+            employeeManager.NotifyCustomerServedByPlayer(customer.transform.position);
             return true;
         }
         return false;
