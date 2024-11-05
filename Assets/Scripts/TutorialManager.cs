@@ -74,6 +74,25 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+        if (IsInTutorialMode && Input.GetKeyDown(KeyCode.Escape))
+        {
+            uncle.SetActive(false);
+
+            door.position = new Vector3(6.02080011f,0.753099978f,-4.6262002f);
+            door.rotation = Quaternion.Euler(0, 0, 0);
+
+            Customer customer = FindObjectOfType<Customer>();
+            if (customer != null)
+            {
+                Destroy(customer.gameObject);
+            }
+
+            FinishTutorial();
+        }
+    }
+
     void FixedUpdate()
     {
         if (IsInTutorialMode && !playerNavMesh.enabled)
@@ -123,7 +142,6 @@ public class TutorialManager : MonoBehaviour
                 break;
             case TutorialStep.UncleWalksAway:
                 UncleWalksAway();
-                
                 break;
             case TutorialStep.Completed:
                 FinishTutorial();
@@ -312,6 +330,7 @@ public class TutorialManager : MonoBehaviour
 
     private void FinishTutorial()
     {
+        StopAllCoroutines();
         EnableMovement();
         Interactable[] interactable = FindObjectsOfType<Interactable>();
         for (int i = 0; i < interactable.Length; i++)
