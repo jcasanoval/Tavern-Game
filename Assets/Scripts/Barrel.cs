@@ -41,7 +41,7 @@ public class Barrel : Interactable
 
     public override Sprite GetHoverIcon()
     {
-        if (tutorialManager.IsInStep(TutorialStep.ExplainMovement)) {
+        if (tutorialManager.IsInTutorialMode && tutorialManager.IsInStep(TutorialStep.ExplainMovement)) {
             return hoverIcon;
         }
 

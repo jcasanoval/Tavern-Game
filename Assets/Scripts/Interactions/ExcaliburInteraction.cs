@@ -6,6 +6,8 @@ public class ExcaliburInteraction : IInteractFunctionality
 {
     private Animator animator;
     private DayCycleManager dayCycleManager;
+    private PlayerInteraction playerInteraction;
+    public ExcaliburInteractable excaliburInteractable;
     private bool _isGrabbed = false;
     public bool IsGrabbed 
     {   
@@ -22,12 +24,21 @@ public class ExcaliburInteraction : IInteractFunctionality
     {
         animator = GetComponentInParent<ExcaliburInteractable>().GetComponentInParent<Animator>();
         dayCycleManager = FindObjectOfType<DayCycleManager>();
+        playerInteraction = FindObjectOfType<PlayerInteraction>();
     }
 
     public override bool Interact(){
         if(dayCycleManager.IsOpen()){
             return false;
+        } 
+        
+        if (!IsGrabbed) {
+            playerInteraction.HideHover(excaliburInteractable);
         }
+        else {
+            playerInteraction.ShowHover(excaliburInteractable);
+        }
+
         IsGrabbed = !IsGrabbed;
         return true;
     }

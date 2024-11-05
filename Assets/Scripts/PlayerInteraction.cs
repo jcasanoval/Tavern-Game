@@ -38,17 +38,14 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
-    private void ShowHover(Interactable interactable)
+    public void ShowHover(Interactable interactable)
     {
-        if (tutorialManager.IsInTutorialMode)
+        Sprite icon = interactable.GetHoverIcon();
+        if (icon != null)
         {
-            Sprite icon = interactable.GetHoverIcon();
-            if (icon != null)
-            {
-                hoverIcon.sprite = icon;
-                hoverIcon.enabled = true;
-                lastHover = interactable;
-            }
+            hoverIcon.sprite = icon;
+            hoverIcon.enabled = true;
+            lastHover = interactable;
         }
     }
 

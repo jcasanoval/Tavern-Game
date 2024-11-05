@@ -2543,7 +2543,7 @@ MonoBehaviour:
   TutorialInteractFunctionality: {fileID: 1124765460}
   initialStock: 5
   beerDisplay: {fileID: 1813059706}
-  hoverIcon: {fileID: 21300000, guid: 626b51cb64e5ed349b11494924947e41, type: 3}
+  hoverIcon: {fileID: 21300000, guid: 2d0c8d0b1434c6c46b7551f0e89a3fc9, type: 3}
 --- !u!135 &492744806
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -6216,6 +6216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 705a7443c59c6e747a6a77fe51f3132b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  excaliburInteractable: {fileID: 2100855592}
 --- !u!1001 &1422565117
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9161,6 +9162,7 @@ MonoBehaviour:
   InteractFunctionality: {fileID: 0}
   DefaultInteractFunctionality: {fileID: 1397067268}
   TutorialInteractFunctionality: {fileID: 618274400}
+  hoverIcon: {fileID: 21300000, guid: 2d0c8d0b1434c6c46b7551f0e89a3fc9, type: 3}
 --- !u!135 &2100855593
 SphereCollider:
   m_ObjectHideFlags: 0

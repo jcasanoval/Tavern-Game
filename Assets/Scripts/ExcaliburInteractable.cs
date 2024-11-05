@@ -4,7 +4,26 @@ using UnityEngine;
 
 public class ExcaliburInteractable : Interactable
 {
-    public override bool Interact(){
+    public Sprite hoverIcon;
+    private DayCycleManager dayCycleManager;
+
+    void Awake() 
+    {
+        dayCycleManager = FindObjectOfType<DayCycleManager>();
+    }
+
+    public override bool Interact()
+    {
         return InteractFunctionality.Interact();
+    }
+    
+    public override Sprite GetHoverIcon()
+    {
+        if (!dayCycleManager.IsOpen())
+        {
+            return hoverIcon;
+        }
+
+        return null;
     }
 }
