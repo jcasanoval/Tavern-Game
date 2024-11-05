@@ -375,11 +375,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 172626841}
-  - component: {fileID: 172626840}
   - component: {fileID: 172626839}
   - component: {fileID: 172626838}
+  - component: {fileID: 172626842}
   m_Layer: 0
-  m_Name: BarrelInteractor
+  m_Name: BarInteractor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -502,24 +502,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &172626840
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 172626837}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53dbe895e9065794bac14b4a187943da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  InteractFunctionality: {fileID: 0}
-  DefaultInteractFunctionality: {fileID: 214818827}
-  TutorialInteractFunctionality: {fileID: 598442464}
-  initialStock: 5
-  beerDisplay: {fileID: 1813059706}
-  hoverIcon: {fileID: 0}
 --- !u!4 &172626841
 Transform:
   m_ObjectHideFlags: 0
@@ -537,6 +519,24 @@ Transform:
   - {fileID: 598442463}
   m_Father: {fileID: 965855178}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &172626842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 172626837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a64b83672330e34cb0ada6d0b5097b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InteractFunctionality: {fileID: 0}
+  DefaultInteractFunctionality: {fileID: 214818827}
+  TutorialInteractFunctionality: {fileID: 598442464}
+  initialStock: 5
+  beerDisplay: {fileID: 1813059706}
+  hoverIcon: {fileID: 21300000, guid: 2d0c8d0b1434c6c46b7551f0e89a3fc9, type: 3}
 --- !u!1001 &184049735
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1877,7 +1877,7 @@ GameObject:
   - component: {fileID: 214818826}
   - component: {fileID: 214818827}
   m_Layer: 0
-  m_Name: DefaultBarrelInteraction
+  m_Name: DefaultBarInteraction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1907,7 +1907,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 214818825}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a1a14ee3e92acf48b14bf1049e96f1e, type: 3}
+  m_Script: {fileID: 11500000, guid: 69985c4ef6f6e714986cbac3bcc27229, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &254013696
@@ -2500,10 +2500,10 @@ GameObject:
   m_Component:
   - component: {fileID: 492744804}
   - component: {fileID: 492744806}
-  - component: {fileID: 492744805}
   - component: {fileID: 492744807}
+  - component: {fileID: 492744808}
   m_Layer: 0
-  m_Name: BarrelInteractor
+  m_Name: StockProviderInteractor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2526,24 +2526,6 @@ Transform:
   - {fileID: 1124765459}
   m_Father: {fileID: 213371434}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &492744805
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 492744803}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53dbe895e9065794bac14b4a187943da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  InteractFunctionality: {fileID: 0}
-  DefaultInteractFunctionality: {fileID: 839494255}
-  TutorialInteractFunctionality: {fileID: 1124765460}
-  initialStock: 5
-  beerDisplay: {fileID: 1813059706}
-  hoverIcon: {fileID: 21300000, guid: 2d0c8d0b1434c6c46b7551f0e89a3fc9, type: 3}
 --- !u!135 &492744806
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2661,6 +2643,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &492744808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 492744803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eff91bd525ed2104aa7875ae25b69224, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InteractFunctionality: {fileID: 0}
+  DefaultInteractFunctionality: {fileID: 839494255}
+  TutorialInteractFunctionality: {fileID: 1124765460}
 --- !u!1001 &510023366
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2821,7 +2818,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.4053037, y: 0.000000027244754, z: -0.000000012078992, w: 0.9141821}
+  m_LocalRotation: {x: 0.4053037, y: 0.00000001073397, z: -0.0000000047589177, w: 0.9141821}
   m_LocalPosition: {x: 1.9400002, y: 6.4900002, z: -10.17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3108,7 +3105,7 @@ GameObject:
   - component: {fileID: 598442463}
   - component: {fileID: 598442464}
   m_Layer: 0
-  m_Name: TutorialBarrelInteraction
+  m_Name: TutorialBarInteraction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3138,7 +3135,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 598442462}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c24c021d46d9724198d98128bdbcef8, type: 3}
+  m_Script: {fileID: 11500000, guid: c2e65d3721b99ba4ea5433b5041f2330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &618274398
@@ -4175,7 +4172,7 @@ GameObject:
   - component: {fileID: 839494254}
   - component: {fileID: 839494255}
   m_Layer: 0
-  m_Name: DefaultBarrelInteraction
+  m_Name: DefaultStockProviderInteraction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4205,9 +4202,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 839494253}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a1a14ee3e92acf48b14bf1049e96f1e, type: 3}
+  m_Script: {fileID: 11500000, guid: c90fb49ec8682eb40840ea10c4c0a693, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  barInteractable: {fileID: 172626842}
 --- !u!1 &858542709
 GameObject:
   m_ObjectHideFlags: 0
@@ -5196,7 +5194,7 @@ GameObject:
   - component: {fileID: 1124765459}
   - component: {fileID: 1124765460}
   m_Layer: 0
-  m_Name: TutorialBarrelInteraction
+  m_Name: TutorialStockProviderInteraction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5226,7 +5224,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1124765458}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c24c021d46d9724198d98128bdbcef8, type: 3}
+  m_Script: {fileID: 11500000, guid: efa78cc3c802cb4429c8bf9262fa06b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1144674864
@@ -5293,7 +5291,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1144674864}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.40530366, y: 0.000000027244754, z: -0.000000012078992, w: 0.9141821}
+  m_LocalRotation: {x: 0.40530366, y: 0.000000010733969, z: -0.0000000047589173, w: 0.9141821}
   m_LocalPosition: {x: 1.9400002, y: 6.4900002, z: -10.17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6561,10 +6559,10 @@ MonoBehaviour:
   m_VerticalDamping: 0
   m_ScreenX: 0.5
   m_ScreenY: 0.5
-  m_DeadZoneWidth: 0.78
-  m_DeadZoneHeight: 0.77
-  m_SoftZoneWidth: 0.8
-  m_SoftZoneHeight: 0.8
+  m_DeadZoneWidth: 1
+  m_DeadZoneHeight: 1
+  m_SoftZoneWidth: 1
+  m_SoftZoneHeight: 1
   m_BiasX: 0
   m_BiasY: 0
   m_CenterOnActivate: 1

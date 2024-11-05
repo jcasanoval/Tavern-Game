@@ -1,4 +1,4 @@
-public class TutorialBarrelInteraction : IInteractFunctionality
+public class TutorialBarInteraction : IInteractFunctionality
 {
     private TutorialManager tutorialManager;
     private HandController handController;

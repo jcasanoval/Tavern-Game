@@ -72,7 +72,7 @@ public class Employee : MonoBehaviour
     {
         if((targetPosition - (position - new Vector3(0,1,0))).magnitude < 0.5f){
             agent.ResetPath();
-            targetPosition = GetNearestBarrel();
+            targetPosition = GetNearestBarInteractable();
             IsBusy = false;
             return true;
         }
@@ -82,7 +82,7 @@ public class Employee : MonoBehaviour
     IEnumerator GrabABeer()
     {
         IsBusy = true;
-        targetPosition = GetNearestBarrel();
+        targetPosition = GetNearestBarInteractable();
         agent.SetDestination(targetPosition);
         while (agent.pathPending || agent.remainingDistance > 0.5f)
         {
@@ -106,19 +106,19 @@ public class Employee : MonoBehaviour
         StartCoroutine(GrabABeer());
     }
 
-    public Vector3 GetNearestBarrel(){
+    public Vector3 GetNearestBarInteractable(){
         //TODO: Implement this
-        Vector3 nearestBarrel = Vector3.zero;
+        Vector3 nearestBarInteractable = Vector3.zero;
         float minDistance = Mathf.Infinity;
-        foreach (Barrel barrel in FindObjectsOfType<Barrel>())
+        foreach (BarInteractable barInteractable in FindObjectsOfType<BarInteractable>())
         {
-            float distance = (barrel.transform.position - transform.position).magnitude;
-            if(distance < minDistance && barrel.Stock > 0){
+            float distance = (barInteractable.transform.position - transform.position).magnitude;
+            if(distance < minDistance && barInteractable.Stock > 0){
                 minDistance = distance;
-                nearestBarrel = barrel.transform.position;
+                nearestBarInteractable = barInteractable.transform.position;
             }
         }
-        return nearestBarrel;
+        return nearestBarInteractable;
     }
 
     public void GotBeer(){

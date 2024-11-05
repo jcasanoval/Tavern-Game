@@ -1,19 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class BarrelInteraction : IInteractFunctionality
+public class BarInteraction : IInteractFunctionality
 {
     private HandController handController;
     private DayCycleManager dayCycleManager;
-    private Barrel barrel;
+    private BarInteractable barInteractable;
     private GoldManager goldManager;
     private AudioSource serveBeerAudioSource;
 
     void Awake()
     {
-        barrel = GetComponentInParent<Barrel>();
-        serveBeerAudioSource = barrel.GetComponent<AudioSource>();
+        barInteractable = GetComponentInParent<BarInteractable>();
+        serveBeerAudioSource = barInteractable.GetComponent<AudioSource>();
         handController = FindObjectOfType<HandController>();
         dayCycleManager = FindObjectOfType<DayCycleManager>();
         goldManager = FindObjectOfType<GoldManager>();
@@ -23,19 +21,15 @@ public class BarrelInteraction : IInteractFunctionality
     {
         if (dayCycleManager.IsOpen())
         {
-            if (handController.HasFreeHands() && barrel.Stock > 0)
+            if (handController.HasFreeHands() && barInteractable.Stock > 0)
             {
-                barrel.Stock--;
+                barInteractable.Stock--;
                 handController.HoldMug();
                 serveBeerAudioSource.Play();
                 return true;
             }
         }
-        else if (goldManager.SpendGold(1))
-        {
-            barrel.Stock++;
-            return true;
-        }
+        
         return false;
     }
 
@@ -45,9 +39,9 @@ public class BarrelInteraction : IInteractFunctionality
             return false;
         }
         Employee employee = npc.GetComponent<Employee>();
-        if (barrel.Stock > 0 && !employee.HasBeer)
+        if (barInteractable.Stock > 0 && !employee.HasBeer)
         {
-            barrel.Stock--;
+            barInteractable.Stock--;
             employee.HasBeer = true;
             return true;
         }

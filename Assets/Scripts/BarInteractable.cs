@@ -1,7 +1,7 @@
 using UnityEngine;
 using TMPro;
 
-public class Barrel : Interactable
+public class BarInteractable : Interactable
 {
     public int initialStock = 5;
     public TextMeshProUGUI beerDisplay;
