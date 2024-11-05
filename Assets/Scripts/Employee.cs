@@ -113,7 +113,7 @@ public class Employee : MonoBehaviour
         foreach (Barrel barrel in FindObjectsOfType<Barrel>())
         {
             float distance = (barrel.transform.position - transform.position).magnitude;
-            if(distance < minDistance){
+            if(distance < minDistance && barrel.Stock > 0){
                 minDistance = distance;
                 nearestBarrel = barrel.transform.position;
             }

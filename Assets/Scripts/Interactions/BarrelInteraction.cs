@@ -38,4 +38,19 @@ public class BarrelInteraction : IInteractFunctionality
         }
         return false;
     }
+
+    public override bool NPCInteract(GameObject npc)
+    {
+        if(npc.tag != "Employee"){
+            return false;
+        }
+        Employee employee = npc.GetComponent<Employee>();
+        if (barrel.Stock > 0 && !employee.HasBeer)
+        {
+            barrel.Stock--;
+            employee.HasBeer = true;
+            return true;
+        }
+        return true;
+    }
 }
