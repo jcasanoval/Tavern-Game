@@ -57,6 +57,7 @@ public class ChairManager : MonoBehaviour
     public void AngrilyLeaveChair(GameObject customer)
     {
         Chair chair = GetChairByCustomer(customer);
+        print("Angrily leaving chair");
         
         employeeManager.NotifyCustomerServedByPlayer(chair.transform.position);
 

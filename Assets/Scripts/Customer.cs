@@ -105,6 +105,7 @@ public class Customer : MonoBehaviour
             Debug.Log("Customer is leaving because they were not served.");
             FindAnyObjectByType<PopularityManager>().IncreasePopularity(-0.2f);
             angryAudioSource.Play();
+            chairManager.AngrilyLeaveChair(this.gameObject);
         }
         else
         {

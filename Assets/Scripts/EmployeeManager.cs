@@ -1,6 +1,8 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using Unity.Collections;
 using UnityEngine;
 
 public class EmployeeManager : Interactable
@@ -12,6 +14,26 @@ public class EmployeeManager : Interactable
     public GameObject EmployeePrefab;
     private DayCycleManager dayCycleManager;
     private GoldManager goldManager;
+
+    public Vector3 restArea1;
+    public Vector3 restArea2;
+    private Vector3 _lastRestPlace;
+
+    private Vector3 NextRestPlace
+    {
+        get
+        {
+            Vector3 rest = new Vector3(_lastRestPlace.x + 1f, _lastRestPlace.y, _lastRestPlace.z);
+            if(rest.x > restArea2.x){
+                rest = new Vector3(restArea1.x, rest.y, rest.z - .5f);
+                if(rest.z < restArea2.z){
+                    rest = new Vector3(restArea1.x, rest.y, restArea1.z);
+                }
+            }
+            _lastRestPlace = rest;
+            return rest;
+        }
+    }
 
     public void AddEmployee(Employee employee)
     {
@@ -26,6 +48,9 @@ public class EmployeeManager : Interactable
     public Employee SummonEmployee()
     {
         Employee newGuy = Instantiate(EmployeePrefab, transform.position, Quaternion.Euler(30,0,0)).GetComponent<Employee>();
+        Vector3 newGuyPosition = NextRestPlace;
+        //newGuyPosition = new Vector3(newGuyPosition.x + Random.Range(-.2f,.2f), newGuyPosition.y, newGuyPosition.z);
+        newGuy.restingPosition = newGuyPosition;
         AddEmployee(newGuy);
         return newGuy;
     }
@@ -82,6 +107,7 @@ public class EmployeeManager : Interactable
     {
         dayCycleManager = FindObjectOfType<DayCycleManager>();
         goldManager = FindObjectOfType<GoldManager>();
+        _lastRestPlace = restArea1;
     }
 
     public override bool Interact()
@@ -103,6 +129,17 @@ public class EmployeeManager : Interactable
         foreach (Employee employee in Employees)
         {
             employee.OnNightNotify();
+        }
+    }
+
+    public void OnDrawGizmos()
+    {
+        if (restArea1 != null && restArea2 != null)
+        {
+            Gizmos.color = Color.green;
+            Vector3 center = (restArea1 + restArea2) / 2;
+            Vector3 size = new Vector3(Mathf.Abs(restArea2.x - restArea1.x), 1, Mathf.Abs(restArea2.z - restArea1.z));
+            Gizmos.DrawWireCube(center, size);
         }
     }
 }

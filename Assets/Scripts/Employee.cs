@@ -9,6 +9,14 @@ public class Employee : MonoBehaviour
     private bool _isBusy = false;
     private NavMeshAgent agent;
     private Vector3 targetPosition;
+    public Vector3 restingPosition;
+    public Vector3 RestingPosition
+    {
+        get
+        {
+            return new Vector3(restingPosition.x + Random.Range(-.3f,.3f), restingPosition.y, restingPosition.z);
+        }
+    }
 
     private EmployeeManager _employeeManager;
     private EmployeeInteraction _interaction;
@@ -62,7 +70,13 @@ public class Employee : MonoBehaviour
         }
         targetPosition = position;
         agent.SetDestination(targetPosition);
-        StartCoroutine(ServeACustomer());
+        if(_hasBeer){
+            StartCoroutine(ServeACustomer());
+        }
+        else{
+            StartCoroutine(GrabABeer());
+            return false;
+        }
 
         Debug.Log("Employee notified at " + position);
         return true;
@@ -90,6 +104,7 @@ public class Employee : MonoBehaviour
         }
         print("Grabbing a beer");
         _interaction.TryToInteract();
+        agent.SetDestination(RestingPosition);
         IsBusy = false;
     }
 
@@ -108,7 +123,7 @@ public class Employee : MonoBehaviour
 
     public Vector3 GetNearestBarInteractable(){
         //TODO: Implement this
-        Vector3 nearestBarInteractable = Vector3.zero;
+        Vector3 nearestBarInteractable = RestingPosition;
         float minDistance = Mathf.Infinity;
         foreach (BarInteractable barInteractable in FindObjectsOfType<BarInteractable>())
         {
