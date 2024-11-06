@@ -21,7 +21,7 @@ public class MoodIndicator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (customer.isSitting)
+        if (customer.isSitting && !customer.isServed)
         {
             GetComponent<SpriteRenderer>().enabled = true;
             transform.localPosition = new Vector3(

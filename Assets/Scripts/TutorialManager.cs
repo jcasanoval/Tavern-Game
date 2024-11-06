@@ -7,8 +7,8 @@ public enum TutorialStep
     GoWithUncle,
     Introduction,
     ExplainDoorInteraction,
-    CustomerIsComing,
     ExplainTemper,
+    CustomerIsComing,
     ExplainMovement,
     TakeBeerToCustomer,
     WaitForCustomerToLeave,
@@ -310,6 +310,8 @@ public class TutorialManager : MonoBehaviour
 
     IEnumerator WaitForUncleToLeave()
     {
+        chatBubble.SetActive(false);
+
         doorOpenAudioSource.Play();
         door.position = new Vector3(6.79f,0.753099978f,-5.5f);
         door.rotation = Quaternion.Euler(0, 90, 0);

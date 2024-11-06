@@ -22,7 +22,7 @@ public class Customer : MonoBehaviour
 
     private static float maxWaitTime = 20f;
 
-    private bool isServed = false;
+    public bool isServed = false;
     public bool isSitting = false;
 
     private float timeWaited = 0f;

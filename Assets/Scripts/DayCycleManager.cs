@@ -9,13 +9,17 @@ public class DayCycleManager : MonoBehaviour
     private AudioSource backgroundNoiseAudioSource;
     private AudioSource doorCloseAudioSource;
     private AudioSource[] audioSources;
-
+    private Color colorDaySky = new Color(0.5f, 0.8f, 1f);
+    private Color colorNightSky = new Color(0.05f, 0.05f, 0.2f);
+    private Camera mainCamera;
     private EmployeeManager employeeManager;
 
     public Transform door;
 
     void Awake()
     {
+        mainCamera = Camera.main;
+        mainCamera.backgroundColor = colorDaySky;
         audioSources = GetComponents<AudioSource>();
         backgroundNoiseAudioSource = audioSources[0];
         doorCloseAudioSource = audioSources[1];
@@ -25,6 +29,7 @@ public class DayCycleManager : MonoBehaviour
 
     public void Open()
     {
+        mainCamera.backgroundColor = colorNightSky;
         backgroundNoiseAudioSource.Play();
         isOpen = true;
         StartCoroutine(Close());
@@ -54,6 +59,7 @@ public class DayCycleManager : MonoBehaviour
             yield return null;
         }
 
+        mainCamera.backgroundColor = colorDaySky;
 
         door.position = new Vector3(6.02080011f,0.753099978f,-4.6262002f);
         door.rotation = Quaternion.Euler(0, 0, 0);
