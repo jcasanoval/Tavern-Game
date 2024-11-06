@@ -62,11 +62,6 @@ public class EmployeeSpriteMaster : MonoBehaviour
 
     public void Update()
     {
-        time += Time.deltaTime;
-        if (time > 5.0f)
-        {
-            LoadSprites();
-            time = 0.0f;
-        }
+        
     }
 }

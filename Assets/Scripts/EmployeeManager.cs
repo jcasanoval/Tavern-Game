@@ -10,6 +10,8 @@ public class EmployeeManager : Interactable
     public List<Employee> Employees = new List<Employee>();
     public List<Vector3> WaitingChairs = new List<Vector3>();
 
+    public Sprite hoverIcon;
+
     public int costToBuyDude = 30;
     public GameObject EmployeePrefab;
     private DayCycleManager dayCycleManager;
@@ -108,6 +110,7 @@ public class EmployeeManager : Interactable
         dayCycleManager = FindObjectOfType<DayCycleManager>();
         goldManager = FindObjectOfType<GoldManager>();
         _lastRestPlace = restArea1;
+        _lastRestPlace = NextRestPlace;
     }
 
     public override bool Interact()
@@ -130,6 +133,11 @@ public class EmployeeManager : Interactable
         {
             employee.OnNightNotify();
         }
+    }
+
+    public override Sprite GetHoverIcon()
+    {
+        return hoverIcon;
     }
 
     public void OnDrawGizmos()
