@@ -45,7 +45,7 @@ public class MessageManager : MonoBehaviour
             TutorialStep.ExplainMovement, 
             string.Join(Environment.NewLine,
                 "Te movés con WASD capo.",
-                "Andá al barril a agarrar una chela."
+                "Andá al barra a agarrar una chela."
             )
         },
         {

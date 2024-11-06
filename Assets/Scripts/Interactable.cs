@@ -17,4 +17,9 @@ public class Interactable : MonoBehaviour
         Debug.Log("NPC Interacting with " + gameObject.name);
         return false;
     }
+
+    public virtual Sprite GetHoverIcon()
+    {
+        return null;
+    }
 }

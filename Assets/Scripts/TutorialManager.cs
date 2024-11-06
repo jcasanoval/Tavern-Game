@@ -184,6 +184,9 @@ public class TutorialManager : MonoBehaviour
 
     IEnumerator WaitInteractionToContinue()
     {
+        ChatBubble bubble = chatBubble.GetComponent<ChatBubble>();
+        bubble.SetBubbleKey(true);
+
         while (!Input.GetKeyDown(KeyCode.E))
         {
             yield return null;
@@ -193,6 +196,8 @@ public class TutorialManager : MonoBehaviour
         {
             yield return null;
         }
+
+        bubble.SetBubbleKey(false);
 
         ProgressToNextStep();
     }
