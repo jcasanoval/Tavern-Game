@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,6 +24,16 @@ public class MoodIndicator : MonoBehaviour
         if (customer.isSitting)
         {
             GetComponent<SpriteRenderer>().enabled = true;
+            transform.localPosition = new Vector3(
+                Math.Abs(transform.localPosition.x) * customer.lastSatChair.Direction.x,
+                transform.localPosition.y,
+                transform.localPosition.z
+            );
+            transform.localScale = new Vector3(
+                Math.Abs(transform.localScale.x) * customer.lastSatChair.Direction.x,
+                transform.localScale.y,
+                transform.localScale.z
+            );
             float patience = customer.PatienceLevel;
             int index = Mathf.RoundToInt(patience * (sprites.Count - 1));
             GetComponent<SpriteRenderer>().sprite = sprites[index];
