@@ -2033,7 +2033,7 @@ MonoBehaviour:
   Employees: []
   WaitingChairs: []
   hoverIcon: {fileID: 21300000, guid: 2d0c8d0b1434c6c46b7551f0e89a3fc9, type: 3}
-  costToBuyDude: 1
+  costToBuyDude: 30
   EmployeePrefab: {fileID: 1596250665339776975, guid: e9ac1a558e75f7b43b009453335bbe09, type: 3}
   restArea1: {x: -1.89, y: 0, z: -0.17}
   restArea2: {x: 3.87, y: 0, z: -1.18}
