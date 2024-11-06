@@ -28,5 +28,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void Respawn(){
         transform.position = spawnPoint;
+        animator.ResetTrigger("Falls");
     }
 }

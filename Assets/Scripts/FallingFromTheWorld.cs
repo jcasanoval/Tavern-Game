@@ -12,7 +12,7 @@ public class FallingFromTheWorld : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
-        other.GetComponent<Animator>().SetTrigger("Falls");
+        other.GetComponentInParent<Animator>().SetTrigger("Falls");
         handController.ReleaseMug();
     }
 }
