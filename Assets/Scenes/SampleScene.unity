@@ -2034,6 +2034,8 @@ MonoBehaviour:
   WaitingChairs: []
   costToBuyDude: 1
   EmployeePrefab: {fileID: 1596250665339776975, guid: e9ac1a558e75f7b43b009453335bbe09, type: 3}
+  restArea1: {x: -3.69, y: 0, z: -0.17}
+  restArea2: {x: 3.87, y: 0, z: -1.18}
 --- !u!4 &286990892
 Transform:
   m_ObjectHideFlags: 0
@@ -4704,7 +4706,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 965855176}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 185742ec4f727f6448307ce2b17d0ea2, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -9357,4 +9359,3 @@ SceneRoots:
   - {fileID: 1431268101}
   - {fileID: 1561770288}
   - {fileID: 10950177}
-  - {fileID: 8363687199288008557}
