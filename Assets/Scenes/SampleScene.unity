@@ -179,6 +179,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Estufa
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ddc2e0022d36c2e4bb2d9877accc2ae3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -329,6 +333,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: bf312131c0563df4f96d5c3b1215364c, type: 3}
       propertyPath: m_Name
       value: Jarra
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: bf312131c0563df4f96d5c3b1215364c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2375,6 +2383,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Espada
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d4467b7eaee8be743848d5f125fac1d9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2731,6 +2743,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Escudo
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5f049f1cd1304164f974a62e53efbad3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2791,9 +2807,9 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
+    x: 0.00043973327
     y: 0
-    width: 1
+    width: 0.99912053
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
@@ -4160,6 +4176,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: efc72394e12915243a620c8e269665e3, type: 3}
       propertyPath: m_Name
       value: Farol
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: efc72394e12915243a620c8e269665e3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6066,6 +6086,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BarraPobre
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cbc540b47d848584483cd04bfc1bdf6a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6360,6 +6384,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Estante
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5140943480691a84ca1c61f27b03e0de, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6420,6 +6448,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 5c923718dfc23fa4397d4dd87b5a3753, type: 3}
       propertyPath: m_Name
       value: Base
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5c923718dfc23fa4397d4dd87b5a3753, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6852,6 +6884,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: efc72394e12915243a620c8e269665e3, type: 3}
       propertyPath: m_Name
       value: Farol (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: efc72394e12915243a620c8e269665e3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8201,7 +8237,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!23 &1918925307
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -8668,6 +8704,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Caja
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cab192a9d842b6a4a9b79c623108ad5f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8724,6 +8764,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 853313d4646e8134b9ed8764d0868958, type: 3}
       propertyPath: m_Name
       value: VelaMesa
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 853313d4646e8134b9ed8764d0868958, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8793,7 +8837,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goldDisplay: {fileID: 1190342104}
-  startingGold: 15
+  startingGold: 5
 --- !u!114 &2049693607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9167,6 +9211,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 809ea87f407b12c4cba29af8f17b10a7, type: 3}
       propertyPath: m_Name
       value: Cylinder004
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 809ea87f407b12c4cba29af8f17b10a7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5508666928164402857, guid: 809ea87f407b12c4cba29af8f17b10a7, type: 3}
       propertyPath: m_LocalPosition.x
