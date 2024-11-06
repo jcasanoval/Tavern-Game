@@ -267,6 +267,8 @@ public class TutorialManager : MonoBehaviour
         moneyTipAudioSource.Play();
 
         playerMovement.inputEnabled = false;
+
+        yield return new WaitForSeconds(0.3f);
         
         doorOpenAudioSource.Play();
         door.position = new Vector3(6.79f,0.753099978f,-5.5f);
