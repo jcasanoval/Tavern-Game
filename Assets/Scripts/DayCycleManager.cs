@@ -9,6 +9,23 @@ public class DayCycleManager : MonoBehaviour
     private AudioSource backgroundNoiseAudioSource;
     private AudioSource doorCloseAudioSource;
     private AudioSource[] audioSources;
+    public AudioClip[] nightMusics;
+    public AudioClip[] dayMusics;
+    private AudioClip DayMusic
+    {
+        get
+        {
+            return dayMusics[Random.Range(0, dayMusics.Length)];
+        }
+    }
+    private AudioClip NightMusic
+    {
+        get
+        {
+            return nightMusics[Random.Range(0, nightMusics.Length)];
+        }
+    }
+
     private Color colorDaySky = new Color(0.5f, 0.8f, 1f);
     private Color colorNightSky = new Color(0.05f, 0.05f, 0.2f);
     private Camera mainCamera;
@@ -25,12 +42,15 @@ public class DayCycleManager : MonoBehaviour
         doorCloseAudioSource = audioSources[1];
         employeeManager = FindObjectOfType<EmployeeManager>();
         isOpen = false;
+        SoundManager.BecomeFather(gameObject);
+        StartCoroutine(SoundManager.BackgroundMusicPlay(DayMusic));
     }
 
     public void Open()
     {
         mainCamera.backgroundColor = colorNightSky;
         backgroundNoiseAudioSource.Play();
+        StartCoroutine(SoundManager.BackgroundMusicPlay(NightMusic));
         isOpen = true;
         StartCoroutine(Close());
         employeeManager.StartNight();
@@ -64,6 +84,7 @@ public class DayCycleManager : MonoBehaviour
         door.position = new Vector3(6.02080011f,0.753099978f,-4.6262002f);
         door.rotation = Quaternion.Euler(0, 0, 0);
         backgroundNoiseAudioSource.Stop();
+        StartCoroutine(SoundManager.BackgroundMusicPlay(DayMusic));
         doorCloseAudioSource.Play();
     }
 }

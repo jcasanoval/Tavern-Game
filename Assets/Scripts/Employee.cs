@@ -84,7 +84,7 @@ public class Employee : MonoBehaviour
 
     public bool OnCancelNotify(Vector3 position)
     {
-        if((targetPosition - (position - new Vector3(0,1,0))).magnitude < 0.5f){
+        if((targetPosition - (position - new Vector3(0,0,0))).magnitude < 0.5f){
             agent.ResetPath();
             targetPosition = GetNearestBarInteractable();
             IsBusy = false;

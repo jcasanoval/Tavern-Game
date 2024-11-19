@@ -32,7 +32,7 @@ public class CustomerInteraction : IInteractFunctionality
         {
             placeBeerAudioSource.Play();
             handController.ReleaseMug();
-            employeeManager.NotifyCustomerServedByPlayer(customer.transform.position);
+            employeeManager.NotifyCustomerServedByPlayer(customer.transform.position - new Vector3(0, 1, 0));
             return true;
         }
         return false;

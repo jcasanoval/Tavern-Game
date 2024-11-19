@@ -73,7 +73,7 @@ public class EmployeeManager : Interactable
     {
         print("Customer served by player Notification");
         print(position);
-        Vector3 corrector = new Vector3(0,1,0);
+        Vector3 corrector = new Vector3(0,0,0);
         foreach (Vector3 chair in WaitingChairs)
         {
             print(chair);

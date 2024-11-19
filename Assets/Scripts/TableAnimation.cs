@@ -62,6 +62,11 @@ public class TableAnimation : MonoBehaviour
         {
             transform.position = Vector3.Lerp(initialPosition + Vector3.up * bouncebackDistance, initialPosition, elapsedTime / bouncebackDuration);
             elapsedTime += Time.deltaTime;
+            if(elapsedTime > bouncebackDuration)
+            {
+                elapsedTime = bouncebackDuration;
+                transform.position = Vector3.Lerp(initialPosition + Vector3.up * bouncebackDistance, initialPosition, elapsedTime / bouncebackDuration);
+            }
             yield return null;
         }
     }
