@@ -84,7 +84,7 @@ public class Employee : MonoBehaviour
 
     public bool OnCancelNotify(Vector3 position)
     {
-        if((targetPosition - (position - new Vector3(0,0,0))).magnitude < 0.5f){
+        if((targetPosition - (position - new Vector3(0,0,0))).magnitude < 0.5f || (targetPosition == GetNearestBarInteractable() && ((Vector2)transform.position - (Vector2)position).magnitude < 0.5f)){
             agent.ResetPath();
             targetPosition = GetNearestBarInteractable();
             IsBusy = false;
@@ -100,6 +100,9 @@ public class Employee : MonoBehaviour
         agent.SetDestination(targetPosition);
         while (agent.pathPending || agent.remainingDistance > 0.5f)
         {
+            if(!IsBusy){
+                yield break;
+            }
             yield return null;
         }
         print("Grabbing a beer");
@@ -114,6 +117,9 @@ public class Employee : MonoBehaviour
         if(HasBeer){
             while (agent.pathPending || agent.remainingDistance > 0.5f)
             {
+                if(!IsBusy){
+                    yield break;
+                }
                 yield return null;
             }
             _interaction.TryToInteract();

@@ -81,7 +81,7 @@ public class EmployeeManager : Interactable
             if((chair - (position - corrector)).magnitude < 0.5f){
                 WaitingChairs.Remove(chair);
                 print("removed: " + chair);
-                return;
+                break;
             }
         }
         print("He was not waiting for service");
