@@ -3419,10 +3419,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0.00025826693
-    width: 1
-    height: 0.99948347
+    x: 0.00017309189
+    y: 0
+    width: 0.9996538
+    height: 1
   near clip plane: 0.1
   far clip plane: 5000
   field of view: 40
@@ -11126,7 +11126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goldDisplay: {fileID: 1190342104}
-  startingGold: 100
+  startingGold: 1000
 --- !u!114 &2049693607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11363,7 +11363,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebc412701713cf44990119d3ad347657, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialPopularity: 1.08
+  initialPopularity: 5
   popularity: 0
 --- !u!1001 &2060401468
 PrefabInstance:
