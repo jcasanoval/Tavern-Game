@@ -20,6 +20,7 @@ public class Interactable : MonoBehaviour
 
     public virtual Sprite GetHoverIcon()
     {
+        Debug.Log("Getting hover icon from " + gameObject.name);
         return null;
     }
 }

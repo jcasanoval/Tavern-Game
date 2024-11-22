@@ -39,4 +39,9 @@ public class GoldManager : MonoBehaviour
         Gold -= amount;
         return true;
     }
+
+    public bool CanSpendGold(int amount)
+    {
+        return Gold >= amount;
+    }
 }

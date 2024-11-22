@@ -7,6 +7,8 @@ public class BarInteraction : IInteractFunctionality
     private BarInteractable barInteractable;
     private GoldManager goldManager;
     private AudioSource serveBeerAudioSource;
+    public Sprite hoverIcon;
+    private PlayerInteraction playerInteraction;
 
     void Awake()
     {
@@ -15,6 +17,7 @@ public class BarInteraction : IInteractFunctionality
         handController = FindObjectOfType<HandController>();
         dayCycleManager = FindObjectOfType<DayCycleManager>();
         goldManager = FindObjectOfType<GoldManager>();
+        playerInteraction = FindObjectOfType<PlayerInteraction>();
     }
 
     public override bool Interact()
@@ -26,6 +29,7 @@ public class BarInteraction : IInteractFunctionality
                 barInteractable.Stock--;
                 handController.HoldMug();
                 serveBeerAudioSource.Play();
+                playerInteraction.HideHover(barInteractable);
                 return true;
             }
         }
@@ -46,5 +50,15 @@ public class BarInteraction : IInteractFunctionality
             return true;
         }
         return true;
+    }
+
+    public override Sprite GetHoverIcon()
+    {
+        if (dayCycleManager.IsOpen() && handController.HasFreeHands() && barInteractable.Stock > 0)
+        {
+            return hoverIcon;
+        }
+
+        return null;
     }
 }

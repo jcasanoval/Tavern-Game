@@ -8,6 +8,7 @@ public class ExcaliburInteraction : IInteractFunctionality
     private DayCycleManager dayCycleManager;
     private PlayerInteraction playerInteraction;
     public ExcaliburInteractable excaliburInteractable;
+    public Sprite hoverIcon;
     private bool _isGrabbed = false;
     public bool IsGrabbed 
     {   
@@ -30,13 +31,6 @@ public class ExcaliburInteraction : IInteractFunctionality
     public override bool Interact(){
         if(dayCycleManager.IsOpen()){
             return false;
-        } 
-        
-        if (!IsGrabbed) {
-            playerInteraction.HideHover(excaliburInteractable);
-        }
-        else {
-            playerInteraction.ShowHover(excaliburInteractable);
         }
 
         IsGrabbed = !IsGrabbed;
@@ -45,5 +39,15 @@ public class ExcaliburInteraction : IInteractFunctionality
 
     public void ReturnExcalibur(){
         IsGrabbed = false;
+    }
+    
+    public override Sprite GetHoverIcon()
+    {
+        if (!dayCycleManager.IsOpen())
+        {
+            return hoverIcon;
+        }
+
+        return null;
     }
 }

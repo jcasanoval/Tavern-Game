@@ -8,4 +8,9 @@ public class StockProviderInteractable : Interactable
     {
         return InteractFunctionality.Interact();
     }
+    
+    public override Sprite GetHoverIcon()
+    {
+        return InteractFunctionality.GetHoverIcon();
+    }
 }

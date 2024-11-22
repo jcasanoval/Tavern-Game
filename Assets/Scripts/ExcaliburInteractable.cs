@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ExcaliburInteractable : Interactable
 {
-    public Sprite hoverIcon;
     private DayCycleManager dayCycleManager;
 
     void Awake() 
@@ -19,11 +18,6 @@ public class ExcaliburInteractable : Interactable
     
     public override Sprite GetHoverIcon()
     {
-        if (!dayCycleManager.IsOpen())
-        {
-            return hoverIcon;
-        }
-
-        return null;
+        return InteractFunctionality.GetHoverIcon();
     }
 }

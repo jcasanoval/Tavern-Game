@@ -7,8 +7,10 @@ public class DoorInteraction : IInteractFunctionality
     public DayCycleManager dayCycleManager;
     public Transform playerTransform;
     public Transform PlayerSpawnPoint;
+    public Sprite hoverIcon;
     private AudioSource doorOpenAudioSource;
     private DoorInteractable door;
+    private PlayerInteraction playerInteraction;
 
     public ExcaliburInteraction excaliburInteraction;
 
@@ -18,11 +20,13 @@ public class DoorInteraction : IInteractFunctionality
     {
         door = GetComponentInParent<DoorInteractable>();
         doorOpenAudioSource = door.GetComponent<AudioSource>();
+        playerInteraction = FindObjectOfType<PlayerInteraction>();
     }
 
     public override bool Interact()
     {
         if(excaliburInteraction.IsGrabbed){
+            playerInteraction.HideHover(door);
             playerTransform.position = PlayerSpawnPoint.position;
             excaliburInteraction.ReturnExcalibur();
             doorOpenAudioSource.Play();
@@ -38,8 +42,18 @@ public class DoorInteraction : IInteractFunctionality
             doorOpenAudioSource.Play();
             changed.position = new Vector3(6.79f,0.753099978f,-5.5f);
             changed.rotation = Quaternion.Euler(0, 90, 0);
+            playerInteraction.HideHover(door);
             return true;
         }
         return false;
+    }
+
+    public override Sprite GetHoverIcon()
+    {
+        if (excaliburInteraction.IsGrabbed || (playerTransform.transform.position.x <= transform.position.x && !dayCycleManager.IsOpen())) {
+            return hoverIcon;
+        }
+        
+        return null;
     }
 }

@@ -13,4 +13,10 @@ public class IInteractFunctionality : MonoBehaviour
         Debug.Log("NPC " + npc.name + "Interacting with " + gameObject.name);
         return false;
     }
+
+    public virtual Sprite GetHoverIcon()
+    {
+        Debug.Log("Getting hover icon from " + gameObject.name);
+        return null;
+    }
 }
