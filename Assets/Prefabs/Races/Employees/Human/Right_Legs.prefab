@@ -46,7 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprites:
   - {fileID: 21300000, guid: ca647b66f244d1940bb53631690f614c, type: 3}
-  - {fileID: 21300000, guid: d4ec4859cfd530b43a9a405cda60c9c8, type: 3}
   - {fileID: 21300000, guid: 88731e4a3e76973429a6d71df2bfd87b, type: 3}
   - {fileID: 21300000, guid: 98c70d8361da4034a851a8221aa8bf86, type: 3}
   pairTag: Legs
