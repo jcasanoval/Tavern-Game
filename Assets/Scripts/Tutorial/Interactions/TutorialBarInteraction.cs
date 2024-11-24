@@ -1,5 +1,8 @@
+using UnityEngine;
+
 public class TutorialBarInteraction : IInteractFunctionality
 {
+    public Sprite hoverIcon;
     private TutorialManager tutorialManager;
     private HandController handController;
     private PlayerInteraction playerInteraction;
@@ -23,5 +26,14 @@ public class TutorialBarInteraction : IInteractFunctionality
         }
 
         return false;
+    }
+
+    public override Sprite GetHoverIcon()
+    {
+        if (tutorialManager.IsInStep(TutorialStep.ExplainMovement)) {
+            return hoverIcon;
+        }
+
+        return null;
     }
 }

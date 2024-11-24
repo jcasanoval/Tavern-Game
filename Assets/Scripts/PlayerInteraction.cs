@@ -68,6 +68,11 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
+    public void HideHover()
+    {
+        hoverIcon.enabled = false;
+    }
+
     // Update is called once per frame
     void Update()
     {

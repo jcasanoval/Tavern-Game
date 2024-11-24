@@ -56,5 +56,8 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Tavern-Game.sln"
+    "dotnet.defaultSolution": "Tavern-Game.sln",
+    "cSpell.words": [
+        "Interactable"
+    ]
 }

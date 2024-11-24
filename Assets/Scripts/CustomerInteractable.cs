@@ -36,4 +36,9 @@ public class CustomerInteractable : Interactable
         }
         return false;
     }
+
+    public override Sprite GetHoverIcon()
+    {
+        return InteractFunctionality.GetHoverIcon();
+    }
 }

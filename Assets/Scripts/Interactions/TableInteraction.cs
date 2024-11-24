@@ -8,6 +8,9 @@ public class TableInteraction : IInteractFunctionality
 
     private GameObject positionMarker;
     private TableInteractuable table;
+    private DayCycleManager dayCycleManager;
+    public Sprite hoverIcon;
+    private PlayerInteraction playerInteraction;
 
     [SerializeField]
     private bool isActive = false;
@@ -22,6 +25,8 @@ public class TableInteraction : IInteractFunctionality
         table = GetComponentInParent<TableInteractuable>();
         FindFurniture();
         SetFurniture(isActive);
+        dayCycleManager = FindObjectOfType<DayCycleManager>();
+        playerInteraction = FindObjectOfType<PlayerInteraction>();
     }
 
     private void FindFurniture()
@@ -58,7 +63,7 @@ public class TableInteraction : IInteractFunctionality
 
     public override bool Interact()
     {
-        if (FindObjectOfType<DayCycleManager>().IsOpen())
+        if (dayCycleManager.IsOpen())
         {
             Debug.Log("Cannot purchase table while open");
             return false;
@@ -80,8 +85,18 @@ public class TableInteraction : IInteractFunctionality
         }
 
         Debug.Log("Table purchased");
+        playerInteraction.HideHover(table);
         SetFurniture(true);
         table.GetComponent<TableAnimation>().Animate();
         return true;
+    }
+
+    public override Sprite GetHoverIcon()
+    {
+        if (!dayCycleManager.IsOpen() && !isActive && FindAnyObjectByType<GoldManager>().CanSpendGold(price))
+        {
+            return hoverIcon;
+        }
+        return null;
     }
 }

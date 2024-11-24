@@ -10,12 +10,8 @@ public class EmployeeManager : Interactable
     public List<Employee> Employees = new List<Employee>();
     public List<Vector3> WaitingChairs = new List<Vector3>();
 
-    public Sprite hoverIcon;
-
     public int costToBuyDude = 30;
     public GameObject EmployeePrefab;
-    private DayCycleManager dayCycleManager;
-    private GoldManager goldManager;
 
     public Vector3 restArea1;
     public Vector3 restArea2;
@@ -107,24 +103,13 @@ public class EmployeeManager : Interactable
 
     public void Start()
     {
-        dayCycleManager = FindObjectOfType<DayCycleManager>();
-        goldManager = FindObjectOfType<GoldManager>();
         _lastRestPlace = restArea1;
         _lastRestPlace = NextRestPlace;
     }
 
     public override bool Interact()
     {
-        if (dayCycleManager.IsOpen())
-        {
-            return false;
-        }
-        else if (goldManager.SpendGold(costToBuyDude))
-        {
-            SummonEmployee();
-            return true;
-        }
-        return false;
+        return InteractFunctionality.Interact();
     }
 
     public void StartNight()
@@ -137,7 +122,7 @@ public class EmployeeManager : Interactable
 
     public override Sprite GetHoverIcon()
     {
-        return hoverIcon;
+        return InteractFunctionality.GetHoverIcon();
     }
 
     public void OnDrawGizmos()
