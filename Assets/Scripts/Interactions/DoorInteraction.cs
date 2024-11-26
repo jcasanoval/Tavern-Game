@@ -19,7 +19,7 @@ public class DoorInteraction : IInteractFunctionality
     void Awake()
     {
         door = GetComponentInParent<DoorInteractable>();
-        doorOpenAudioSource = door.GetComponent<AudioSource>();
+        doorOpenAudioSource = door.GetComponents<AudioSource>()[0];
         playerInteraction = FindObjectOfType<PlayerInteraction>();
     }
 

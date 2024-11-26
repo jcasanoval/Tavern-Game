@@ -21,11 +21,6 @@ public class BarInteractable : Interactable
 
     private int stock;
 
-    public void Start()
-    {
-        Stock = initialStock;
-    }
-
     public override bool Interact()
     {
         return InteractFunctionality.Interact();
@@ -39,5 +34,10 @@ public class BarInteractable : Interactable
     public override Sprite GetHoverIcon()
     {
         return InteractFunctionality.GetHoverIcon();
+    }
+
+    public void SetStartingStock()
+    {
+        Stock = initialStock;
     }
 }

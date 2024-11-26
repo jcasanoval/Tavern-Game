@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ExcaliburInteraction : IInteractFunctionality
+public class TutorialExcaliburInteraction : IInteractFunctionality
 {
     private Animator animator;
     private DayCycleManager dayCycleManager;
-    public ExcaliburInteractable excaliburInteractable;
+    private TutorialManager tutorialManager;
     public Sprite hoverIcon;
     private bool _isGrabbed = false;
     public bool IsGrabbed 
@@ -22,26 +22,28 @@ public class ExcaliburInteraction : IInteractFunctionality
 
     void Awake()
     {
-        animator = GetComponentInParent<ExcaliburInteractable>().GetComponentInParent<Animator>();
+        ExcaliburInteractable excaliburInteractable = GetComponentInParent<ExcaliburInteractable>();
+        animator = excaliburInteractable.GetComponentInParent<Animator>();
         dayCycleManager = FindObjectOfType<DayCycleManager>();
-    }
-
-    public override bool Interact(){
-        if(dayCycleManager.IsOpen()){
-            return false;
-        }
-
-        IsGrabbed = !IsGrabbed;
-        return true;
+        tutorialManager = FindObjectOfType<TutorialManager>();
     }
 
     public void ReturnExcalibur(){
         IsGrabbed = false;
     }
+
+    public override bool Interact(){
+        if (tutorialManager.IsInStep(TutorialStep.OpenTheBarAgain)){
+            IsGrabbed = !IsGrabbed;
+            return true;
+        }
+
+        return false;
+    }
     
     public override Sprite GetHoverIcon()
     {
-        if (!dayCycleManager.IsOpen())
+        if (tutorialManager.IsInStep(TutorialStep.OpenTheBarAgain))
         {
             return hoverIcon;
         }
