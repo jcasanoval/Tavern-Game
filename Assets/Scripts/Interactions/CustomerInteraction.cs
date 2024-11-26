@@ -41,4 +41,9 @@ public class CustomerInteraction : IInteractFunctionality
     void OnDestroy() {
         playerInteraction.RemoveInteractable(customerInteractable);
     }
+
+    public override Sprite GetHoverIcon()
+    {
+        return null;
+    }
 }

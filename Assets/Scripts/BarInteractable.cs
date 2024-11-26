@@ -5,8 +5,6 @@ public class BarInteractable : Interactable
 {
     public int initialStock = 5;
     public TextMeshProUGUI beerDisplay;
-    public Sprite hoverIcon;
-    private TutorialManager tutorialManager;
 
     public int Stock
     {
@@ -23,12 +21,6 @@ public class BarInteractable : Interactable
 
     private int stock;
 
-    void Start()
-    {
-        tutorialManager = FindObjectOfType<TutorialManager>();
-        Stock = initialStock;
-    }
-
     public override bool Interact()
     {
         return InteractFunctionality.Interact();
@@ -41,10 +33,11 @@ public class BarInteractable : Interactable
 
     public override Sprite GetHoverIcon()
     {
-        if (tutorialManager.IsInTutorialMode && tutorialManager.IsInStep(TutorialStep.ExplainMovement)) {
-            return hoverIcon;
-        }
+        return InteractFunctionality.GetHoverIcon();
+    }
 
-        return null;
+    public void SetStartingStock()
+    {
+        Stock = initialStock;
     }
 }

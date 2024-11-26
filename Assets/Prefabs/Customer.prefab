@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d72a4172e5f0cb4689ec29300e8dade, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hoverIcon: {fileID: 21300000, guid: 2d0c8d0b1434c6c46b7551f0e89a3fc9, type: 3}
 --- !u!1 &2078138220797864645
 GameObject:
   m_ObjectHideFlags: 0
@@ -324,6 +325,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 0}
   spriteHolder: {fileID: 0}
   animator: {fileID: 0}
+  isServed: 0
   isSitting: 0
 --- !u!95 &2458680273034843125
 Animator:

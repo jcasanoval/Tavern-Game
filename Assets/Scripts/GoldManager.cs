@@ -39,4 +39,19 @@ public class GoldManager : MonoBehaviour
         Gold -= amount;
         return true;
     }
+
+    public bool CanSpendGold(int amount)
+    {
+        return Gold >= amount;
+    }
+
+    public void SetStartingGold()
+    {
+        Gold = startingGold;
+    }
+
+    public void SetGold(int amount)
+    {
+        Gold = amount;
+    }
 }
