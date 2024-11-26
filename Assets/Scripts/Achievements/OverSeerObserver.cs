@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -6,13 +7,13 @@ using UnityEngine;
 public class OverSeerObserver: MonoBehaviour
 {
 
-    private SerializableDictionary<OverSeerEvent, List<System.Action>> _eventListeners;
+    private SerializableDictionary<OverSeerEvent, List<Tuple<System.Action,Guid>>> _eventListeners;
     private OverSeerObserver()
     {
-        _eventListeners = new SerializableDictionary<OverSeerEvent, List<System.Action>>();
+        _eventListeners = new SerializableDictionary<OverSeerEvent, List<Tuple<System.Action,Guid>>>();
         foreach (OverSeerEvent type in System.Enum.GetValues(typeof(OverSeerEvent)))
         {
-            _eventListeners[type] = new List<System.Action>();
+            _eventListeners[type] = new List<Tuple<System.Action,Guid>>();
         }
     }
     private static OverSeerObserver _instance;
@@ -29,22 +30,29 @@ public class OverSeerObserver: MonoBehaviour
         }
     }
 
-    public void AddListener(OverSeerEvent type, System.Action listener)
+    public Guid AddListener(OverSeerEvent type, System.Action listener)
     {
-        _eventListeners[type].Add(listener);
+        Guid id = Guid.NewGuid();
+        _eventListeners[type].Add(new Tuple<System.Action, Guid>(listener, id));
+        return id;
     }
 
-    public static void Notify(OverSeerEvent type){
-        Instance.ProcessEvent(type);
+    public void RemoveListener(OverSeerEvent type, Guid id)
+    {
+        _eventListeners[type].RemoveAll(x => x.Item2 == id);
     }
 
-    private IEnumerable ProcessEvent(OverSeerEvent type){
+    public void Notify(OverSeerEvent type){
+        StartCoroutine(Instance.ProcessEvent(type));
+    }
+
+    private IEnumerator ProcessEvent(OverSeerEvent type){
         switch(type){
             case OverSeerEvent.SoldBeer:
                 
                 break;
         }
-        return null;
+        yield return null;
     }
 
 
