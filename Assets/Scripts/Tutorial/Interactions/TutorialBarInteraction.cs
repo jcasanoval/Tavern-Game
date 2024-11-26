@@ -6,9 +6,13 @@ public class TutorialBarInteraction : IInteractFunctionality
     private TutorialManager tutorialManager;
     private HandController handController;
     private PlayerInteraction playerInteraction;
+    private AudioSource serveBeerAudioSource;
+    private BarInteractable barInteractable;
 
     void Awake()
     {
+        barInteractable = GetComponentInParent<BarInteractable>();
+        serveBeerAudioSource = barInteractable.GetComponent<AudioSource>();
         tutorialManager = FindObjectOfType<TutorialManager>();
         handController = FindObjectOfType<HandController>();
         playerInteraction = FindObjectOfType<PlayerInteraction>();
@@ -16,8 +20,11 @@ public class TutorialBarInteraction : IInteractFunctionality
 
     public override bool Interact()
     {
-        if (tutorialManager.IsInStep(TutorialStep.ExplainMovement)) {
+        if ((tutorialManager.IsInStep(TutorialStep.GetBeer) || tutorialManager.IsInStep(TutorialStep.GetSecondBeer))
+            && barInteractable.Stock > 0) {
             handController.HoldMug();
+            FindObjectOfType<BarInteractable>().Stock--;
+            serveBeerAudioSource.Play();
             tutorialManager.ProgressToNextStep();
 
             Interactable interactable = GetComponentInParent<Interactable>();
@@ -30,7 +37,8 @@ public class TutorialBarInteraction : IInteractFunctionality
 
     public override Sprite GetHoverIcon()
     {
-        if (tutorialManager.IsInStep(TutorialStep.ExplainMovement)) {
+        if ((tutorialManager.IsInStep(TutorialStep.GetBeer) || tutorialManager.IsInStep(TutorialStep.GetSecondBeer))
+            && barInteractable.Stock > 0) {
             return hoverIcon;
         }
 

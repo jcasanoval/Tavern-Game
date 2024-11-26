@@ -1,75 +1,80 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.XR;
 
 public enum TutorialStep
 {
-    GoWithUncle,
-    Introduction,
-    ExplainDoorInteraction,
-    ExplainTemper,
-    CustomerIsComing,
-    ExplainMovement,
+    Movement,
+    BuyABeer,
+    OpenTheBar,
+    FirstNPCJoinsAndWaitForBeer,
+    GetBeer,
     TakeBeerToCustomer,
-    WaitForCustomerToLeave,
-    Farewell,
-    UncleWalksAway,
+    FirstNPCDrinkAndLeave,
+    CloseTheBar,
+    OpenTheBarAgain,
+    SecondNPCJoinsAndWaitForBeer,
+    GetSecondBeer,
+    TakeBeerToSecondCustomer,
+    SecondCustomerDrinkAndLeave,
+    GoToPopularityPoster,
+    CloseTheBarAgain,
     Completed
 }
 
 public class TutorialManager : MonoBehaviour
 {
-    public TutorialStep currentStep;
+    public TutorialStep currentStep = TutorialStep.Completed;
     private PlayerMovement playerMovement;
     public bool IsInTutorialMode { get; private set; }
-    public GameObject uncle;
-    public GameObject chatBubble;
     public NavMeshAgent playerNavMesh;
-    public Vector3 uncleTalkDestination;
-    private MessageManager messageManager;
-    private AudioSource doorOpenAudioSource;
-    private AudioSource doorCloseAudioSource;
     public AudioSource moneyTipAudioSource;
     public Transform door;
     private CustomerSpawner customerSpawner;
-    private Customer friend;
+    private Customer npc;
     private ChairManager chairManager;
+    private GoldManager goldManager;
+    private BarInteractable barInteractable;
+    private HandController handController;
     private float height;
+    private DoorInteractable doorInteractable;
+    public Transform posterAdmirationPosition;
 
     void Awake()
     {
         playerMovement = FindObjectOfType<PlayerMovement>();
         height = playerMovement.transform.position.y;
-        uncleTalkDestination = uncle.transform.position + new Vector3(1.5f, 0, -0.4f);
-        messageManager = FindObjectOfType<MessageManager>();
         AudioSource[] audioSources = GetComponents<AudioSource>();
-        doorOpenAudioSource = audioSources[0];
-        doorCloseAudioSource = audioSources[1];
         moneyTipAudioSource = audioSources[2];
         customerSpawner = FindObjectOfType<CustomerSpawner>();
         chairManager = FindObjectOfType<ChairManager>();
+        goldManager = FindObjectOfType<GoldManager>();
+        barInteractable = FindObjectOfType<BarInteractable>();
+        doorInteractable = FindObjectOfType<DoorInteractable>();
+        handController = FindObjectOfType<HandController>();
     }
 
     void Start()
     {
-        uncle.SetActive(true);
-        chatBubble.SetActive(false);
-        playerMovement.inputEnabled = false;
-        playerNavMesh.enabled = true;
-
         Interactable[] interactable = FindObjectsOfType<Interactable>();
         for (int i = 0; i < interactable.Length; i++)
         {
             interactable[i].InteractFunctionality = interactable[i].TutorialInteractFunctionality;
         }
 
-        StartCoroutine(WaitAndStartIntroduction());
+        barInteractable.Stock = 0;
 
-        IEnumerator WaitAndStartIntroduction()
+        StartCoroutine(WaitAndStartMovementStep());
+
+        IEnumerator WaitAndStartMovementStep()
         {
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(0.01f);
+            goldManager.SetGold(5);
+            yield return new WaitForSeconds(0.5f);
             IsInTutorialMode = true;
-            currentStep = TutorialStep.GoWithUncle;
+            currentStep = TutorialStep.Movement;
             StartStep(currentStep);
         }
     }
@@ -78,14 +83,13 @@ public class TutorialManager : MonoBehaviour
     {
         if (IsInTutorialMode && Input.GetKeyDown(KeyCode.Escape))
         {
-            uncle.SetActive(false);
-
             door.position = new Vector3(6.02080011f,0.753099978f,-4.6262002f);
             door.rotation = Quaternion.Euler(0, 0, 0);
 
-            Customer customer = FindObjectOfType<Customer>();
-            if (customer != null)
+            Customer[] customers = FindObjectsOfType<Customer>();
+            foreach (Customer customer in customers)
             {
+                chairManager.FreeChairForCustomer(customer.gameObject);
                 Destroy(customer.gameObject);
             }
 
@@ -102,7 +106,6 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
-
     public void ProgressToNextStep()
     {
         currentStep++;
@@ -117,31 +120,47 @@ public class TutorialManager : MonoBehaviour
     public void StartStep(TutorialStep step)
     {
         Debug.Log("Starting tutorial step: " + step);
-
-        messageManager.ShowMessage(step);
+        currentStep = step;
 
         switch (step)
         {
-            case TutorialStep.GoWithUncle:
-                GoWithUncle();
+            case TutorialStep.Movement:
+                StartTutorial();
                 break;
-            case TutorialStep.Introduction:
-            case TutorialStep.ExplainDoorInteraction:
-            case TutorialStep.ExplainTemper:
-            case TutorialStep.Farewell:
-                WaitInteraction();
+            case TutorialStep.BuyABeer:
                 break;
-            case TutorialStep.CustomerIsComing:
-                OpenDoorAndSpawnCustomer();
+            case TutorialStep.OpenTheBar:
                 break;
-            case TutorialStep.ExplainMovement:
-                EnableMovement();
+            case TutorialStep.FirstNPCJoinsAndWaitForBeer:
+                SpawnFirstNPC();
                 break;
-            case TutorialStep.WaitForCustomerToLeave:
-                MakeCustomerDrinkAndLeave();
+            case TutorialStep.GetBeer:
                 break;
-            case TutorialStep.UncleWalksAway:
-                UncleWalksAway();
+            case TutorialStep.TakeBeerToCustomer:
+                break;
+            case TutorialStep.FirstNPCDrinkAndLeave:
+                FirstNPCDrinkAndLeave();
+                break;
+            case TutorialStep.CloseTheBar:
+                CloseTheBar();
+                break;
+            case TutorialStep.OpenTheBarAgain:
+                break;
+            case TutorialStep.SecondNPCJoinsAndWaitForBeer:
+                SpawnSecondNPCAndWaitForBeer();
+                break;
+            case TutorialStep.GetSecondBeer:
+                SkipStepIfNecessary();
+                break;
+            case TutorialStep.TakeBeerToSecondCustomer:
+                break;
+            case TutorialStep.SecondCustomerDrinkAndLeave:
+                break;
+            case TutorialStep.GoToPopularityPoster:
+                GoToPopularityPoster();
+                break;
+            case TutorialStep.CloseTheBarAgain:
+                CloseTheBarAgain();
                 break;
             case TutorialStep.Completed:
                 FinishTutorial();
@@ -152,96 +171,151 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
-    #region GoWithUncle
+    #region Movement
 
-    private void GoWithUncle()
+    private void StartTutorial()
     {
-        playerNavMesh.SetDestination(uncleTalkDestination);
+        EnableMovement();
+        StartCoroutine(DetectMovementKeys());
 
-        StartCoroutine(WaitForReachingUncleToStop());
+        IEnumerator DetectMovementKeys()
+        {
+            bool wPressed = false;
+            bool aPressed = false;
+            bool sPressed = false;
+            bool dPressed = false;
+
+            while (!wPressed || !aPressed || !sPressed || !dPressed)
+            {
+                if (!wPressed && Input.GetKeyDown(KeyCode.W)) wPressed = true;
+                if (!aPressed && Input.GetKeyDown(KeyCode.A)) aPressed = true;
+                if (!sPressed && Input.GetKeyDown(KeyCode.S)) sPressed = true;
+                if (!dPressed && Input.GetKeyDown(KeyCode.D)) dPressed = true;
+
+                yield return null;
+            }
+
+            ProgressToNextStep();
+        }
     }
 
-    IEnumerator WaitForReachingUncleToStop()
+    #endregion
+
+    #region FirstNPCJoinsAndWaitForBeer
+
+    private void SpawnFirstNPC()
+    {
+        npc = customerSpawner.SpawnHuman();
+        Vector3? chairPosition = chairManager.GetAvailableChairPosition(npc.gameObject);
+
+        NavMeshAgent agent = npc.GetComponent<NavMeshAgent>();
+
+        agent.destination = chairPosition.Value;
+        npc.lastSatChair = chairManager.GetChairByCustomer(npc.gameObject);
+        
+        StartCoroutine(WaitForFirstNPCToSit(agent));
+    }
+
+    IEnumerator WaitForFirstNPCToSit(NavMeshAgent agent)
+    {
+        while (agent.pathPending || agent.remainingDistance > 0.5f)
+        {
+            yield return null;
+        }
+
+        npc.GetComponent<Animator>().SetTrigger("Sit");
+
+        npc.isSitting = true;
+        npc.isServed = false;
+
+        ProgressToNextStep();
+    }
+
+    #endregion
+
+    #region FirstNPCDrinkAndLeave
+
+    private void FirstNPCDrinkAndLeave()
+    {
+        npc.DrinkBeerAndLeave();
+    }
+
+    #endregion
+
+    #region CloseTheBar
+
+    private void CloseTheBar()
+    {
+        doorInteractable.CloseDoor();
+        ProgressToNextStep();
+    }
+
+    #endregion
+
+    #region SecondNPCJoinsAndWaitForBeer
+
+    private void SpawnSecondNPCAndWaitForBeer()
+    {
+        npc = customerSpawner.SpawnHuman();
+        Vector3? chairPosition = chairManager.GetAvailableChairPosition(npc.gameObject);
+
+        NavMeshAgent agent = npc.GetComponent<NavMeshAgent>();
+
+        agent.destination = chairPosition.Value;
+        npc.lastSatChair = chairManager.GetChairByCustomer(npc.gameObject);
+        
+        StartCoroutine(WaitForSecondNPCToSit(agent));
+    }
+
+    IEnumerator WaitForSecondNPCToSit(NavMeshAgent agent)
+    {
+        while (agent.pathPending || agent.remainingDistance > 0.5f)
+        {
+            yield return null;
+        }
+
+        npc.GetComponent<Animator>().SetTrigger("Sit");
+
+        npc.isSitting = true;
+        npc.isServed = false;
+
+        ProgressToNextStep();
+
+        npc.WaitForSecondsAndLeave(20f);
+    }
+
+    #endregion
+
+    #region GetSecondBeer
+
+    private void SkipStepIfNecessary()
+    {
+        if (!FindObjectOfType<HandController>().HasFreeHands())
+        {
+            ProgressToNextStep();
+        }
+    }
+
+    #endregion
+
+    #region GoToPopularityPoster
+
+    private void GoToPopularityPoster()
+    {
+        DisableMovement();
+        playerNavMesh.SetDestination(posterAdmirationPosition.position);
+        StartCoroutine(DetectArrival());    
+    }
+
+    IEnumerator DetectArrival()
     {
         while (playerNavMesh.pathPending || playerNavMesh.remainingDistance > 0.5f)
         {
             yield return null;
         }
 
-        chatBubble.SetActive(true);
-
-        ProgressToNextStep();
+        EnableMovement();
     }
-
-    #endregion
-
-    #region Introduction, ExplainDoorInteraction, ExplainTemper, Farewell
-
-    private void WaitInteraction() 
-    {
-        StartCoroutine(WaitInteractionToContinue());
-    }
-
-    IEnumerator WaitInteractionToContinue()
-    {
-        ChatBubble bubble = chatBubble.GetComponent<ChatBubble>();
-        bubble.SetBubbleKey(true);
-
-        while (!Input.GetKeyDown(KeyCode.E))
-        {
-            yield return null;
-        }
-
-        while (Input.GetKeyDown(KeyCode.E))
-        {
-            yield return null;
-        }
-
-        bubble.SetBubbleKey(false);
-
-        ProgressToNextStep();
-    }
-
-    #endregion
-
-    #region CustomerIsComing
-
-    private void OpenDoorAndSpawnCustomer()
-    {
-        doorOpenAudioSource.Play();
-        door.position = new Vector3(6.79f,0.753099978f,-5.5f);
-        door.rotation = Quaternion.Euler(0, 90, 0);
-
-        StartCoroutine(SpawnCustomer());
-    }
-
-    IEnumerator SpawnCustomer()
-    {
-        friend = customerSpawner.SpawnHuman();
-        Vector3? chairPosition = chairManager.GetAvailableChairPosition(friend.gameObject);
-
-        NavMeshAgent agent = friend.GetComponent<NavMeshAgent>();
-
-        agent.destination = chairPosition.Value;
-        friend.lastSatChair = chairManager.GetChairByCustomer(friend.gameObject);
-        
-        while (agent.pathPending || agent.remainingDistance > 0.5f)
-        {
-            yield return null;
-        }
-
-        friend.GetComponent<Animator>().SetTrigger("Sit");
-
-        door.position = new Vector3(6.02080011f,0.753099978f,-4.6262002f);
-        door.rotation = Quaternion.Euler(0, 0, 0);
-        doorCloseAudioSource.Play();
-
-        ProgressToNextStep();
-    }
-
-    #endregion
-
-    #region ExplainMovement, Completed
 
     private void EnableMovement()
     {
@@ -249,87 +323,19 @@ public class TutorialManager : MonoBehaviour
         playerMovement.inputEnabled = true;
     }
 
-    #endregion
-
-    #region WaitForCustomerToLeave
-
-    private void MakeCustomerDrinkAndLeave()
+    private void DisableMovement()
     {
-        friend.GetComponent<Animator>().SetTrigger("DrinkBeer");
-        
-        StartCoroutine(WaitForCustomerToLeave());
-    }
-
-    IEnumerator WaitForCustomerToLeave()
-    {
-        yield return new WaitForSeconds(6f);
-
-        moneyTipAudioSource.Play();
-
         playerMovement.inputEnabled = false;
-
-        yield return new WaitForSeconds(0.3f);
-        
-        doorOpenAudioSource.Play();
-        door.position = new Vector3(6.79f,0.753099978f,-5.5f);
-        door.rotation = Quaternion.Euler(0, 90, 0);
-
-        friend.GetComponent<Animator>().SetTrigger("Stand");
-
-        chairManager.FreeChairForCustomer(friend.gameObject);
-        friend.transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-
-        GameObject exit = GameObject.FindGameObjectWithTag("Finish");
-        NavMeshAgent agent = friend.GetComponent<NavMeshAgent>();
-        agent.destination = exit.transform.position;
-        while (agent.pathPending || agent.remainingDistance > 0.5f)
-        {
-            yield return null;
-        }
-
-        Destroy(friend.gameObject);
-
-        door.position = new Vector3(6.02080011f,0.753099978f,-4.6262002f);
-        door.rotation = Quaternion.Euler(0, 0, 0);
-        doorCloseAudioSource.Play();
-
         playerNavMesh.enabled = true;
-        playerNavMesh.destination = playerNavMesh.transform.position;
-
-        GoWithUncle();
     }
 
     #endregion
 
-    #region UncleWalksAway
+    #region CloseTheBarAgain
 
-    private void UncleWalksAway()
+    private void CloseTheBarAgain()
     {
-        StartCoroutine(WaitForUncleToLeave());
-    }
-
-    IEnumerator WaitForUncleToLeave()
-    {
-        chatBubble.SetActive(false);
-
-        doorOpenAudioSource.Play();
-        door.position = new Vector3(6.79f,0.753099978f,-5.5f);
-        door.rotation = Quaternion.Euler(0, 90, 0);
-
-        GameObject exit = GameObject.FindGameObjectWithTag("Finish");
-        NavMeshAgent agent = uncle.GetComponent<NavMeshAgent>();
-        agent.destination = exit.transform.position;
-        while (agent.pathPending || agent.remainingDistance > 0.5f)
-        {
-            yield return null;
-        }
-
-        uncle.SetActive(false);
-
-        door.position = new Vector3(6.02080011f,0.753099978f,-4.6262002f);
-        door.rotation = Quaternion.Euler(0, 0, 0);
-        doorCloseAudioSource.Play();
-
+        doorInteractable.CloseDoor();
         ProgressToNextStep();
     }
 
@@ -340,7 +346,9 @@ public class TutorialManager : MonoBehaviour
     private void FinishTutorial()
     {
         StopAllCoroutines();
-        EnableMovement();
+        goldManager.SetStartingGold();
+        barInteractable.SetStartingStock();
+        handController.ReleaseMug();
         Interactable[] interactable = FindObjectsOfType<Interactable>();
         for (int i = 0; i < interactable.Length; i++)
         {
