@@ -12474,7 +12474,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goldDisplay: {fileID: 1190342104}
-  startingGold: 1000
+  startingGold: 5
 --- !u!114 &2049693607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12711,7 +12711,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebc412701713cf44990119d3ad347657, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialPopularity: 5
+  initialPopularity: 1
   popularity: 0
 --- !u!114 &2049693612
 MonoBehaviour:

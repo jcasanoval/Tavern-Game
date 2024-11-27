@@ -372,9 +372,11 @@ public class TutorialManager : MonoBehaviour
     private void FinishTutorial()
     {
         StopAllCoroutines();
+        EnableMovement();
         goldManager.SetStartingGold();
         barInteractable.SetStartingStock();
         handController.ReleaseMug();
+        currentStep = TutorialStep.Completed;
         Interactable[] interactable = FindObjectsOfType<Interactable>();
         for (int i = 0; i < interactable.Length; i++)
         {
