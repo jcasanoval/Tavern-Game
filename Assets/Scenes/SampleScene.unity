@@ -96,7 +96,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: 8bf1e079a7110ab4f827e22144ebeb1c, type: 2}
+  m_LightingDataAsset: {fileID: 112000000, guid: 340056fe20c66ba48bb69506ee359480, type: 2}
   m_LightingSettings: {fileID: 4890085278179872738, guid: ad6fda8c3c6e5fd469a0dad460c18d23, type: 2}
 --- !u!196 &4
 NavMeshSettings:
@@ -212,7 +212,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!108 &11029909
 Light:
   m_ObjectHideFlags: 0
@@ -264,7 +264,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -2662,12 +2662,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 323133419}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.21528494, y: 0.6056088, z: -0.7644425, w: -0.050179444}
-  m_LocalPosition: {x: -7.45, y: 4.24, z: 11.65}
+  m_LocalRotation: {x: -0.21528497, y: 0.6056089, z: -0.7644425, w: -0.050179437}
+  m_LocalPosition: {x: -7.450001, y: 4.2399993, z: 11.650001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1589923249}
+  m_Father: {fileID: 1653402858}
   m_LocalEulerAnglesHint: {x: 71.354, y: 57.075, z: -144.857}
 --- !u!108 &323133421
 Light:
@@ -5865,7 +5865,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 902047714}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5874,7 +5874,7 @@ Transform:
   - {fileID: 1028336887}
   - {fileID: 1661907095}
   - {fileID: 283717454}
-  m_Father: {fileID: 1589923249}
+  m_Father: {fileID: 1653402858}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &935168561
 GameObject:
@@ -7045,12 +7045,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1138214773}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.21528494, y: 0.6056088, z: -0.7644425, w: -0.050179444}
-  m_LocalPosition: {x: -7.45, y: 4.24, z: 11.65}
+  m_LocalRotation: {x: -0.21528497, y: 0.6056089, z: -0.7644425, w: -0.050179437}
+  m_LocalPosition: {x: -7.450001, y: 4.2399993, z: 11.650001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1589923249}
+  m_Father: {fileID: 1653402858}
   m_LocalEulerAnglesHint: {x: 71.354, y: 57.075, z: -144.857}
 --- !u!108 &1138214775
 Light:
@@ -9666,9 +9666,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 11029910}
-  - {fileID: 323133420}
-  - {fileID: 1138214774}
-  - {fileID: 902047715}
+  - {fileID: 1653402858}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1598618730
@@ -9825,6 +9823,40 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5140943480691a84ca1c61f27b03e0de, type: 3}
   m_PrefabInstance: {fileID: 1422565117}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1653402857
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1653402858}
+  m_Layer: 0
+  m_Name: LucesNoche
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1653402858
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1653402857}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 323133420}
+  - {fileID: 1138214774}
+  - {fileID: 902047715}
+  m_Father: {fileID: 1589923249}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1655784226
 GameObject:
   m_ObjectHideFlags: 0
