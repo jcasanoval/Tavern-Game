@@ -40,6 +40,9 @@ public class TutorialManager : MonoBehaviour
     private HandController handController;
     private float height;
     private DoorInteractable doorInteractable;
+    [SerializeField] 
+    private Sprite movementAdvice;
+    private AdviceManager adviceManager;
     public Transform posterAdmirationPosition;
 
     void Awake()
@@ -54,6 +57,7 @@ public class TutorialManager : MonoBehaviour
         barInteractable = FindObjectOfType<BarInteractable>();
         doorInteractable = FindObjectOfType<DoorInteractable>();
         handController = FindObjectOfType<HandController>();
+        adviceManager = FindObjectOfType<AdviceManager>();
     }
 
     void Start()
@@ -121,6 +125,7 @@ public class TutorialManager : MonoBehaviour
     {
         Debug.Log("Starting tutorial step: " + step);
         currentStep = step;
+        adviceManager.HideAdvice();
 
         switch (step)
         {
@@ -176,6 +181,7 @@ public class TutorialManager : MonoBehaviour
     private void StartTutorial()
     {
         EnableMovement();
+        adviceManager.ShowSprite(movementAdvice);
         StartCoroutine(DetectMovementKeys());
 
         IEnumerator DetectMovementKeys()
@@ -194,6 +200,8 @@ public class TutorialManager : MonoBehaviour
 
                 yield return null;
             }
+
+            adviceManager.HideAdvice();
 
             ProgressToNextStep();
         }
@@ -302,13 +310,19 @@ public class TutorialManager : MonoBehaviour
 
     private void GoToPopularityPoster()
     {
-        DisableMovement();
-        playerNavMesh.SetDestination(posterAdmirationPosition.position);
-        StartCoroutine(DetectArrival());    
+        FindObjectOfType<TutorialPopularityTrigger>().UpdateAdvise();
+        StartCoroutine(GoToPopularityPosterCoroutine());    
     }
 
-    IEnumerator DetectArrival()
+    IEnumerator GoToPopularityPosterCoroutine()
     {
+        playerMovement.inputEnabled = false;
+
+        yield return new WaitForSeconds(0.5f);
+
+        playerNavMesh.enabled = true;
+        playerNavMesh.SetDestination(posterAdmirationPosition.position);
+
         while (playerNavMesh.pathPending || playerNavMesh.remainingDistance > 0.5f)
         {
             yield return null;
