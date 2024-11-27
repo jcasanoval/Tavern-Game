@@ -2,11 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 
 public class AchievementKeeper : MonoBehaviour
 {
     private LedgerOfStats _ledger;
+    [SerializeField]
+    private Sprite tutorialCompletedIcon; //TODO: delete from here and use a dictionary or something else
 
     private void Start()
     {
@@ -14,6 +17,7 @@ public class AchievementKeeper : MonoBehaviour
         BeerCounter();
         AccountForBeersSold();
         ThirtyBeersSold();
+        TutorialCompleted();
     }
 
     private void BeerCounter(){
@@ -36,7 +40,7 @@ public class AchievementKeeper : MonoBehaviour
                 //OverSeerObserver.Instance.RemoveListener(OverSeerEvent.SoldBeer, id);
                 AchievementPopUp.Instance.RewardAchievement(new Achievement()
                 {
-                    Title = "10 Beers Sold",
+                    Title = "10 Cervezas Vendidas",
                     Icon = null
                 });
                 return false;
@@ -58,7 +62,7 @@ public class AchievementKeeper : MonoBehaviour
                 //OverSeerObserver.Instance.RemoveListener(OverSeerEvent.SoldBeer, id);
                 AchievementPopUp.Instance.RewardAchievement(new Achievement()
                 {
-                    Title = "30 Beers Sold",
+                    Title = "30 Cervezas Vendidas",
                     Icon = null
                 });
                 return false;
@@ -66,6 +70,23 @@ public class AchievementKeeper : MonoBehaviour
             return true;
         };
         id = OverSeerObserver.Instance.AddListener(OverSeerEvent.SoldBeer,action);
+        Debug.Log("Listener Added:" + id);
+    }
+
+    private void TutorialCompleted()
+    {
+        Guid id = Guid.Empty;
+        Func<bool> action = delegate()
+        {
+            Debug.Log("Achievement Unlocked: Tutorial completed");
+            AchievementPopUp.Instance.RewardAchievement(new Achievement()
+            {
+                Title = "Tutorial Completado",
+                Icon = tutorialCompletedIcon
+            });
+            return false;
+        };
+        id = OverSeerObserver.Instance.AddListener(OverSeerEvent.TutorialCompleted,action);
         Debug.Log("Listener Added:" + id);
     }
 }

@@ -221,6 +221,7 @@ public class Customer : MonoBehaviour
         yield return new WaitForSeconds(5f);
         FindAnyObjectByType<GoldManager>().AddGold(2);
         moneyTipAudioSource.Play();
+        OverSeerObserver.Instance.Notify(OverSeerEvent.SoldBeer);
         animator.SetTrigger("Stand");
         isSitting = false;
         chairManager.FreeChairForCustomer(this.gameObject);
@@ -255,6 +256,7 @@ public class Customer : MonoBehaviour
 
             FindAnyObjectByType<GoldManager>().AddGold(2);
             moneyTipAudioSource.Play();
+            OverSeerObserver.Instance.Notify(OverSeerEvent.SoldBeer);
         }
         animator.SetTrigger("Stand");
 

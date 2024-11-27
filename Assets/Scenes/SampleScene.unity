@@ -12750,6 +12750,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcd9cac0efabfbe47835ee21fce82f5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tutorialCompletedIcon: {fileID: 21300000, guid: 00ba80de32a949a4b9446fe37baccc95, type: 3}
 --- !u!1001 &2060401468
 PrefabInstance:
   m_ObjectHideFlags: 0

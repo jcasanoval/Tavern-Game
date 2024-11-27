@@ -331,10 +331,15 @@ public class TutorialManager : MonoBehaviour
         playerNavMesh.enabled = true;
         playerNavMesh.SetDestination(posterAdmirationPosition.position);
 
+        Animator playerAnimator = playerMovement.GetComponent<Animator>();
+        playerAnimator.SetBool("IsMoving", true);
+
         while (playerNavMesh.pathPending || playerNavMesh.remainingDistance > 0.5f)
         {
             yield return null;
         }
+
+        playerAnimator.SetBool("IsMoving", false);
 
         EnableMovement();
     }
@@ -367,6 +372,8 @@ public class TutorialManager : MonoBehaviour
 
     private void FinishTutorial()
     {
+        OverSeerObserver.Instance.Notify(OverSeerEvent.TutorialCompleted);
+
         adviceManager.HideAdvice();
         StopAllCoroutines();
         EnableMovement();

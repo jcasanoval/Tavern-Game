@@ -84,4 +84,5 @@ public class OverSeerObserver: MonoBehaviour
 public enum OverSeerEvent
 {
     SoldBeer,
+    TutorialCompleted
 }
