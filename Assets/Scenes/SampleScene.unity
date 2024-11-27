@@ -3734,9 +3734,9 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.00030696392
+    x: 0
     y: 0
-    width: 0.9993861
+    width: 1
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
@@ -4059,6 +4059,8 @@ GameObject:
   m_Component:
   - component: {fileID: 598442463}
   - component: {fileID: 598442464}
+  - component: {fileID: 598442466}
+  - component: {fileID: 598442465}
   m_Layer: 0
   m_Name: TutorialBarInteraction
   m_TagString: Untagged
@@ -4075,7 +4077,7 @@ Transform:
   m_GameObject: {fileID: 598442462}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.978173, y: 0, z: 2.1619341}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4094,6 +4096,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverIcon: {fileID: 21300000, guid: 2d0c8d0b1434c6c46b7551f0e89a3fc9, type: 3}
+--- !u!114 &598442465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 598442462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28e9e2d8b3da0c4438853d312dfad899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nobodyToServeAdvice: {fileID: 21300000, guid: fc842d85c95327e488124233f792f76e, type: 3}
+--- !u!65 &598442466
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 598442462}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4.605077, y: 1.6520387, z: 6.0649514}
+  m_Center: {x: -1.3697041, y: 0.32601961, z: -0.079220995}
 --- !u!1 &600345335
 GameObject:
   m_ObjectHideFlags: 0
@@ -4569,6 +4605,7 @@ MonoBehaviour:
   moneyTipAudioSource: {fileID: 0}
   door: {fileID: 1479358177}
   movementAdvice: {fileID: 21300000, guid: c06c58c8edba19a4ba3fd1acef95a78e, type: 3}
+  buyBeerDuringDayAdvice: {fileID: 21300000, guid: e6f3ec294d0ce914aa758cb21d6388a7, type: 3}
   posterAdmirationPosition: {fileID: 67237531}
 --- !u!82 &707096992
 AudioSource:
@@ -5974,7 +6011,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73e49694c86b26440a8a722ebfe906a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chatBubble: {fileID: 1804698575}
 --- !u!1 &902047714
 GameObject:
   m_ObjectHideFlags: 0
@@ -6508,7 +6544,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 259c760668fbaca4f99f1c5104b6236c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  popularityAdvice: {fileID: 21300000, guid: eadde7e6e01d62b42909533ad8636729, type: 3}
+  popularityAdvice: {fileID: 21300000, guid: e46802d6851432c4eb6e10a9a828ffb1, type: 3}
 --- !u!1 &973050910
 GameObject:
   m_ObjectHideFlags: 0
@@ -10047,7 +10083,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91130572a4b83e94b8f1c5390c8f6a7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  needBeerAdvice: {fileID: 21300000, guid: b6f36865bef68c344882f643460295ce, type: 3}
+  needBeerAdvice: {fileID: 21300000, guid: da6af7513b994004dbfc62fdd2968e5e, type: 3}
 --- !u!135 &1573029777
 SphereCollider:
   m_ObjectHideFlags: 0

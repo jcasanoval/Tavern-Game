@@ -42,6 +42,8 @@ public class TutorialManager : MonoBehaviour
     private DoorInteractable doorInteractable;
     [SerializeField] 
     private Sprite movementAdvice;
+    [SerializeField]
+    private Sprite buyBeerDuringDayAdvice;
     private AdviceManager adviceManager;
     public Transform posterAdmirationPosition;
 
@@ -74,8 +76,8 @@ public class TutorialManager : MonoBehaviour
 
         IEnumerator WaitAndStartMovementStep()
         {
-            yield return new WaitForSeconds(0.01f);
-            goldManager.SetGold(5);
+            yield return new WaitForSeconds(0.001f);
+            goldManager.SetGold(1);
             yield return new WaitForSeconds(0.5f);
             IsInTutorialMode = true;
             currentStep = TutorialStep.Movement;
@@ -135,6 +137,7 @@ public class TutorialManager : MonoBehaviour
             case TutorialStep.BuyABeer:
                 break;
             case TutorialStep.OpenTheBar:
+                ShowOpenBarAdvice();
                 break;
             case TutorialStep.FirstNPCJoinsAndWaitForBeer:
                 SpawnFirstNPC();
@@ -205,6 +208,15 @@ public class TutorialManager : MonoBehaviour
 
             ProgressToNextStep();
         }
+    }
+
+    #endregion
+
+    #region OpenTheBar
+
+    private void ShowOpenBarAdvice()
+    {
+        adviceManager.ShowSprite(buyBeerDuringDayAdvice);
     }
 
     #endregion
