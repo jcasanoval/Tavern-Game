@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class AchievementKeeper : MonoBehaviour
@@ -10,11 +11,13 @@ public class AchievementKeeper : MonoBehaviour
     private void Start()
     {
         _ledger = LedgerOfStats.Instance;
+        AccountForBeersSold();
     }
 
     private void AccountForBeersSold()
     {
         Guid id = Guid.Empty;
+        Debug.Log("Accounting for Beers Sold");
         Action action =  delegate() 
         {
             _ledger.BeersSold++;
@@ -22,9 +25,15 @@ public class AchievementKeeper : MonoBehaviour
             {
                 Debug.Log("Achievement Unlocked: 10 Beers Sold");
                 OverSeerObserver.Instance.RemoveListener(OverSeerEvent.SoldBeer, id);
+                AchievementPopUp.Instance.RewardAchievement(new Achievement()
+                {
+                    Title = "10 Beers Sold",
+                    Icon = null
+                });
             }
         };
         id = OverSeerObserver.Instance.AddListener(OverSeerEvent.SoldBeer,action);
+        Debug.Log("Listener Added:" + id);
     }
 }
 
@@ -48,7 +57,9 @@ public class LedgerOfStats
     {
         get
         {
+            Debug.Log("Beers Sold: " + _beersSold);
             return _beersSold;
+
         }
         set
         {

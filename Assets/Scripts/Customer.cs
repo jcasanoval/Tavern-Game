@@ -135,6 +135,7 @@ public class Customer : MonoBehaviour
 
             FindAnyObjectByType<GoldManager>().AddGold(2);
             moneyTipAudioSource.Play();
+            OverSeerObserver.Instance.Notify(OverSeerEvent.SoldBeer);
         }
         animator.SetTrigger("Stand");
 

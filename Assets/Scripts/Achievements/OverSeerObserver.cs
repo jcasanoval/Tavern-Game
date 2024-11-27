@@ -7,16 +7,26 @@ using UnityEngine;
 public class OverSeerObserver: MonoBehaviour
 {
 
-    private SerializableDictionary<OverSeerEvent, List<Tuple<System.Action,Guid>>> _eventListeners;
+    private Dictionary<OverSeerEvent, List<Tuple<System.Action,Guid>>> _eventListeners;
     private OverSeerObserver()
     {
-        _eventListeners = new SerializableDictionary<OverSeerEvent, List<Tuple<System.Action,Guid>>>();
+        _eventListeners = new Dictionary<OverSeerEvent, List<Tuple<System.Action,Guid>>>();
         foreach (OverSeerEvent type in System.Enum.GetValues(typeof(OverSeerEvent)))
         {
             _eventListeners[type] = new List<Tuple<System.Action,Guid>>();
         }
     }
     private static OverSeerObserver _instance;
+
+    private void Awake()
+    {
+        _instance = this;
+        _eventListeners = new Dictionary<OverSeerEvent, List<Tuple<System.Action,Guid>>>();
+        foreach (OverSeerEvent type in System.Enum.GetValues(typeof(OverSeerEvent)))
+        {
+            _eventListeners[type] = new List<Tuple<System.Action,Guid>>();
+        }
+    }
 
     public static OverSeerObserver Instance
     {
@@ -47,10 +57,10 @@ public class OverSeerObserver: MonoBehaviour
     }
 
     private IEnumerator ProcessEvent(OverSeerEvent type){
-        switch(type){
-            case OverSeerEvent.SoldBeer:
-                
-                break;
+        print("Sold Beer Event");
+        foreach(var listener in _eventListeners[type]){
+            print("Invoking Listener:" + listener.Item2 + " " + type);
+            listener.Item1();
         }
         yield return null;
     }
