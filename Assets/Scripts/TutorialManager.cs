@@ -70,14 +70,10 @@ public class TutorialManager : MonoBehaviour
             interactable[i].InteractFunctionality = interactable[i].TutorialInteractFunctionality;
         }
 
-        barInteractable.Stock = 0;
-
         StartCoroutine(WaitAndStartMovementStep());
 
         IEnumerator WaitAndStartMovementStep()
         {
-            yield return new WaitForSeconds(0.001f);
-            goldManager.SetGold(1);
             yield return new WaitForSeconds(0.5f);
             IsInTutorialMode = true;
             currentStep = TutorialStep.Movement;
@@ -371,10 +367,9 @@ public class TutorialManager : MonoBehaviour
 
     private void FinishTutorial()
     {
+        adviceManager.HideAdvice();
         StopAllCoroutines();
         EnableMovement();
-        goldManager.SetStartingGold();
-        barInteractable.SetStartingStock();
         handController.ReleaseMug();
         currentStep = TutorialStep.Completed;
         Interactable[] interactable = FindObjectsOfType<Interactable>();

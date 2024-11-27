@@ -44,14 +44,4 @@ public class GoldManager : MonoBehaviour
     {
         return Gold >= amount;
     }
-
-    public void SetStartingGold()
-    {
-        Gold = startingGold;
-    }
-
-    public void SetGold(int amount)
-    {
-        Gold = amount;
-    }
 }
