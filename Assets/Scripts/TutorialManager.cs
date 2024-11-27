@@ -74,7 +74,8 @@ public class TutorialManager : MonoBehaviour
 
         IEnumerator WaitAndStartMovementStep()
         {
-            yield return new WaitForSeconds(0.5f);
+            playerMovement.inputEnabled = false;
+            yield return new WaitForSeconds(0.2f);
             IsInTutorialMode = true;
             currentStep = TutorialStep.Movement;
             StartStep(currentStep);
