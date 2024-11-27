@@ -11,26 +11,59 @@ public class AchievementKeeper : MonoBehaviour
     private void Start()
     {
         _ledger = LedgerOfStats.Instance;
+        BeerCounter();
         AccountForBeersSold();
+        ThirtyBeersSold();
+    }
+
+    private void BeerCounter(){
+        Func<bool> action = delegate()
+        {
+            _ledger.BeersSold++;
+            return true;
+        };
+        OverSeerObserver.Instance.AddListener(OverSeerEvent.SoldBeer,action);
     }
 
     private void AccountForBeersSold()
     {
         Guid id = Guid.Empty;
-        Debug.Log("Accounting for Beers Sold");
-        Action action =  delegate() 
+        Func<bool> action = delegate()
         {
-            _ledger.BeersSold++;
             if(_ledger.BeersSold == 10)
             {
                 Debug.Log("Achievement Unlocked: 10 Beers Sold");
-                OverSeerObserver.Instance.RemoveListener(OverSeerEvent.SoldBeer, id);
+                //OverSeerObserver.Instance.RemoveListener(OverSeerEvent.SoldBeer, id);
                 AchievementPopUp.Instance.RewardAchievement(new Achievement()
                 {
                     Title = "10 Beers Sold",
                     Icon = null
                 });
+                return false;
             }
+            return true;
+        };
+        id = OverSeerObserver.Instance.AddListener(OverSeerEvent.SoldBeer,action);
+        Debug.Log("Listener Added:" + id);
+    }
+
+    private void ThirtyBeersSold()
+    {
+        Guid id = Guid.Empty;
+        Func<bool> action = delegate()
+        {
+            if(_ledger.BeersSold == 30)
+            {
+                Debug.Log("Achievement Unlocked: 30 Beers Sold");
+                //OverSeerObserver.Instance.RemoveListener(OverSeerEvent.SoldBeer, id);
+                AchievementPopUp.Instance.RewardAchievement(new Achievement()
+                {
+                    Title = "30 Beers Sold",
+                    Icon = null
+                });
+                return false;
+            }
+            return true;
         };
         id = OverSeerObserver.Instance.AddListener(OverSeerEvent.SoldBeer,action);
         Debug.Log("Listener Added:" + id);
