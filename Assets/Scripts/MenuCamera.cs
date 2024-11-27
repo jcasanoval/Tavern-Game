@@ -7,7 +7,7 @@ public class MenuCamera : MonoBehaviour
 {
     private GameObject playerCamera;
 
-    public CameraState _cameraState = CameraState.Game;
+    public CameraState _cameraState = CameraState.Menu;
     public CameraState cameraState
     {
         get { return _cameraState; }
@@ -28,6 +28,8 @@ public class MenuCamera : MonoBehaviour
     void Start()
     {
         playerCamera = GameObject.FindWithTag("MainCamera");
+        transform.position = menuCameraPosition;
+        transform.rotation = Quaternion.Euler(menuCameraRotation);
     }
 
     // Update is called once per frame
@@ -52,6 +54,12 @@ public class MenuCamera : MonoBehaviour
                 cameraState = CameraState.Game;
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.P) && !animating)
+        {
+            FindAnyObjectByType<MenuBoxController>().boxState = BoxState.Open;
+            cameraState = CameraState.Game;
+        }
     }
 
     private IEnumerator AnimateTransition(CameraState newState)
@@ -63,11 +71,17 @@ public class MenuCamera : MonoBehaviour
             yield break;
         }
 
+        if (newState != CameraState.Game)
+        {
+            Time.timeScale = 0;
+        }
+
         animating = true;
+        var initialTime = Time.realtimeSinceStartup;
         float elapsedTime = 0f;
         var initialPosition = transform.position;
         var initialRotation = transform.rotation.eulerAngles;
-        const float animationDuration = 2f;
+        float animationDuration = newState == CameraState.Menu || _cameraState == CameraState.Menu ? 2 : 1;
 
         Vector3 targetPosition = Vector3.zero;
         Vector3 targetRotation = Vector3.zero;
@@ -84,7 +98,7 @@ public class MenuCamera : MonoBehaviour
                 break;
             case CameraState.Game:
                 targetPosition = playerCamera.transform.position;
-                targetRotation = playerCamera.transform.rotation.eulerAngles;
+                targetRotation = new Vector3(playerCamera.transform.rotation.eulerAngles.x, 0, 0);
                 break;
         }
 
@@ -95,11 +109,15 @@ public class MenuCamera : MonoBehaviour
         {
             transform.position = Vector3.Lerp(initialPosition, targetPosition, elapsedTime / animationDuration);
             transform.rotation = Quaternion.Euler(Vector3.Lerp(initialRotation, targetRotation, elapsedTime / animationDuration));
-            elapsedTime += Time.deltaTime;
+            elapsedTime = Time.realtimeSinceStartup - initialTime;
             yield return null;
         }
 
         _cameraState = newState;
+        if (_cameraState == CameraState.Game)
+        {
+            Time.timeScale = 1;
+        }
         animating = false;
     }
 }
