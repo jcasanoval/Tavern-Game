@@ -5077,7 +5077,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7177031ec80f4c428337bcd81ebb69f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cameraState: 2
+  _cameraState: 0
   menuCameraPosition: {x: 0, y: 19.5, z: -11.2}
   menuCameraRotation: {x: 70, y: 0, z: 0}
   pauseCameraPosition: {x: -21.05, y: 10.71, z: -8.47}
