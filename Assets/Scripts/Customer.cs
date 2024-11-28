@@ -15,6 +15,10 @@ public class Customer : MonoBehaviour
     private AudioSource angryAudioSource;
     private AudioSource[] audioSources;
 
+    private TutorialManager tutorialManager;
+    private HandController handController;
+    private BarInteractable barInteractable;
+
     public SpriteRenderer spriteRenderer;
     public SpriteHolder spriteHolder;
 
@@ -48,6 +52,22 @@ public class Customer : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         spriteRenderer = gameObject.GetComponentInChildren<SpriteRenderer>();
         animator = gameObject.GetComponent<Animator>();
+        tutorialManager = FindObjectOfType<TutorialManager>();
+        handController = FindObjectOfType<HandController>();
+        barInteractable = FindObjectOfType<BarInteractable>();
+    }
+
+    void Start() 
+    {
+        GameObject exitObject = GameObject.FindGameObjectWithTag("Finish");
+        if (exitObject != null)
+        {
+            exit = exitObject.transform;
+        }
+        else
+        {
+            Debug.LogError("Exit with tag 'Finish' not found.");
+        }
     }
 
     public void GoToTheBar()
@@ -115,6 +135,7 @@ public class Customer : MonoBehaviour
 
             FindAnyObjectByType<GoldManager>().AddGold(2);
             moneyTipAudioSource.Play();
+            OverSeerObserver.Instance.Notify(OverSeerEvent.SoldBeer);
         }
         animator.SetTrigger("Stand");
 
@@ -154,6 +175,22 @@ public class Customer : MonoBehaviour
             yield return null;
         }
 
+        if (tutorialManager.IsInTutorialMode && isServed)
+        {
+            tutorialManager.ProgressToNextStep();
+        }
+        else if (tutorialManager.IsInTutorialMode && !isServed)
+        {
+            if (barInteractable.Stock > 0 || !handController.HasFreeHands())
+            {
+                tutorialManager.StartStep(TutorialStep.SecondNPCJoinsAndWaitForBeer);
+            }
+            else
+            {
+                tutorialManager.StartStep(TutorialStep.CloseTheBar);
+            }
+        }
+
         Destroy(gameObject);
     }
 
@@ -174,5 +211,59 @@ public class Customer : MonoBehaviour
         spriteRenderer.sprite = spriteHolder.GetProfile();
     }
 
+    public void DrinkBeerAndLeave() {
+        StartCoroutine(DrinkBeerAndLeaveCoroutine());
+    }
 
+    IEnumerator DrinkBeerAndLeaveCoroutine() {
+        isServed = true;
+        animator.SetTrigger("DrinkBeer");
+        yield return new WaitForSeconds(5f);
+        FindAnyObjectByType<GoldManager>().AddGold(2);
+        moneyTipAudioSource.Play();
+        OverSeerObserver.Instance.Notify(OverSeerEvent.SoldBeer);
+        animator.SetTrigger("Stand");
+        isSitting = false;
+        chairManager.FreeChairForCustomer(this.gameObject);
+        transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+        Exit();
+    }
+
+    public void WaitForSecondsAndLeave(float timeToWait) {
+        StartCoroutine(WaitForSecondsAndLeaveCoroutine(timeToWait));
+    }
+
+    IEnumerator WaitForSecondsAndLeaveCoroutine(float timeToWait) {
+        isSitting = true;
+        timeWaited = 0;
+        maxWaitTime = timeToWait;
+        animator.SetTrigger("Sit");
+
+        while (timeWaited < maxWaitTime && !isServed)
+        {
+            timeWaited += Time.deltaTime;
+            yield return null;
+        }
+
+        if (!isServed)
+        {
+            angryAudioSource.Play();
+        }
+        else
+        {
+            animator.SetTrigger("DrinkBeer");
+            yield return new WaitForSeconds(5f);
+
+            FindAnyObjectByType<GoldManager>().AddGold(2);
+            moneyTipAudioSource.Play();
+            OverSeerObserver.Instance.Notify(OverSeerEvent.SoldBeer);
+        }
+        animator.SetTrigger("Stand");
+
+        isSitting = false;
+
+        chairManager.FreeChairForCustomer(this.gameObject);
+        transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+        Exit();
+    }
 }

@@ -6,7 +6,6 @@ public class ExcaliburInteraction : IInteractFunctionality
 {
     private Animator animator;
     private DayCycleManager dayCycleManager;
-    private PlayerInteraction playerInteraction;
     public ExcaliburInteractable excaliburInteractable;
     public Sprite hoverIcon;
     private bool _isGrabbed = false;
@@ -25,7 +24,6 @@ public class ExcaliburInteraction : IInteractFunctionality
     {
         animator = GetComponentInParent<ExcaliburInteractable>().GetComponentInParent<Animator>();
         dayCycleManager = FindObjectOfType<DayCycleManager>();
-        playerInteraction = FindObjectOfType<PlayerInteraction>();
     }
 
     public override bool Interact(){
