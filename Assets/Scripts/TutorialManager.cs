@@ -37,6 +37,7 @@ public class TutorialManager : MonoBehaviour
     private ChairManager chairManager;
     private GoldManager goldManager;
     private BarInteractable barInteractable;
+    private StockProviderInteractable stockProviderInteractable;
     private HandController handController;
     private float height;
     private DoorInteractable doorInteractable;
@@ -45,6 +46,7 @@ public class TutorialManager : MonoBehaviour
     [SerializeField]
     private Sprite buyBeerDuringDayAdvice;
     private AdviceManager adviceManager;
+    private DirectionIndicator directionIndicator;
     public Transform posterAdmirationPosition;
 
     void Awake()
@@ -57,9 +59,11 @@ public class TutorialManager : MonoBehaviour
         chairManager = FindObjectOfType<ChairManager>();
         goldManager = FindObjectOfType<GoldManager>();
         barInteractable = FindObjectOfType<BarInteractable>();
+        stockProviderInteractable = FindObjectOfType<StockProviderInteractable>();
         doorInteractable = FindObjectOfType<DoorInteractable>();
         handController = FindObjectOfType<HandController>();
         adviceManager = FindObjectOfType<AdviceManager>();
+        directionIndicator = FindObjectOfType<DirectionIndicator>();
     }
 
     void Start()
@@ -125,6 +129,7 @@ public class TutorialManager : MonoBehaviour
         Debug.Log("Starting tutorial step: " + step);
         currentStep = step;
         adviceManager.HideAdvice();
+        directionIndicator.ClearTarget();
 
         switch (step)
         {
@@ -132,6 +137,7 @@ public class TutorialManager : MonoBehaviour
                 StartTutorial();
                 break;
             case TutorialStep.BuyABeer:
+                BuyABeer();
                 break;
             case TutorialStep.OpenTheBar:
                 ShowOpenBarAdvice();
@@ -140,8 +146,10 @@ public class TutorialManager : MonoBehaviour
                 SpawnFirstNPC();
                 break;
             case TutorialStep.GetBeer:
+                GetBeer();
                 break;
             case TutorialStep.TakeBeerToCustomer:
+                TakeBeerToCustomer();
                 break;
             case TutorialStep.FirstNPCDrinkAndLeave:
                 FirstNPCDrinkAndLeave();
@@ -209,11 +217,21 @@ public class TutorialManager : MonoBehaviour
 
     #endregion
 
+    #region BuyABeer
+
+    private void BuyABeer()
+    {
+        directionIndicator.SetTarget(stockProviderInteractable.transform);
+    }
+
+    #endregion
+
     #region OpenTheBar
 
     private void ShowOpenBarAdvice()
     {
         adviceManager.ShowSprite(buyBeerDuringDayAdvice);
+        directionIndicator.SetTarget(door.transform);
     }
 
     #endregion
@@ -246,6 +264,24 @@ public class TutorialManager : MonoBehaviour
         npc.isServed = false;
 
         ProgressToNextStep();
+    }
+
+    #endregion
+
+    #region GetBeer
+
+    private void GetBeer()
+    {
+        directionIndicator.SetTarget(barInteractable.transform);
+    }
+
+    #endregion
+
+    #region TakeBeerToCustomer
+
+    private void TakeBeerToCustomer()
+    {
+        directionIndicator.SetTarget(npc.transform);
     }
 
     #endregion
@@ -376,6 +412,7 @@ public class TutorialManager : MonoBehaviour
         OverSeerObserver.Instance.Notify(OverSeerEvent.TutorialCompleted);
 
         adviceManager.HideAdvice();
+        directionIndicator.ClearTarget();
         StopAllCoroutines();
         EnableMovement();
         handController.ReleaseMug();
