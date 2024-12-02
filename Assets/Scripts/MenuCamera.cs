@@ -8,7 +8,7 @@ public class MenuCamera : MonoBehaviour
     private GameObject playerCamera;
 
     public CameraState _cameraState = CameraState.Menu;
-    public CameraState cameraState
+    public CameraState CameraState
     {
         get { return _cameraState; }
         set
@@ -35,7 +35,7 @@ public class MenuCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (cameraState == CameraState.Game && !animating)
+        if (CameraState == CameraState.Game && !animating)
         {
             transform.position = playerCamera.transform.position;
             transform.rotation = playerCamera.transform.rotation;
@@ -45,20 +45,20 @@ public class MenuCamera : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape) && !animating && !isInTutorial)
         {
             Debug.Log("Toggling camera state");
-            if (cameraState == CameraState.Game)
+            if (CameraState == CameraState.Game)
             {
-                cameraState = CameraState.Pause;
+                CameraState = CameraState.Pause;
             }
-            else if (cameraState == CameraState.Pause)
+            else if (CameraState == CameraState.Pause)
             {
-                cameraState = CameraState.Game;
+                CameraState = CameraState.Game;
             }
         }
 
         if (Input.GetKeyDown(KeyCode.P) && !animating)
         {
             FindAnyObjectByType<MenuBoxController>().boxState = BoxState.Open;
-            cameraState = CameraState.Game;
+            CameraState = CameraState.Game;
         }
     }
 

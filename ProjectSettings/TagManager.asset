@@ -8,6 +8,7 @@ TagManager:
   - Employee
   - Legs
   - Arms
+  - ButtonUnderline
   layers:
   - Default
   - TransparentFX
