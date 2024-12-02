@@ -32,7 +32,6 @@ public class MenuBoxController : MonoBehaviour
     {
         transform.localPosition = closePosition;
         transform.localEulerAngles = closeRotation;
-        Time.timeScale = 0;
     }
 
 

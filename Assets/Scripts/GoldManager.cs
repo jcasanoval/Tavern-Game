@@ -22,7 +22,12 @@ public class GoldManager : MonoBehaviour
 
     private void Start()
     {
-        Gold = startingGold;
+        SetInitialGold();
+    }
+
+    public void SetInitialGold()
+    {
+        Gold += startingGold;
     }
 
     public void AddGold(int amount)

@@ -54,12 +54,6 @@ public class MenuCamera : MonoBehaviour
                 CameraState = CameraState.Game;
             }
         }
-
-        if (Input.GetKeyDown(KeyCode.P) && !animating)
-        {
-            FindAnyObjectByType<MenuBoxController>().boxState = BoxState.Open;
-            CameraState = CameraState.Game;
-        }
     }
 
     private IEnumerator AnimateTransition(CameraState newState)

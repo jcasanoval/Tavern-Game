@@ -12682,6 +12682,7 @@ GameObject:
   - component: {fileID: 2049693612}
   - component: {fileID: 2049693613}
   - component: {fileID: 2049693614}
+  - component: {fileID: 2049693615}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -13006,6 +13007,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tutorialCompletedIcon: {fileID: 21300000, guid: 00ba80de32a949a4b9446fe37baccc95, type: 3}
+--- !u!114 &2049693615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2049693603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e111ad08d5bb424d953438773f60483, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2060401468
 PrefabInstance:
   m_ObjectHideFlags: 0
