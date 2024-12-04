@@ -3866,9 +3866,9 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.025873154
+    x: 0
     y: 0
-    width: 0.9482537
+    width: 1
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
@@ -4132,7 +4132,7 @@ GameObject:
   - component: {fileID: 576947999}
   - component: {fileID: 576947998}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: PlayerGUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
