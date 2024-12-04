@@ -77,6 +77,8 @@ public class MenuBoxController : MonoBehaviour
 
         _boxState = newState;
         animating = false;
+        gameObject.SetActive(false);
+        gameObject.SetActive(true);
     }
 }
 

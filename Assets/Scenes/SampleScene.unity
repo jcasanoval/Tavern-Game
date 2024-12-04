@@ -14060,6 +14060,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 216073706502089226, guid: 26c330bdbe1c5c048bdd2382cd8f8f3b, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 261509994375309813, guid: 26c330bdbe1c5c048bdd2382cd8f8f3b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -14100,9 +14104,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3339105905360023087, guid: 26c330bdbe1c5c048bdd2382cd8f8f3b, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7077530398769910862, guid: 26c330bdbe1c5c048bdd2382cd8f8f3b, type: 3}
       propertyPath: m_Name
       value: MenuBox
+      objectReference: {fileID: 0}
+    - target: {fileID: 8177359707672880975, guid: 26c330bdbe1c5c048bdd2382cd8f8f3b, type: 3}
+      propertyPath: debugHover
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
