@@ -6,7 +6,8 @@ using UnityEngine.XR;
 
 public enum TutorialStep
 {
-    Movement,
+    StartTutorial,
+    YouNeedToSupplyTheBarAdvice,
     BuyABeer,
     OpenTheBar,
     FirstNPCJoinsAndWaitForBeer,
@@ -21,6 +22,7 @@ public enum TutorialStep
     SecondCustomerDrinkAndLeave,
     GoToPopularityPoster,
     CloseTheBarAgain,
+    SummaryAdvice,
     Completed
 }
 
@@ -42,9 +44,17 @@ public class TutorialManager : MonoBehaviour
     private float height;
     private DoorInteractable doorInteractable;
     [SerializeField] 
-    private Sprite movementAdvice;
+    private Sprite areYouReadyAdvice;
+    [SerializeField] 
+    private Sprite needToSupplyAdvice;
+    [SerializeField]
+    private Sprite buyBeerAdvice;
     [SerializeField]
     private Sprite buyBeerDuringDayAdvice;
+    [SerializeField]
+    private Sprite serveBeerAdvice;
+    [SerializeField]
+    private Sprite summaryAdvice;
     private AdviceManager adviceManager;
     private DirectionIndicator directionIndicator;
     public Transform posterAdmirationPosition;
@@ -81,7 +91,7 @@ public class TutorialManager : MonoBehaviour
             playerMovement.inputEnabled = false;
             yield return new WaitForSeconds(0.2f);
             IsInTutorialMode = true;
-            currentStep = TutorialStep.Movement;
+            currentStep = TutorialStep.StartTutorial;
             StartStep(currentStep);
         }
     }
@@ -133,8 +143,11 @@ public class TutorialManager : MonoBehaviour
 
         switch (step)
         {
-            case TutorialStep.Movement:
-                StartTutorial();
+            case TutorialStep.StartTutorial:
+                FirstStep();
+                break;
+            case TutorialStep.YouNeedToSupplyTheBarAdvice:
+                YouNeedToSupplyTheBar();
                 break;
             case TutorialStep.BuyABeer:
                 BuyABeer();
@@ -175,6 +188,9 @@ public class TutorialManager : MonoBehaviour
             case TutorialStep.CloseTheBarAgain:
                 CloseTheBarAgain();
                 break;
+            case TutorialStep.SummaryAdvice:
+                SummaryAdvice();
+                break;
             case TutorialStep.Completed:
                 FinishTutorial();
                 break;
@@ -184,35 +200,38 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
-    #region Movement
+    #region StartTutorial
 
-    private void StartTutorial()
+    private void FirstStep()
     {
         EnableMovement();
-        adviceManager.ShowSprite(movementAdvice);
-        StartCoroutine(DetectMovementKeys());
+        adviceManager.ShowSprite(areYouReadyAdvice);
+        StartCoroutine(WaitForPressingContinueKey());
+    }
 
-        IEnumerator DetectMovementKeys()
+    IEnumerator WaitForPressingContinueKey()
+    {
+        while (!Input.GetKeyDown(KeyCode.E))
         {
-            bool wPressed = false;
-            bool aPressed = false;
-            bool sPressed = false;
-            bool dPressed = false;
-
-            while (!wPressed || !aPressed || !sPressed || !dPressed)
-            {
-                if (!wPressed && Input.GetKeyDown(KeyCode.W)) wPressed = true;
-                if (!aPressed && Input.GetKeyDown(KeyCode.A)) aPressed = true;
-                if (!sPressed && Input.GetKeyDown(KeyCode.S)) sPressed = true;
-                if (!dPressed && Input.GetKeyDown(KeyCode.D)) dPressed = true;
-
-                yield return null;
-            }
-
-            adviceManager.HideAdvice();
-
-            ProgressToNextStep();
+            yield return null;
         }
+
+        while (Input.GetKeyDown(KeyCode.E))
+        {
+            yield return null;
+        }
+
+        ProgressToNextStep();
+    }
+
+    #endregion
+
+    #region YouNeedToSupplyTheBar
+
+    private void YouNeedToSupplyTheBar()
+    {
+        adviceManager.ShowSprite(needToSupplyAdvice);
+        StartCoroutine(WaitForPressingContinueKey());
     }
 
     #endregion
@@ -221,6 +240,7 @@ public class TutorialManager : MonoBehaviour
 
     private void BuyABeer()
     {
+        adviceManager.ShowSprite(buyBeerAdvice);
         directionIndicator.SetTarget(stockProviderInteractable.transform);
     }
 
@@ -272,6 +292,7 @@ public class TutorialManager : MonoBehaviour
 
     private void GetBeer()
     {
+        adviceManager.ShowSprite(serveBeerAdvice);
         directionIndicator.SetTarget(barInteractable.transform);
     }
 
@@ -281,6 +302,7 @@ public class TutorialManager : MonoBehaviour
 
     private void TakeBeerToCustomer()
     {
+        adviceManager.ShowSprite(serveBeerAdvice);
         directionIndicator.SetTarget(npc.transform);
     }
 
@@ -401,6 +423,16 @@ public class TutorialManager : MonoBehaviour
     {
         doorInteractable.CloseDoor();
         ProgressToNextStep();
+    }
+
+    #endregion
+
+    #region SummaryAdvice
+
+    private void SummaryAdvice()
+    {
+        adviceManager.ShowSprite(summaryAdvice);
+        StartCoroutine(WaitForPressingContinueKey());
     }
 
     #endregion

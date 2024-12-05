@@ -1006,7 +1006,7 @@ MonoBehaviour:
   InteractFunctionality: {fileID: 0}
   DefaultInteractFunctionality: {fileID: 214818827}
   TutorialInteractFunctionality: {fileID: 598442464}
-  initialStock: 5
+  initialStock: 0
   beerDisplay: {fileID: 1813059706}
 --- !u!1001 &184049735
 PrefabInstance:
@@ -4479,7 +4479,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28e9e2d8b3da0c4438853d312dfad899, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nobodyToServeAdvice: {fileID: 21300000, guid: fc842d85c95327e488124233f792f76e, type: 3}
 --- !u!65 &598442466
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4975,8 +4974,12 @@ MonoBehaviour:
   playerNavMesh: {fileID: 653074787}
   moneyTipAudioSource: {fileID: 0}
   door: {fileID: 1479358177}
-  movementAdvice: {fileID: 21300000, guid: c06c58c8edba19a4ba3fd1acef95a78e, type: 3}
-  buyBeerDuringDayAdvice: {fileID: 21300000, guid: e6f3ec294d0ce914aa758cb21d6388a7, type: 3}
+  areYouReadyAdvice: {fileID: 21300000, guid: ccc73b8122b9b554d848fbbb1a9cc86b, type: 3}
+  needToSupplyAdvice: {fileID: 21300000, guid: 086da2876e5ad204c9fc12a37c4b0684, type: 3}
+  buyBeerAdvice: {fileID: 21300000, guid: 8831af24c76354940aefc033c804c6c9, type: 3}
+  buyBeerDuringDayAdvice: {fileID: 21300000, guid: fc70ee97280cc534c95bdcf660d4f0fc, type: 3}
+  serveBeerAdvice: {fileID: 21300000, guid: faa4dccf9e93c3e409493c420a58acf6, type: 3}
+  summaryAdvice: {fileID: 21300000, guid: b6bb2cb830cc886409750338987e3275, type: 3}
   posterAdmirationPosition: {fileID: 67237531}
 --- !u!82 &707096992
 AudioSource:
@@ -7237,7 +7240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 259c760668fbaca4f99f1c5104b6236c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  popularityAdvice: {fileID: 21300000, guid: e46802d6851432c4eb6e10a9a828ffb1, type: 3}
+  popularityAdvice: {fileID: 21300000, guid: 6bdb1175cfede364dae55e5616872e2b, type: 3}
 --- !u!1 &973050910
 GameObject:
   m_ObjectHideFlags: 0
@@ -10919,7 +10922,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91130572a4b83e94b8f1c5390c8f6a7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  needBeerAdvice: {fileID: 21300000, guid: da6af7513b994004dbfc62fdd2968e5e, type: 3}
 --- !u!135 &1573029777
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -14272,7 +14274,25 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 915516372754595988, guid: 1de1b792a486847d382df4b8a17f40ba, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 921462102089939007, guid: 1de1b792a486847d382df4b8a17f40ba, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 3777350010799301586, guid: 1de1b792a486847d382df4b8a17f40ba, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 5670923954880285387, guid: 1de1b792a486847d382df4b8a17f40ba, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 4845946686869761580, guid: 1de1b792a486847d382df4b8a17f40ba, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 8454808764880788392, guid: 1de1b792a486847d382df4b8a17f40ba, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 1de1b792a486847d382df4b8a17f40ba, type: 3}
 --- !u!1001 &8363687199288008557
 PrefabInstance:

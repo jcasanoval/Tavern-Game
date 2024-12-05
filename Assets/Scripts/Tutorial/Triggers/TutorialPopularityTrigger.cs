@@ -31,7 +31,6 @@ public class TutorialPopularityTrigger : MonoBehaviour
         {
             isPlayerInTrigger = false;
             tutorialManager.ProgressToNextStep();
-            adviceManager.HideAdvice();
         }
     }
 

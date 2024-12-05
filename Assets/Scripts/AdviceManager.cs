@@ -9,6 +9,7 @@ public class AdviceManager : MonoBehaviour
     {
         if (newSprite != null)
         {
+            Debug.Log("Showing advice");
             AdviceDisplay.sprite = newSprite;
             
             var tempColor = AdviceDisplay.color;
@@ -19,6 +20,7 @@ public class AdviceManager : MonoBehaviour
 
     public void HideAdvice()
     {
+        Debug.Log("Hiding advice");
         var tempColor = AdviceDisplay.color;
         tempColor.a = 0;
         AdviceDisplay.color = tempColor;
