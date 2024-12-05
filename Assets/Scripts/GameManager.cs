@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
         FindAnyObjectByType<MenuCamera>().CameraState = CameraState.Game;
         FindAnyObjectByType<MenuBoxController>().boxState = BoxState.Open;
         FindAnyObjectByType<GoldManager>().SetInitialGold();
+        FindAnyObjectByType<BarInteractable>().SetStartingStock();
         gui.SetActive(true);
     }
 

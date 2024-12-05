@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.ConstrainedExecution;
 using UnityEngine;
 
 public class MenuCamera : MonoBehaviour
@@ -24,6 +22,9 @@ public class MenuCamera : MonoBehaviour
 
     public Vector3 pauseCameraPosition;
     public Vector3 pauseCameraRotation;
+
+    public Vector3 endOfDayCameraPosition;
+    public Vector3 endOfDayCameraRotation;
 
     void Start()
     {
@@ -94,6 +95,10 @@ public class MenuCamera : MonoBehaviour
                 targetPosition = playerCamera.transform.position;
                 targetRotation = new Vector3(playerCamera.transform.rotation.eulerAngles.x, 0, 0);
                 break;
+            case CameraState.EndOfDay:
+                targetPosition = endOfDayCameraPosition;
+                targetRotation = endOfDayCameraRotation;
+                break;
         }
 
         Debug.Log("Initial position: " + initialPosition);
@@ -116,4 +121,4 @@ public class MenuCamera : MonoBehaviour
     }
 }
 
-public enum CameraState { Menu, Pause, Game }
+public enum CameraState { Menu, Pause, Game, EndOfDay }
