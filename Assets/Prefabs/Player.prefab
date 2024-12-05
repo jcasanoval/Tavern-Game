@@ -154,6 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPoint: {x: 7.3, y: -0.032, z: -4.59}
+  sprite: {fileID: 5148760049353654110}
   inputEnabled: 1
   speed: 3.1
 --- !u!95 &600909004087589027
