@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class AchievementKeeper : MonoBehaviour
@@ -14,6 +15,9 @@ public class AchievementKeeper : MonoBehaviour
         AccountForBeersSold();
         ThirtyBeersSold();
         TutorialCompleted();
+        NightEnd();
+        CustomerHandling();
+        MoneyHandling();
     }
 
     private void BeerCounter(){
@@ -85,11 +89,65 @@ public class AchievementKeeper : MonoBehaviour
         id = OverSeerObserver.Instance.AddListener(OverSeerEvent.TutorialCompleted,action);
         Debug.Log("Listener Added:" + id);
     }
+
+    private void NightEnd(){
+        Func<bool> action = delegate()
+        {
+            Debug.Log("Achievement Unlocked: Night Ended");
+            LedgerOfStats.Instance.RegisterNightStats();
+            return true;
+        };
+
+        OverSeerObserver.Instance.AddListener(OverSeerEvent.NightEnd,action);
+    }
+
+    private void CustomerHandling(){
+        Func<bool> action = delegate()
+        {
+            Debug.Log("Achievement Unlocked: Customer Arrived");
+            LedgerOfStats.Instance.CustomerVisits++;
+            return true;
+        };
+
+        OverSeerObserver.Instance.AddListener(OverSeerEvent.Customer_Arrived,action);
+
+        Func<bool> action2 = delegate()
+        {
+            Debug.Log("Achievement Unlocked: Customer Left Angry");
+            LedgerOfStats.Instance.CustomerLeaves++;
+            return true;
+        };
+
+        OverSeerObserver.Instance.AddListener(OverSeerEvent.Customer_Leaves,action2);
+    }
+
+    private void MoneyHandling(){
+        Func<bool> action = delegate()
+        {
+            Debug.Log("Achievement Unlocked: Money Earned");
+            return true;
+        };
+
+        OverSeerObserver.Instance.AddListener(OverSeerEvent.Money_Earned,action);
+
+        Func<bool> action2 = delegate()
+        {
+            Debug.Log("Achievement Unlocked: Money Spent");
+            return true;
+        };
+
+        OverSeerObserver.Instance.AddListener(OverSeerEvent.Money_Spent,action2);
+    }
+
 }
 
 public class LedgerOfStats
 {
     private static LedgerOfStats _instance;
+
+    private Dictionary<Record,float> _stats;
+
+    public static List<LedgerRecord> Records { get; set; }
     public static LedgerOfStats Instance
     {
         get
@@ -102,25 +160,126 @@ public class LedgerOfStats
         }
     }
 
-    private int _beersSold;
-    public int BeersSold
+    public float BeersSold
     {
         get
         {
-            Debug.Log("Beers Sold: " + _beersSold);
-            return _beersSold;
-
+            return _stats[Record.BeersSold];
         }
         set
         {
-            _beersSold = value;
+            _stats[Record.BeersSold] = value;
+        }
+    }
+    public float Night
+    {
+        get
+        {
+            return _stats[Record.Night];
+        }
+        set
+        {
+            _stats[Record.Night] = value;
         }
     }
 
-    private LedgerOfStats()
+
+    public float CustomerVisits
     {
-        _beersSold = 0;
+        get
+        {
+            return _stats[Record.Total_Customers];
+        }
+        set
+        {
+            _stats[Record.Total_Customers] = value;
+        }
     }
 
 
+    public float CustomerLeaves
+    {
+        get
+        {
+            return _stats[Record.Customer_Left_Angry];
+        }
+        set
+        {
+            _stats[Record.Customer_Left_Angry] = value;
+        }
+    }
+
+
+    public float MoneyEarned
+    {
+        get
+        {
+            return _stats[Record.Money_Earned];
+        }
+        set
+        {
+            _stats[Record.Money_Earned] = value;
+        }
+    }
+
+
+    public float MoneySpent
+    {
+        get
+        {
+            return _stats[Record.Money_Spent];
+        }
+        set
+        {
+            _stats[Record.Money_Spent] = value;
+        }
+    }
+
+
+    public void RegisterNightStats()
+    {
+        Night++;
+        LedgerRecord record = new LedgerRecord()
+        {
+            BeersSold = _stats[Record.BeersSold],
+            Night = _stats[Record.Night],
+            Customer_Left_Angry = _stats[Record.Customer_Left_Angry],
+            Total_Customers = _stats[Record.Total_Customers],
+
+        };
+
+        Records.Add(record);
+    }
+
+    public LedgerRecord GetRecordByNight(int night){
+        return Records.Find(x => x.Night == night);
+    }
+
+
+}
+
+public class LedgerRecord{
+    public float BeersSold { get; set; }
+    public float Night { get; set; }
+    public float Customer_Left_Angry { get; set; }
+
+    public float Money_Earned { get; set; }
+
+    public float Monet_Spent { get; set; }
+
+    public float Total_Customers { get; set; }
+
+    public float Popularity { get; set; }
+
+}
+
+public enum Record
+{
+    BeersSold,
+    Night,
+    Customer_Left_Angry,
+    Money_Earned,
+    Money_Spent,
+    Total_Customers,
+    Popularity
 }
