@@ -31,6 +31,13 @@ public class PlayerMovement : MonoBehaviour
         if (inputEnabled && animator.GetBool("CanMove") != (false == true))
         {
             rb.velocity = new Vector3(Input.GetAxisRaw("Horizontal") * speed, 0, Input.GetAxisRaw("Vertical") * speed);
+            if(Input.GetAxisRaw("Horizontal") < 0)
+            {
+                sprite.flipX = true;
+            }else if(Input.GetAxisRaw("Horizontal") > 0)
+            {
+                sprite.flipX = false;
+            }
             if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)) { animator.SetTrigger("IsMoving"); }
             else animator.ResetTrigger("IsMoving");
         }

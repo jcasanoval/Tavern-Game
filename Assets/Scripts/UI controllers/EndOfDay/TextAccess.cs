@@ -11,6 +11,8 @@ public class TextAccess : MonoBehaviour
     public TextMeshPro ClientsServedText;
     public TextMeshPro ClientsLostText;
     public TextMeshPro PopularityText;
+
+    public Transform RevealerSquare;
     
     public float MoneyGained{
         get => float.Parse(moneyGainedText.text);
@@ -38,7 +40,8 @@ public class TextAccess : MonoBehaviour
 
     public float Popularity{
         get => float.Parse(PopularityText.text);
-        set => PopularityText.text = value.ToString();
+        set { PopularityText.text = value.ToString();
+            RevealerSquare.localScale = new Vector3(2+(4*(value-1)),RevealerSquare.localScale.y,RevealerSquare.localScale.z);}
     }
 
 
