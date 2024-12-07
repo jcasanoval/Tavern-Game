@@ -7,10 +7,12 @@ public class AchievementKeeper : MonoBehaviour
     private LedgerOfStats _ledger;
     [SerializeField]
     private Sprite tutorialCompletedIcon; //TODO: delete from here and use a dictionary or something else
+    private TextAccess EODTextAccess;
 
     private void Start()
     {
         _ledger = LedgerOfStats.Instance;
+        EODTextAccess = FindObjectOfType<TextAccess>();
         BeerCounter();
         AccountForBeersSold();
         ThirtyBeersSold();
@@ -94,7 +96,35 @@ public class AchievementKeeper : MonoBehaviour
         Func<bool> action = delegate()
         {
             Debug.Log("Achievement Unlocked: Night Ended");
+            LedgerOfStats.Instance.Popularity = GetComponent<PopularityManager>().Popularity;
             LedgerOfStats.Instance.RegisterNightStats();
+            float night = LedgerOfStats.Instance.Night;
+            LedgerRecord record = LedgerOfStats.Instance.GetRecordByNight((int)night);
+            LedgerRecord previousRecord = LedgerOfStats.Instance.GetRecordByNight((int)night - 1);
+
+            if (previousRecord == null)
+            {
+                previousRecord = new LedgerRecord()
+                {
+                    BeersSold = 0,
+                    Night = 0,
+                    Money_Earned = 0,
+                    Money_Spent = 0,
+                    Customer_Left_Angry = 0,
+                    Total_Customers = 0,
+                    Popularity = 0
+                };
+            }
+
+            EODTextAccess.MoneyGained = record.Money_Earned - previousRecord.Money_Earned;
+            EODTextAccess.MoneySpent = record.Money_Spent - previousRecord.Money_Spent;
+            EODTextAccess.Total = EODTextAccess.MoneyGained - EODTextAccess.MoneySpent;
+            EODTextAccess.ClientsServed = record.BeersSold - previousRecord.BeersSold;
+            EODTextAccess.ClientsLost = record.Customer_Left_Angry - previousRecord.Customer_Left_Angry;
+            EODTextAccess.Popularity = record.Popularity;
+
+            FindAnyObjectByType<MenuCamera>().CameraState = CameraState.EndOfDay;
+            
             return true;
         };
 
@@ -125,6 +155,7 @@ public class AchievementKeeper : MonoBehaviour
         Func<bool> action = delegate()
         {
             Debug.Log("Achievement Unlocked: Money Earned");
+            LedgerOfStats.Instance.MoneyEarned++;
             return true;
         };
 
@@ -133,6 +164,7 @@ public class AchievementKeeper : MonoBehaviour
         Func<bool> action2 = delegate()
         {
             Debug.Log("Achievement Unlocked: Money Spent");
+            LedgerOfStats.Instance.MoneySpent++;
             return true;
         };
 
@@ -235,6 +267,27 @@ public class LedgerOfStats
         }
     }
 
+    public float Popularity
+    {
+        get
+        {
+            return _stats[Record.Popularity];
+        }
+        set
+        {
+            _stats[Record.Popularity] = value;
+        }
+    }
+
+    public LedgerOfStats()
+    {
+        _stats = new Dictionary<Record, float>();
+        Records = new List<LedgerRecord>();
+        foreach (Record record in Enum.GetValues(typeof(Record)))
+        {
+            _stats.Add(record, 0);
+        }
+    }
 
     public void RegisterNightStats()
     {
@@ -243,9 +296,11 @@ public class LedgerOfStats
         {
             BeersSold = _stats[Record.BeersSold],
             Night = _stats[Record.Night],
+            Money_Earned = _stats[Record.Money_Earned],
+            Money_Spent = _stats[Record.Money_Spent],
             Customer_Left_Angry = _stats[Record.Customer_Left_Angry],
             Total_Customers = _stats[Record.Total_Customers],
-
+            Popularity = _stats[Record.Popularity]
         };
 
         Records.Add(record);
@@ -265,7 +320,7 @@ public class LedgerRecord{
 
     public float Money_Earned { get; set; }
 
-    public float Monet_Spent { get; set; }
+    public float Money_Spent { get; set; }
 
     public float Total_Customers { get; set; }
 

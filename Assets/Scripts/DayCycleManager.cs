@@ -86,5 +86,6 @@ public class DayCycleManager : MonoBehaviour
         backgroundNoiseAudioSource.Stop();
         StartCoroutine(SoundManager.BackgroundMusicPlay(DayMusic));
         doorCloseAudioSource.Play();
+        OverSeerObserver.Instance.Notify(OverSeerEvent.NightEnd);
     }
 }

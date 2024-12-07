@@ -95,6 +95,7 @@ public class Customer : MonoBehaviour
             agent.destination = chairPosition.Value;
             StartCoroutine(WaitForBeerOrLeave());
             lastSatChair = chairManager.GetChairByCustomer(this.gameObject);
+            OverSeerObserver.Instance.Notify(OverSeerEvent.Customer_Arrived);
         }
         else
         {
@@ -126,6 +127,7 @@ public class Customer : MonoBehaviour
             FindAnyObjectByType<PopularityManager>().IncreasePopularity(-0.2f);
             angryAudioSource.Play();
             chairManager.AngrilyLeaveChair(this.gameObject);
+            OverSeerObserver.Instance.Notify(OverSeerEvent.Customer_Leaves);
         }
         else
         {

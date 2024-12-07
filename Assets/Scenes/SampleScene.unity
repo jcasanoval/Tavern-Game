@@ -3943,9 +3943,9 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
+    x: 0.00020650029
     y: 0
-    width: 1
+    width: 0.999587
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
@@ -14089,6 +14089,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 169586913174646915, guid: 2bcf294ce53402a4aaa6698c0d061cb7, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1204149472440759681, guid: 2bcf294ce53402a4aaa6698c0d061cb7, type: 3}
       propertyPath: m_Name
       value: PauseMenu
@@ -14266,6 +14270,14 @@ PrefabInstance:
     - target: {fileID: 2409547979853469071, guid: 1de1b792a486847d382df4b8a17f40ba, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 21.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6216150741950130870, guid: 1de1b792a486847d382df4b8a17f40ba, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8223994035077109593, guid: 1de1b792a486847d382df4b8a17f40ba, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8365309566494751498, guid: 1de1b792a486847d382df4b8a17f40ba, type: 3}
       propertyPath: m_Name

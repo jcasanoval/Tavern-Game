@@ -880,6 +880,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2409547979853469071}
   - component: {fileID: 6365619700623808911}
+  - component: {fileID: 9218939843480525417}
   m_Layer: 0
   m_Name: EODMenu
   m_TagString: Untagged
@@ -961,6 +962,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &9218939843480525417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8365309566494751498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d92aaf68ccdcd445a7ac85fe938751d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moneyGainedText: {fileID: 1393994517967630534}
+  moneySpentText: {fileID: 7891886039339995513}
+  TotalText: {fileID: 2980867831227219032}
+  ClientsServedText: {fileID: 6956289050575234133}
+  ClientsLostText: {fileID: 710502881369623017}
+  PopularityText: {fileID: 3173405418245752645}
 --- !u!1 &8454808764880788392
 GameObject:
   m_ObjectHideFlags: 0

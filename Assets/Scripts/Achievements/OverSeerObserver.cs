@@ -59,11 +59,29 @@ public class OverSeerObserver: MonoBehaviour
         StartCoroutine(Instance.ProcessEvent(type));
     }
 
+    public void Notify(OverSeerEvent type, float amount){
+        StartCoroutine(Instance.ProcessEvent(type, amount));
+    }
+
     private IEnumerator ProcessEvent(OverSeerEvent type){
-        print("Sold Beer Event "+ _eventListeners[type].Count);
         List<Guid> toRemove = new List<Guid>();
         foreach(var listener in _eventListeners[type]){
-            print("Invoking Listener:" + listener.Item2 + " " + type);
+            if (!listener.Item1())
+            {
+                toRemove.Add(listener.Item2);
+            }
+        }
+        lock(_eventListeners[type]){
+            foreach(var id in toRemove){
+                _eventListeners[type].RemoveAll(x => x.Item2 == id);
+            }
+        }
+        yield return null;
+    }
+
+    private IEnumerator ProcessEvent(OverSeerEvent type, float amount){
+        List<Guid> toRemove = new List<Guid>();
+        foreach(var listener in _eventListeners[type]){
             if (!listener.Item1())
             {
                 toRemove.Add(listener.Item2);

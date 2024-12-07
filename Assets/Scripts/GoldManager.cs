@@ -13,8 +13,23 @@ public class GoldManager : MonoBehaviour
         }
         set
         {
+            int oldValue = gold;
             gold = value;
             goldDisplay.text = "$" + gold.ToString();
+            if (oldValue - value > 0)
+            {
+                for(int i = oldValue; i > value; i--)
+                {
+                    OverSeerObserver.Instance.Notify(OverSeerEvent.Money_Spent);
+                }
+            }
+            else
+            {
+                for (int i = oldValue; i < value; i++)
+                {
+                    OverSeerObserver.Instance.Notify(OverSeerEvent.Money_Earned);
+                }
+            }
         }
     }
 
