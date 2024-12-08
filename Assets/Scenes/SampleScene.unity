@@ -2791,7 +2791,7 @@ MonoBehaviour:
   TutorialInteractFunctionality: {fileID: 600345336}
   Employees: []
   WaitingChairs: []
-  costToBuyDude: 30
+  costToBuyDude: 10
   EmployeePrefab: {fileID: 1596250665339776975, guid: e9ac1a558e75f7b43b009453335bbe09, type: 3}
   restArea1: {x: -1.89, y: 0, z: -0.17}
   restArea2: {x: 3.87, y: 0, z: -1.18}
@@ -3943,9 +3943,9 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.00020650029
+    x: 0
     y: 0
-    width: 0.999587
+    width: 1
     height: 1
   near clip plane: 0.1
   far clip plane: 5000

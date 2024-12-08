@@ -22,9 +22,11 @@ public class EmployeeManager : Interactable
         get
         {
             Vector3 rest = new Vector3(_lastRestPlace.x + 1f, _lastRestPlace.y, _lastRestPlace.z);
-            if(rest.x > restArea2.x){
+            if (rest.x > restArea2.x)
+            {
                 rest = new Vector3(restArea1.x, rest.y, rest.z - .5f);
-                if(rest.z < restArea2.z){
+                if (rest.z < restArea2.z)
+                {
                     rest = new Vector3(restArea1.x, rest.y, restArea1.z);
                 }
             }
@@ -38,14 +40,19 @@ public class EmployeeManager : Interactable
         Employees.Add(employee);
     }
 
-    public void RemoveEmployee(Employee employee)
+
+    public void RemoveAllEmployees()
     {
-        Employees.Remove(employee);
+        foreach (Employee employee in Employees)
+        {
+            Destroy(employee.gameObject);
+        }
+        Employees.Clear();
     }
 
     public Employee SummonEmployee()
     {
-        Employee newGuy = Instantiate(EmployeePrefab, transform.position, Quaternion.Euler(30,0,0)).GetComponent<Employee>();
+        Employee newGuy = Instantiate(EmployeePrefab, transform.position, Quaternion.Euler(30, 0, 0)).GetComponent<Employee>();
         Vector3 newGuyPosition = NextRestPlace;
         //newGuyPosition = new Vector3(newGuyPosition.x + Random.Range(-.2f,.2f), newGuyPosition.y, newGuyPosition.z);
         newGuy.restingPosition = newGuyPosition;
@@ -57,7 +64,8 @@ public class EmployeeManager : Interactable
     {
         foreach (Employee employee in Employees)
         {
-            if(employee.OnNotify(position)){
+            if (employee.OnNotify(position))
+            {
                 return;
             }
         }
@@ -69,12 +77,13 @@ public class EmployeeManager : Interactable
     {
         print("Customer served by player Notification");
         print(position);
-        Vector3 corrector = new Vector3(0,0,0);
+        Vector3 corrector = new Vector3(0, 0, 0);
         foreach (Vector3 chair in WaitingChairs)
         {
             print(chair);
             print((chair - (position - corrector)).magnitude);
-            if((chair - (position - corrector)).magnitude < 0.5f){
+            if ((chair - (position - corrector)).magnitude < 0.5f)
+            {
                 WaitingChairs.Remove(chair);
                 print("removed: " + chair);
                 break;
@@ -83,7 +92,8 @@ public class EmployeeManager : Interactable
         print("He was not waiting for service");
         foreach (Employee employee in Employees)
         {
-            if(employee.OnCancelNotify(position)){
+            if (employee.OnCancelNotify(position))
+            {
                 return;
             }
         }
@@ -94,7 +104,8 @@ public class EmployeeManager : Interactable
 
     public void NotifyEmployeeFree(Employee employee)
     {
-        if(WaitingChairs.Count == 0){
+        if (WaitingChairs.Count == 0)
+        {
             return;
         }
         employee.OnNotify(WaitingChairs[0]);

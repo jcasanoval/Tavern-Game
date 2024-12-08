@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
     public bool inputEnabled = true;
     //private SpriteRenderer sprite;
 
+    private Vector3 startPosition;
+
     [SerializeField]
     [Range(0, 20)]
     private float speed = 10;
@@ -20,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
+        startPosition = transform.position;
         //sprite = GetComponent<SpriteRenderer>();
 
     }
@@ -31,10 +34,11 @@ public class PlayerMovement : MonoBehaviour
         if (inputEnabled && animator.GetBool("CanMove") != (false == true))
         {
             rb.velocity = new Vector3(Input.GetAxisRaw("Horizontal") * speed, 0, Input.GetAxisRaw("Vertical") * speed);
-            if(Input.GetAxisRaw("Horizontal") < 0)
+            if (Input.GetAxisRaw("Horizontal") < 0)
             {
                 sprite.flipX = true;
-            }else if(Input.GetAxisRaw("Horizontal") > 0)
+            }
+            else if (Input.GetAxisRaw("Horizontal") > 0)
             {
                 sprite.flipX = false;
             }
@@ -59,6 +63,12 @@ public class PlayerMovement : MonoBehaviour
     public void Respawn()
     {
         transform.position = spawnPoint;
+        animator.ResetTrigger("Falls");
+    }
+
+    public void ResetPlayerPosition()
+    {
+        transform.position = startPosition;
         animator.ResetTrigger("Falls");
     }
 }

@@ -12,8 +12,9 @@ public class TableInteraction : IInteractFunctionality
     public Sprite hoverIcon;
     private PlayerInteraction playerInteraction;
 
-    [SerializeField]
-    private bool isActive = false;
+    public bool startsActive;
+
+    private bool isActive;
 
     [SerializeField]
     [Range(1, 20)]
@@ -22,6 +23,7 @@ public class TableInteraction : IInteractFunctionality
     // Start is called before the first frame update
     void Start()
     {
+        isActive = startsActive;
         table = GetComponentInParent<TableInteractuable>();
         FindFurniture();
         SetFurniture(isActive);
@@ -47,7 +49,7 @@ public class TableInteraction : IInteractFunctionality
         }
     }
 
-    private void SetFurniture(bool active)
+    public void SetFurniture(bool active)
     {
         foreach (GameObject item in furniture)
         {

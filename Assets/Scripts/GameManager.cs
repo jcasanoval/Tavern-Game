@@ -19,6 +19,12 @@ public class GameManager : MonoBehaviour
         FindAnyObjectByType<MenuBoxController>().boxState = BoxState.Open;
         FindAnyObjectByType<GoldManager>().SetInitialGold();
         FindAnyObjectByType<BarInteractable>().SetStartingStock();
+        FindAnyObjectByType<PlayerMovement>().ResetPlayerPosition();
+        FindAnyObjectByType<PopularityManager>().Start();
+        FindAnyObjectByType<TutorialManager>().StartTutorial();
+        ResetTables();
+        FindAnyObjectByType<EmployeeManager>().RemoveAllEmployees();
+        DestroyAllCustomers();
         gui.SetActive(true);
     }
 
@@ -26,6 +32,23 @@ public class GameManager : MonoBehaviour
     {
         FindAnyObjectByType<MenuCamera>().CameraState = CameraState.Menu;
         FindAnyObjectByType<MenuBoxController>().boxState = BoxState.Close;
+        FindAnyObjectByType<DayCycleManager>().ForceClose();
         gui.SetActive(false);
+    }
+
+    private void DestroyAllCustomers()
+    {
+        foreach (Customer customer in FindObjectsOfType<Customer>())
+        {
+            Destroy(customer.gameObject);
+        }
+    }
+
+    private void ResetTables()
+    {
+        foreach (TableInteraction table in FindObjectsOfType<TableInteraction>())
+        {
+            table.SetFurniture(table.startsActive);
+        }
     }
 }
