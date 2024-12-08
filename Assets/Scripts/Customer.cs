@@ -24,6 +24,8 @@ public class Customer : MonoBehaviour
 
     public Animator animator;
 
+    public ParticleSystem moneyParticle;
+
     private static float maxWaitTime = 20f;
 
     public bool isServed = false;
@@ -57,7 +59,7 @@ public class Customer : MonoBehaviour
         barInteractable = FindObjectOfType<BarInteractable>();
     }
 
-    void Start() 
+    void Start()
     {
         GameObject exitObject = GameObject.FindGameObjectWithTag("Finish");
         if (exitObject != null)
@@ -136,6 +138,7 @@ public class Customer : MonoBehaviour
             yield return new WaitForSeconds(Random.Range(3f, 10f));
 
             FindAnyObjectByType<GoldManager>().AddGold(2);
+            moneyParticle.Play();
             moneyTipAudioSource.Play();
             OverSeerObserver.Instance.Notify(OverSeerEvent.SoldBeer);
         }
@@ -213,11 +216,13 @@ public class Customer : MonoBehaviour
         spriteRenderer.sprite = spriteHolder.GetProfile();
     }
 
-    public void DrinkBeerAndLeave() {
+    public void DrinkBeerAndLeave()
+    {
         StartCoroutine(DrinkBeerAndLeaveCoroutine());
     }
 
-    IEnumerator DrinkBeerAndLeaveCoroutine() {
+    IEnumerator DrinkBeerAndLeaveCoroutine()
+    {
         isServed = true;
         animator.SetTrigger("DrinkBeer");
         yield return new WaitForSeconds(5f);
@@ -231,11 +236,13 @@ public class Customer : MonoBehaviour
         Exit();
     }
 
-    public void WaitForSecondsAndLeave(float timeToWait) {
+    public void WaitForSecondsAndLeave(float timeToWait)
+    {
         StartCoroutine(WaitForSecondsAndLeaveCoroutine(timeToWait));
     }
 
-    IEnumerator WaitForSecondsAndLeaveCoroutine(float timeToWait) {
+    IEnumerator WaitForSecondsAndLeaveCoroutine(float timeToWait)
+    {
         isSitting = true;
         timeWaited = 0;
         maxWaitTime = timeToWait;

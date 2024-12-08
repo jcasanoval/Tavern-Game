@@ -79,13 +79,25 @@ public class DayCycleManager : MonoBehaviour
             yield return null;
         }
 
-        mainCamera.backgroundColor = colorDaySky;
+        CloseDoor();
 
-        door.position = new Vector3(6.02080011f,0.753099978f,-4.6262002f);
+        OverSeerObserver.Instance.Notify(OverSeerEvent.NightEnd);
+    }
+
+    public void ForceClose()
+    {
+        StopAllCoroutines();
+        isOpen = false;
+        CloseDoor();
+    }
+
+    private void CloseDoor()
+    {
+        mainCamera.backgroundColor = colorDaySky;
+        door.position = new Vector3(6.02080011f, 0.753099978f, -4.6262002f);
         door.rotation = Quaternion.Euler(0, 0, 0);
         backgroundNoiseAudioSource.Stop();
         StartCoroutine(SoundManager.BackgroundMusicPlay(DayMusic));
         doorCloseAudioSource.Play();
-        OverSeerObserver.Instance.Notify(OverSeerEvent.NightEnd);
     }
 }

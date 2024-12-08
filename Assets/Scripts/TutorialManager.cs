@@ -43,9 +43,9 @@ public class TutorialManager : MonoBehaviour
     private HandController handController;
     private float height;
     private DoorInteractable doorInteractable;
-    [SerializeField] 
+    [SerializeField]
     private Sprite areYouReadyAdvice;
-    [SerializeField] 
+    [SerializeField]
     private Sprite needToSupplyAdvice;
     [SerializeField]
     private Sprite buyBeerAdvice;
@@ -76,7 +76,7 @@ public class TutorialManager : MonoBehaviour
         directionIndicator = FindObjectOfType<DirectionIndicator>();
     }
 
-    void Start()
+    public void StartTutorial()
     {
         Interactable[] interactable = FindObjectsOfType<Interactable>();
         for (int i = 0; i < interactable.Length; i++)
@@ -100,7 +100,7 @@ public class TutorialManager : MonoBehaviour
     {
         if (IsInTutorialMode && Input.GetKeyDown(KeyCode.Escape))
         {
-            door.position = new Vector3(6.02080011f,0.753099978f,-4.6262002f);
+            door.position = new Vector3(6.02080011f, 0.753099978f, -4.6262002f);
             door.rotation = Quaternion.Euler(0, 0, 0);
 
             Customer[] customers = FindObjectsOfType<Customer>();
@@ -267,7 +267,7 @@ public class TutorialManager : MonoBehaviour
 
         agent.destination = chairPosition.Value;
         npc.lastSatChair = chairManager.GetChairByCustomer(npc.gameObject);
-        
+
         StartCoroutine(WaitForFirstNPCToSit(agent));
     }
 
@@ -338,7 +338,7 @@ public class TutorialManager : MonoBehaviour
 
         agent.destination = chairPosition.Value;
         npc.lastSatChair = chairManager.GetChairByCustomer(npc.gameObject);
-        
+
         StartCoroutine(WaitForSecondNPCToSit(agent));
     }
 
@@ -378,7 +378,7 @@ public class TutorialManager : MonoBehaviour
     private void GoToPopularityPoster()
     {
         FindObjectOfType<TutorialPopularityTrigger>().UpdateAdvise();
-        StartCoroutine(GoToPopularityPosterCoroutine());    
+        StartCoroutine(GoToPopularityPosterCoroutine());
     }
 
     IEnumerator GoToPopularityPosterCoroutine()

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PopularityManager : MonoBehaviour
@@ -13,7 +11,7 @@ public class PopularityManager : MonoBehaviour
     public float Popularity { get => popularity; }
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         popularity = initialPopularity;
     }

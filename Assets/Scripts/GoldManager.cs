@@ -18,7 +18,7 @@ public class GoldManager : MonoBehaviour
             goldDisplay.text = "$" + gold.ToString();
             if (oldValue - value > 0)
             {
-                for(int i = oldValue; i > value; i--)
+                for (int i = oldValue; i > value; i--)
                 {
                     OverSeerObserver.Instance.Notify(OverSeerEvent.Money_Spent);
                 }
@@ -42,7 +42,7 @@ public class GoldManager : MonoBehaviour
 
     public void SetInitialGold()
     {
-        Gold += startingGold;
+        Gold = startingGold;
     }
 
     public void AddGold(int amount)
