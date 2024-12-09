@@ -34,6 +34,7 @@ public class DoorInteraction : IInteractFunctionality
         }
 
         if(playerTransform.transform.position.x > transform.position.x){
+            OverSeerObserver.Instance.Notify(OverSeerEvent.TrappedOutside);
             return false;
         }
         

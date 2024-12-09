@@ -16,4 +16,6 @@ public class LedgerRecord{
 
     public float Popularity { get; set; }
 
+    public float Tables { get; set; }
+
 }

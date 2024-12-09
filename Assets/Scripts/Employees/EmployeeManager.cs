@@ -57,6 +57,7 @@ public class EmployeeManager : Interactable
         //newGuyPosition = new Vector3(newGuyPosition.x + Random.Range(-.2f,.2f), newGuyPosition.y, newGuyPosition.z);
         newGuy.restingPosition = newGuyPosition;
         AddEmployee(newGuy);
+        OverSeerObserver.Instance.Notify(OverSeerEvent.Hire_Bartender);
         return newGuy;
     }
 

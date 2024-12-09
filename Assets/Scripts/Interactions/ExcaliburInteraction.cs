@@ -9,6 +9,8 @@ public class ExcaliburInteraction : IInteractFunctionality
     public ExcaliburInteractable excaliburInteractable;
     public Sprite hoverIcon;
     private bool _isGrabbed = false;
+
+    private bool _CoolDown = false;
     public bool IsGrabbed 
     {   
         get{
@@ -16,6 +18,11 @@ public class ExcaliburInteraction : IInteractFunctionality
         }
         set{
             animator.SetBool("IsGrabbed", value);
+            if(value){
+                OverSeerObserver.Instance.Notify(OverSeerEvent.Excalibur_Unsheathe);
+            }else{
+                OverSeerObserver.Instance.Notify(OverSeerEvent.Excalibur_Sheathe);
+            }
             _isGrabbed = value;
         } 
     }
@@ -27,16 +34,23 @@ public class ExcaliburInteraction : IInteractFunctionality
     }
 
     public override bool Interact(){
-        if(dayCycleManager.IsOpen()){
+        if(dayCycleManager.IsOpen() || _CoolDown){
             return false;
         }
-
+        
         IsGrabbed = !IsGrabbed;
+        _CoolDown = true;
+        Invoke("CoolDown", 3);
         return true;
+    }
+
+    private void CoolDown(){
+        _CoolDown = false;
     }
 
     public void ReturnExcalibur(){
         IsGrabbed = false;
+        OverSeerObserver.Instance.Notify(OverSeerEvent.Excalibur_Used);
     }
     
     public override Sprite GetHoverIcon()

@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
         FindAnyObjectByType<MenuBoxController>().boxState = BoxState.Open;
         FindAnyObjectByType<GoldManager>().SetInitialGold();
         FindAnyObjectByType<BarInteractable>().SetStartingStock();
+        FindAnyObjectByType<AchievementKeeper>().AchievementReset();
         FindAnyObjectByType<PlayerMovement>().ResetPlayerPosition();
         FindAnyObjectByType<PopularityManager>().Start();
         FindAnyObjectByType<TutorialManager>().StartTutorial();

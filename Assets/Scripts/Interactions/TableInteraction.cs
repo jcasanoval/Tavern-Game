@@ -87,6 +87,7 @@ public class TableInteraction : IInteractFunctionality
         }
 
         Debug.Log("Table purchased");
+        OverSeerObserver.Instance.Notify(OverSeerEvent.Table_Bought);
         playerInteraction.HideHover(table);
         SetFurniture(true);
         table.GetComponent<TableAnimation>().Animate();

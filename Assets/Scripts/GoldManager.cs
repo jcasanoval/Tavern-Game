@@ -38,11 +38,12 @@ public class GoldManager : MonoBehaviour
     private void Start()
     {
         SetInitialGold();
+        goldDisplay.text = "$" + gold.ToString();
     }
 
     public void SetInitialGold()
     {
-        Gold = startingGold;
+        gold = startingGold;
     }
 
     public void AddGold(int amount)

@@ -21,6 +21,25 @@ public class LedgerOfStats
         }
     }
 
+    public LedgerOfStats()
+    {
+        _stats = new Dictionary<Record, float>();
+        Records = new List<LedgerRecord>();
+        foreach (Record record in System.Enum.GetValues(typeof(Record)))
+        {
+            _stats.Add(record, 0);
+        }
+    }
+
+    public void ResetLedger()
+    {
+        foreach (Record record in System.Enum.GetValues(typeof(Record)))
+        {
+            _stats[record] = 0;
+        }
+        Records.Clear();
+    }
+
     public float BeersSold
     {
         get
@@ -108,13 +127,27 @@ public class LedgerOfStats
         }
     }
 
-    public LedgerOfStats()
+    public float Tables
     {
-        _stats = new Dictionary<Record, float>();
-        Records = new List<LedgerRecord>();
-        foreach (Record record in System.Enum.GetValues(typeof(Record)))
+        get
         {
-            _stats.Add(record, 0);
+            return _stats[Record.Tables];
+        }
+        set
+        {
+            _stats[Record.Tables] = value;
+        }
+    }
+
+    public float Bartenders
+    {
+        get
+        {
+            return _stats[Record.Bartenders];
+        }
+        set
+        {
+            _stats[Record.Bartenders] = value;
         }
     }
 
@@ -129,7 +162,8 @@ public class LedgerOfStats
             Money_Spent = _stats[Record.Money_Spent],
             Customer_Left_Angry = _stats[Record.Customer_Left_Angry],
             Total_Customers = _stats[Record.Total_Customers],
-            Popularity = _stats[Record.Popularity]
+            Popularity = _stats[Record.Popularity],
+            Tables = _stats[Record.Tables]
         };
 
         Records.Add(record);
@@ -150,5 +184,8 @@ public enum Record
     Money_Earned,
     Money_Spent,
     Total_Customers,
-    Popularity
+    Popularity,
+    Tables,
+    Bartenders
+
 }

@@ -95,6 +95,14 @@ public class OverSeerObserver: MonoBehaviour
         yield return null;
     }
 
+    public void ResetOverseer()
+    {
+        foreach (OverSeerEvent type in System.Enum.GetValues(typeof(OverSeerEvent)))
+        {
+            _eventListeners[type].Clear();
+        }
+    }
+
 
 
 }
@@ -108,6 +116,18 @@ public enum OverSeerEvent
     Customer_Arrived,
     Money_Earned,
     Money_Spent,
+    Table_Bought,
+    Hire_Bartender,
+
+    TrappedOutside,
+
+    Excalibur_Unsheathe,
+
+    Excalibur_Sheathe,
+
+    Excalibur_Used,
+
+    Fall_Off_Table
 
 
 }
