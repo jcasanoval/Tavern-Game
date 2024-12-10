@@ -15,7 +15,7 @@ public class GoldManager : MonoBehaviour
         {
             int oldValue = gold;
             gold = value;
-            goldDisplay.text = "$" + gold.ToString();
+            goldDisplay.text = gold.ToString();
             if (oldValue - value > 0)
             {
                 for (int i = oldValue; i > value; i--)
@@ -38,7 +38,7 @@ public class GoldManager : MonoBehaviour
     private void Start()
     {
         SetInitialGold();
-        goldDisplay.text = "$" + gold.ToString();
+        goldDisplay.text = gold.ToString();
     }
 
     public void SetInitialGold()
