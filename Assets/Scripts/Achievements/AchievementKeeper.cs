@@ -60,7 +60,7 @@ public class AchievementKeeper : MonoBehaviour
                 AchievementPopUp.Instance.RewardAchievement(new Achievement()
                 {
                     Title = "10 Cervezas Vendidas",
-                    Icon = null
+                    Icon = Resources.Load<Sprite>("Logros/Logros_8")
                 });
                 return false;
             }
@@ -82,7 +82,7 @@ public class AchievementKeeper : MonoBehaviour
                 AchievementPopUp.Instance.RewardAchievement(new Achievement()
                 {
                     Title = "30 Cervezas Vendidas",
-                    Icon = null
+                    Icon = Resources.Load<Sprite>("Logros/Logros_11")
                 });
                 return false;
             }
@@ -156,7 +156,7 @@ public class AchievementKeeper : MonoBehaviour
                 AchievementPopUp.Instance.RewardAchievement(new Achievement()
                 {
                     Title = "Una y otra vez",
-                    Icon = null
+                    Icon = Resources.Load<Sprite>("Logros/Logros_10")
                 });
             }
             return false;
@@ -188,7 +188,7 @@ public class AchievementKeeper : MonoBehaviour
                 AchievementPopUp.Instance.RewardAchievement(new Achievement()
                 {
                     Title = "NO LLEGUE!!",
-                    Icon = null
+                    Icon = Resources.Load<Sprite>("Logros/Logros_9")
                 });
             }
             return false;
@@ -232,12 +232,11 @@ public class AchievementKeeper : MonoBehaviour
                 AchievementPopUp.Instance.RewardAchievement(new Achievement()
                 {
                     Title = "Más, más, mucho mas!",
-                    Icon = null
+                    Icon = Resources.Load<Sprite>("Logros/Logros_1")
                 });
             }
             return false;
         };
-
         OverSeerObserver.Instance.AddListener(OverSeerEvent.Table_Bought,action2);
 
         Func<bool> action3 = delegate()
@@ -248,7 +247,7 @@ public class AchievementKeeper : MonoBehaviour
                 AchievementPopUp.Instance.RewardAchievement(new Achievement()
                 {
                     Title = "Fiesta completa!",
-                    Icon = null
+                    Icon = Resources.Load<Sprite>("Logros/Logros_2")
                 });
             }
             return false;
@@ -274,7 +273,7 @@ public class AchievementKeeper : MonoBehaviour
                 AchievementPopUp.Instance.RewardAchievement(new Achievement()
                 {
                     Title = "Ayuda, Ayuda!",
-                    Icon = null
+                    Icon = Resources.Load<Sprite>("Logros/Logros_3")
                 });
             }
             return false;
@@ -284,13 +283,13 @@ public class AchievementKeeper : MonoBehaviour
 
         Func<bool> action3 = delegate()
         {
-            if(_ledger.Bartenders > 3)
+            if(_ledger.Bartenders > 1)
             {
                 Debug.Log("Achievement Unlocked: Bartender hired");
                 AchievementPopUp.Instance.RewardAchievement(new Achievement()
                 {
                     Title = "Tu propia tropa",
-                    Icon = null
+                    Icon = Resources.Load<Sprite>("Logros/Logros_3")
                 });
             }
             return false;
@@ -306,7 +305,7 @@ public class AchievementKeeper : MonoBehaviour
             AchievementPopUp.Instance.RewardAchievement(new Achievement()
             {
                 Title = "Y como entro?...",
-                Icon = null
+                    Icon = Resources.Load<Sprite>("Logros/Logros_6")
             });
             return false;
         };
@@ -319,7 +318,7 @@ public class AchievementKeeper : MonoBehaviour
             AchievementPopUp.Instance.RewardAchievement(new Achievement()
             {
                 Title = "Oh! bendita Excalibur",
-                Icon = null
+                    Icon = Resources.Load<Sprite>("Logros/Logros_7")
             });
             return false;
         };
@@ -332,7 +331,7 @@ public class AchievementKeeper : MonoBehaviour
             AchievementPopUp.Instance.RewardAchievement(new Achievement()
             {
                 Title = "El elegido del Lago",
-                Icon = null
+                    Icon = Resources.Load<Sprite>("Logros/Logros_7")
             });
             return false;
         };
@@ -345,7 +344,7 @@ public class AchievementKeeper : MonoBehaviour
             AchievementPopUp.Instance.RewardAchievement(new Achievement()
             {
                 Title = "Meh...",
-                Icon = null
+                    Icon = Resources.Load<Sprite>("Logros/Unknown")
             });
             return false;
         };
@@ -360,7 +359,7 @@ public class AchievementKeeper : MonoBehaviour
             AchievementPopUp.Instance.RewardAchievement(new Achievement()
             {
                 Title = "Perdí una ficha...",
-                Icon = null
+                    Icon = Resources.Load<Sprite>("Logros/Logros_5")
             });
             return false;
         };
