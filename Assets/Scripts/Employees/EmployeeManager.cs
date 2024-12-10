@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using Unity.Collections;
 using UnityEngine;
+using TMPro;
 
 public class EmployeeManager : Interactable
 {
@@ -16,6 +17,8 @@ public class EmployeeManager : Interactable
     public Vector3 restArea1;
     public Vector3 restArea2;
     private Vector3 _lastRestPlace;
+    [SerializeField]
+    private TextMeshProUGUI dudeCostDisplay;
 
     private Vector3 NextRestPlace
     {
@@ -117,6 +120,7 @@ public class EmployeeManager : Interactable
     {
         _lastRestPlace = restArea1;
         _lastRestPlace = NextRestPlace;
+        dudeCostDisplay.text = "$" + costToBuyDude.ToString();
     }
 
     public override bool Interact()
