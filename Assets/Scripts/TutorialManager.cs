@@ -15,6 +15,7 @@ public enum TutorialStep
     TakeBeerToCustomer,
     FirstNPCDrinkAndLeave,
     CloseTheBar,
+    TryItYourselfAdvice,
     OpenTheBarAgain,
     SecondNPCJoinsAndWaitForBeer,
     GetSecondBeer,
@@ -55,6 +56,8 @@ public class TutorialManager : MonoBehaviour
     private Sprite serveBeerAdvice;
     [SerializeField]
     private Sprite summaryAdvice;
+    [SerializeField]
+    private Sprite tryItYourselfAdvice;
     private AdviceManager adviceManager;
     private DirectionIndicator directionIndicator;
     public Transform posterAdmirationPosition;
@@ -169,6 +172,9 @@ public class TutorialManager : MonoBehaviour
                 break;
             case TutorialStep.CloseTheBar:
                 CloseTheBar();
+                break;
+            case TutorialStep.TryItYourselfAdvice:
+                ShowTryItYourselfAdvice();
                 break;
             case TutorialStep.OpenTheBarAgain:
                 break;
@@ -323,6 +329,16 @@ public class TutorialManager : MonoBehaviour
     {
         doorInteractable.CloseDoor();
         ProgressToNextStep();
+    }
+
+    #endregion
+
+    #region TryItYourselfAdvice
+
+    private void ShowTryItYourselfAdvice()
+    {
+        adviceManager.ShowSprite(tryItYourselfAdvice);
+        StartCoroutine(WaitForPressingContinueKey());
     }
 
     #endregion

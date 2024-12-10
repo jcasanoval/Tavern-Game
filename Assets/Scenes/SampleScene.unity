@@ -4978,12 +4978,13 @@ MonoBehaviour:
   playerNavMesh: {fileID: 653074787}
   moneyTipAudioSource: {fileID: 0}
   door: {fileID: 1479358177}
-  areYouReadyAdvice: {fileID: 21300000, guid: ccc73b8122b9b554d848fbbb1a9cc86b, type: 3}
-  needToSupplyAdvice: {fileID: 21300000, guid: 086da2876e5ad204c9fc12a37c4b0684, type: 3}
+  areYouReadyAdvice: {fileID: 21300000, guid: e6100477539029e41933af095ed7e455, type: 3}
+  needToSupplyAdvice: {fileID: 21300000, guid: 700749a651d90c24f8394d12f2b18a5c, type: 3}
   buyBeerAdvice: {fileID: 21300000, guid: 8831af24c76354940aefc033c804c6c9, type: 3}
   buyBeerDuringDayAdvice: {fileID: 21300000, guid: fc70ee97280cc534c95bdcf660d4f0fc, type: 3}
   serveBeerAdvice: {fileID: 21300000, guid: faa4dccf9e93c3e409493c420a58acf6, type: 3}
-  summaryAdvice: {fileID: 21300000, guid: b6bb2cb830cc886409750338987e3275, type: 3}
+  summaryAdvice: {fileID: 21300000, guid: b17107b359739654dbd69efddaddfa14, type: 3}
+  tryItYourselfAdvice: {fileID: 21300000, guid: 133e12e081a7f6b44878804be54315c1, type: 3}
   posterAdmirationPosition: {fileID: 67237531}
 --- !u!82 &707096992
 AudioSource:
