@@ -43,7 +43,7 @@ public class GoldManager : MonoBehaviour
 
     public void SetInitialGold()
     {
-        gold = startingGold;
+        Gold = startingGold;
     }
 
     public void AddGold(int amount)

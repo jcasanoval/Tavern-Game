@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     {
         FindAnyObjectByType<MenuCamera>().CameraState = CameraState.Game;
         FindAnyObjectByType<MenuBoxController>().boxState = BoxState.Open;
+        gui.SetActive(true);
         FindAnyObjectByType<GoldManager>().SetInitialGold();
         FindAnyObjectByType<BarInteractable>().SetStartingStock();
         FindAnyObjectByType<AchievementKeeper>().AchievementReset();
@@ -29,7 +30,6 @@ public class GameManager : MonoBehaviour
         ResetTables();
         FindAnyObjectByType<EmployeeManager>().RemoveAllEmployees();
         DestroyAllCustomers();
-        gui.SetActive(true);
     }
 
     public void EndGame()
