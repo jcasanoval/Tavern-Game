@@ -94,6 +94,7 @@ public class TutorialManager : MonoBehaviour
             playerMovement.inputEnabled = false;
             yield return new WaitForSeconds(0.2f);
             IsInTutorialMode = true;
+            FindObjectOfType<MenuCamera>().HideMenuHint();
             currentStep = TutorialStep.StartTutorial;
             StartStep(currentStep);
         }
@@ -478,6 +479,7 @@ public class TutorialManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         IsInTutorialMode = false;
+        FindObjectOfType<MenuCamera>().ShowMenuHint();
     }
 
     #endregion

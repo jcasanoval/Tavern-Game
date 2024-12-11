@@ -1,10 +1,12 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MenuCamera : MonoBehaviour
 {
     private GameObject playerCamera;
-
+    [SerializeField]
+    private Image menuHint;
     public CameraState _cameraState = CameraState.Menu;
     public CameraState CameraState
     {
@@ -66,6 +68,8 @@ public class MenuCamera : MonoBehaviour
             yield break;
         }
 
+        HideMenuHint();
+
         if (newState != CameraState.Game)
         {
             Time.timeScale = 0;
@@ -118,6 +122,30 @@ public class MenuCamera : MonoBehaviour
             Time.timeScale = 1;
         }
         animating = false;
+        
+        if (newState == CameraState.Game) {
+            ShowMenuHint();
+        }
+    }
+
+    public void ShowMenuHint()
+    {
+        if (menuHint != null)
+        {
+            var tempColor = menuHint.color;
+            tempColor.a = 1;
+            menuHint.color = tempColor;
+        }
+    }
+
+    public void HideMenuHint()
+    {
+        if (menuHint != null)
+        {
+            var tempColor = menuHint.color;
+            tempColor.a = 0;
+            menuHint.color = tempColor;
+        }
     }
 }
 
