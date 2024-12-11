@@ -59,22 +59,23 @@ public class AchievementPopUp : MonoBehaviour
         float timer = 0;
         while(timer < 1f){
             transform.localPosition = new Vector3(0 - Mathf.Min(timer,1f)*350, 50 , 0);
-            timer += Time.deltaTime;
+            timer += Time.unscaledDeltaTime; 
             yield return null;
         }
         timer = 0;
         while(!toggled && timer < 5f){
-            timer += Time.deltaTime;
+            timer += Time.unscaledDeltaTime;
             yield return null;
         }
         timer = 0;
         while(timer < 1f){
             transform.localPosition = new Vector3(0 - (1-Mathf.Min(timer,1f))*350, 50 , 0);
-            timer += Time.deltaTime;
+            timer += Time.unscaledDeltaTime;
             yield return null;
         }
 
     }
+    
 
     public void toggledOn(){
         toggled = true;
@@ -86,5 +87,12 @@ public class AchievementPopUp : MonoBehaviour
 
     public void SetIcon(Sprite icon){
         Icon.sprite = icon;
+    }
+
+    public void ResetPosition(){
+        transform.localPosition = new Vector3(0, 50, 0);
+
+        achievements.Clear();
+        ultraLocker = false;
     }
 }

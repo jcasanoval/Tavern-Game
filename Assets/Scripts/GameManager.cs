@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
         FindAnyObjectByType<MenuCamera>().CameraState = CameraState.Menu;
         FindAnyObjectByType<MenuBoxController>().boxState = BoxState.Close;
         FindAnyObjectByType<DayCycleManager>().ForceClose();
+        FindAnyObjectByType<AchievementPopUp>().ResetPosition();
         gui.SetActive(false);
     }
 
