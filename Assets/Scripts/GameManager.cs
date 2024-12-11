@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
         FindAnyObjectByType<GoldManager>().SetInitialGold();
         FindAnyObjectByType<BarInteractable>().SetStartingStock();
         FindAnyObjectByType<AchievementKeeper>().AchievementReset();
+        FindAnyObjectByType<LightsManager>().SetDayLights();
         FindAnyObjectByType<PlayerMovement>().ResetPlayerPosition();
         FindAnyObjectByType<PopularityManager>().Start();
         FindAnyObjectByType<TutorialManager>().StartTutorial();
@@ -31,6 +32,7 @@ public class GameManager : MonoBehaviour
 
     public void EndGame()
     {
+        FindObjectOfType<LightsManager>().SetDayLights();
         FindAnyObjectByType<MenuCamera>().CameraState = CameraState.Menu;
         FindAnyObjectByType<MenuBoxController>().boxState = BoxState.Close;
         FindAnyObjectByType<DayCycleManager>().ForceClose();

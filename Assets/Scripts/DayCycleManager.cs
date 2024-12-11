@@ -49,6 +49,7 @@ public class DayCycleManager : MonoBehaviour
     public void Open()
     {
         mainCamera.backgroundColor = colorNightSky;
+        FindObjectOfType<LightsManager>().SetNightLights();
         backgroundNoiseAudioSource.Play();
         StartCoroutine(SoundManager.BackgroundMusicPlay(NightMusic));
         isOpen = true;
@@ -78,6 +79,8 @@ public class DayCycleManager : MonoBehaviour
         {
             yield return null;
         }
+
+        FindObjectOfType<LightsManager>().SetDayLights();
 
         CloseDoor();
 
