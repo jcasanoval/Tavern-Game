@@ -62,4 +62,12 @@ public class ChairManager : MonoBehaviour
         employeeManager.NotifyCustomerServedByPlayer(chair.transform.position);
 
     }
+
+    public void ResetChairs()
+    {
+        foreach (Chair chair in chairs)
+        {
+            chair.FreeChair();
+        }
+    }
 }

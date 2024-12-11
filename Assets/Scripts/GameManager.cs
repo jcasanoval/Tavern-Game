@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
         FindAnyObjectByType<LightsManager>().SetDayLights();
         FindAnyObjectByType<PlayerMovement>().ResetPlayerPosition();
         FindAnyObjectByType<PopularityManager>().Start();
+        FindAnyObjectByType<ChairManager>().ResetChairs();
         FindAnyObjectByType<TutorialManager>().StartTutorial();
         ResetTables();
         FindAnyObjectByType<EmployeeManager>().RemoveAllEmployees();

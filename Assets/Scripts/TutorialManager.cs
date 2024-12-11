@@ -95,7 +95,7 @@ public class TutorialManager : MonoBehaviour
             yield return new WaitForSeconds(0.2f);
             IsInTutorialMode = true;
             FindObjectOfType<MenuCamera>().HideMenuHint();
-            FindObjectOfType<LightsManager>().SetNightLights();
+            FindObjectOfType<LightsManager>().SetDayLights();
             currentStep = TutorialStep.StartTutorial;
             StartStep(currentStep);
         }
@@ -468,6 +468,7 @@ public class TutorialManager : MonoBehaviour
         handController.ReleaseMug();
         FindObjectOfType<LightsManager>().SetDayLights();
         currentStep = TutorialStep.Completed;
+        chairManager.ResetChairs();
         Interactable[] interactable = FindObjectsOfType<Interactable>();
         for (int i = 0; i < interactable.Length; i++)
         {
