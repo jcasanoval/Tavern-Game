@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
         FindAnyObjectByType<PopularityManager>().Start();
         FindAnyObjectByType<ChairManager>().ResetChairs();
         FindAnyObjectByType<TutorialManager>().StartTutorial();
+        FindAnyObjectByType<HandController>().ReleaseMug();
         ResetTables();
         FindAnyObjectByType<EmployeeManager>().RemoveAllEmployees();
         DestroyAllCustomers();
