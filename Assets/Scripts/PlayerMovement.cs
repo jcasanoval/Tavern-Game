@@ -33,16 +33,18 @@ public class PlayerMovement : MonoBehaviour
     {
         if (inputEnabled && animator.GetBool("CanMove") != (false == true))
         {
-            rb.velocity = new Vector3(Input.GetAxisRaw("Horizontal") * speed, 0, Input.GetAxisRaw("Vertical") * speed);
-            if (Input.GetAxisRaw("Horizontal") < 0)
+            var horizontalAxis = Input.GetAxisRaw("Horizontal");
+            var verticalAxis = Input.GetAxisRaw("Vertical");
+            rb.velocity = new Vector3(horizontalAxis * speed, 0, verticalAxis * speed);
+            if (horizontalAxis < 0)
             {
                 sprite.flipX = true;
             }
-            else if (Input.GetAxisRaw("Horizontal") > 0)
+            else if (horizontalAxis > 0)
             {
                 sprite.flipX = false;
             }
-            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)) { animator.SetTrigger("IsMoving"); }
+            if (horizontalAxis != 0 || verticalAxis != 0) { animator.SetTrigger("IsMoving"); }
             else animator.ResetTrigger("IsMoving");
         }
 
