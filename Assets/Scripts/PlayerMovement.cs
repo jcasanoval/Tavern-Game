@@ -70,6 +70,9 @@ public class PlayerMovement : MonoBehaviour
 
     public void ResetPlayerPosition()
     {
+        animator.Rebind();
+        animator.Update(0f);
+
         transform.position = startPosition;
         animator.ResetTrigger("Falls");
     }
