@@ -7,7 +7,7 @@ public class MenuCamera : MonoBehaviour
     private GameObject playerCamera;
     [SerializeField]
     private Image menuHint;
-    public CameraState _cameraState = CameraState.Menu;
+    CameraState _cameraState = CameraState.Menu;
     public CameraState CameraState
     {
         get { return _cameraState; }
@@ -57,6 +57,11 @@ public class MenuCamera : MonoBehaviour
                 CameraState = CameraState.Game;
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.U) && !animating && CameraState == CameraState.Game)
+        {
+            CameraState = CameraState.Upgrades;
+        }
     }
 
     private IEnumerator AnimateTransition(CameraState newState)
@@ -75,6 +80,11 @@ public class MenuCamera : MonoBehaviour
             Time.timeScale = 0;
         }
 
+        if (newState == CameraState.Upgrades)
+        {
+            FindObjectOfType<UpgradesMenuAnimation>().IsDisplayed = true;
+        }
+
         animating = true;
         var initialTime = Time.realtimeSinceStartup;
         float elapsedTime = 0f;
@@ -91,7 +101,7 @@ public class MenuCamera : MonoBehaviour
                 targetPosition = menuCameraPosition;
                 targetRotation = menuCameraRotation;
                 break;
-            case CameraState.Pause:
+            case CameraState.Pause or CameraState.Upgrades:
                 targetPosition = pauseCameraPosition;
                 targetRotation = pauseCameraRotation;
                 break;
@@ -116,14 +126,20 @@ public class MenuCamera : MonoBehaviour
             yield return null;
         }
 
+        if (_cameraState == CameraState.Upgrades)
+        {
+            FindObjectOfType<UpgradesMenuAnimation>().IsDisplayed = false;
+        }
+
         _cameraState = newState;
         if (_cameraState == CameraState.Game)
         {
             Time.timeScale = 1;
         }
         animating = false;
-        
-        if (newState == CameraState.Game) {
+
+        if (newState == CameraState.Game)
+        {
             ShowMenuHint();
         }
     }
@@ -149,4 +165,4 @@ public class MenuCamera : MonoBehaviour
     }
 }
 
-public enum CameraState { Menu, Pause, Game, EndOfDay }
+public enum CameraState { Menu, Pause, Game, EndOfDay, Upgrades }
