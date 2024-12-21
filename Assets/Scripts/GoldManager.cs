@@ -1,4 +1,5 @@
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 
 public class GoldManager : MonoBehaviour
@@ -34,6 +35,14 @@ public class GoldManager : MonoBehaviour
     }
 
     private int gold = 0;
+
+    private void Awake()
+    {
+        if(Application.isEditor)
+        {
+            startingGold = 100;
+        }
+    }
 
     private void Start()
     {

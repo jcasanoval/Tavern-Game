@@ -2685,13 +2685,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4498121577063134733}
-  m_LocalRotation: {x: 0.437688, y: 0.57190174, z: 0.55536413, w: 0.4158465}
+  m_LocalRotation: {x: 0.55697715, y: 0.46154365, z: 0.51037425, w: 0.4650506}
   m_LocalPosition: {x: 0, y: 0, z: 0.346}
   m_LocalScale: {x: 0.5, y: 0.37994486, z: 2.4117332}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3383335550624545611}
-  m_LocalEulerAnglesHint: {x: -15.736, y: 92.22, z: 90}
+  m_LocalEulerAnglesHint: {x: 2.69, y: 92.668, z: 98.139}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.103, y: 0.04}
@@ -4848,16 +4848,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8938226261493316338}
-  m_LocalRotation: {x: 0.23406544, y: -0.0010180771, z: 0.00024509244, w: 0.9722203}
-  m_LocalPosition: {x: 0, y: 0, z: -0.373}
-  m_LocalScale: {x: 0.44, y: 0.33435148, z: 2.1223252}
+  m_LocalRotation: {x: -0.0169247, y: 0.8544467, z: 0.51857674, w: -0.026694853}
+  m_LocalPosition: {x: 0, y: 0, z: -0.374}
+  m_LocalScale: {x: 0.492624, y: 0.37433994, z: 2.3761554}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3383335550624545611}
-  m_LocalEulerAnglesHint: {x: 27.073, y: -0.12, z: 0}
+  m_LocalEulerAnglesHint: {x: -62.287, y: 187.807, z: -6.992}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.12, y: 0.02}
+  m_AnchoredPosition: {x: 0.168, y: 0.022}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6364697412878054529
@@ -4931,7 +4931,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 322357511883aaf479ea1a579365bd85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotation: {x: 77.561066, y: 179.88002, z: 180}
+  rotation: {x: 275.5761, y: 334.76108, z: 207.02187}
   originalRotation: {x: 0, y: 0, z: 0}
   upgradeTypes: 03000000
   upgradeLevels: 02000000
