@@ -2,31 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UpgradesInteraction : Interactable
+public class UpgradesInteraction : IInteractFunctionality
 {
     public Sprite hoverIcon;
-    TutorialManager tutorialManager;
-
-    void Start()
-    {
-        tutorialManager = FindObjectOfType<TutorialManager>();
-    }
 
     public override bool Interact()
     {
-        if (!tutorialManager.IsInTutorialMode)
-        {
-            FindObjectOfType<MenuCamera>().CameraState = CameraState.Upgrades;
-        }
-        return false;
+        FindObjectOfType<MenuCamera>().CameraState = CameraState.Upgrades;
+        
+        return true;
     }
 
     public override Sprite GetHoverIcon()
     {
-        if (!tutorialManager.IsInTutorialMode)
-        {
-            return hoverIcon;
-        }
-        return null;
+        return hoverIcon;
     }
 }
