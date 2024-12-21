@@ -127,7 +127,10 @@ public enum OverSeerEvent
 
     Excalibur_Used,
 
-    Fall_Off_Table
+    Fall_Off_Table,
+
+    CompleteTree,
+    UpgradeStat
 
 
 }

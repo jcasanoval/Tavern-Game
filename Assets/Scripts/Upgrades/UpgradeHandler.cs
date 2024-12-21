@@ -11,6 +11,8 @@ public class UpgradeHandler : MonoBehaviour
 
     private List<UpgradeButtonHandler> _upgradeButtons = new List<UpgradeButtonHandler>();
 
+    private List<ColoringOnComplete> _coloringOnCompletes = new List<ColoringOnComplete>();
+
     public static UpgradeHandler Instance
     {
         get
@@ -45,7 +47,6 @@ public class UpgradeHandler : MonoBehaviour
         set
         {
             _strength = value;
-            Debug.Log("Strength level is now " + _strength);
         }
     }
     int _dexterity;
@@ -55,7 +56,6 @@ public class UpgradeHandler : MonoBehaviour
         set
         {
             _dexterity = value;
-            Debug.Log("Dexterity level is now " + _dexterity);
         }
     }
 
@@ -79,7 +79,6 @@ public class UpgradeHandler : MonoBehaviour
         set
         {
             _charisma = value;
-            Debug.Log("Charisma level is now " + _charisma);
         }
     }
 
@@ -95,6 +94,12 @@ public class UpgradeHandler : MonoBehaviour
         {
             upgradeButton.ResetUpgrades();
         }
+        foreach (var coloringOnComplete in _coloringOnCompletes)
+        {
+            coloringOnComplete.Restart();
+        }
+        _upgradeButtons.Clear();
+
     }
 
     public void UpgradeStat(UpgradeType upgradeType, UpgradeButtonHandler upgradeButton)
@@ -115,7 +120,30 @@ public class UpgradeHandler : MonoBehaviour
                 CharismaLevel++;
                 break;
         }
+        OverSeerObserver.Instance.Notify(OverSeerEvent.UpgradeStat);
+        Debug.Log("Upgraded " + upgradeType);
     
+    }
+
+    public int GetUpgradeLevel(UpgradeType upgradeType)
+    {
+        switch (upgradeType)
+        {
+            case UpgradeType.Strength:
+                return StrengthLevel;
+            case UpgradeType.Dexterity:
+                return DexterityLevel;
+            case UpgradeType.Intelligence:
+                return IntelligenceLevel;
+            case UpgradeType.Charisma:
+                return CharismaLevel;
+        }
+        return 0;
+    }
+
+    public static void ReadyColorForReset(ColoringOnComplete coloringOnComplete)
+    {
+        Instance._coloringOnCompletes.Add(coloringOnComplete);
     }
     
 }

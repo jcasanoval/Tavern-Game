@@ -17,6 +17,8 @@ public class UpgradeButtonHandler : MonoBehaviour
 
     public int costToUpgrade = 5;
 
+    public int levelRequirement = 0;
+
     public UpgradeType upgradeType;
 
     private bool _isUpgraded = false;
@@ -24,7 +26,7 @@ public class UpgradeButtonHandler : MonoBehaviour
 
 
     public void TryToUpgrade(){
-        if(_isUpgraded){
+        if(_isUpgraded || levelRequirement > UpgradeHandler.Instance.GetUpgradeLevel(upgradeType)){
             return;
         }
         GoldManager goldManager = FindObjectOfType<GoldManager>();
