@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public SpriteRenderer sprite;
 
     public AudioSource audioSource;
+    public HandController handController;
     public bool inputEnabled = true;
 
     public bool tripping = false;
@@ -54,7 +55,14 @@ public class PlayerMovement : MonoBehaviour
         animator.SetTrigger("Trips");
         rb.velocity = new Vector3(0, 0, 0);
         audioSource.Play();
-        
+        if(handController.HasMug()){
+            int mugs = handController.heldMugs;
+            for (int i = 0; i < mugs; i++)
+            {
+                DroppedBeerInteractable.Spawn(transform.position);
+                FindAnyObjectByType<HandController>().ReleaseMug();
+            }
+        }
     }
 
     // Start is called before the first frame update
@@ -63,6 +71,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         startPosition = transform.position;
+        handController = FindAnyObjectByType<HandController>();
         //sprite = GetComponent<SpriteRenderer>();
     }
 
