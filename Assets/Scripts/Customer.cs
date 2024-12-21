@@ -28,6 +28,9 @@ public class Customer : MonoBehaviour
 
     private static float maxWaitTime = 20f;
 
+    private static float MaxWaitTime {
+        get {return maxWaitTime * (1f + (UpgradeHandler.Instance.CharismaLevel/2f) );}}
+
     public bool isServed = false;
     public bool isSitting = false;
 
@@ -41,7 +44,7 @@ public class Customer : MonoBehaviour
             {
                 return 1;
             }
-            return 1 - (timeWaited / maxWaitTime);
+            return 1 - (timeWaited / MaxWaitTime);
         }
     }
 
@@ -117,7 +120,7 @@ public class Customer : MonoBehaviour
         timeWaited = Random.Range(0, maxWaitTime / 2);
         animator.SetTrigger("Sit");
 
-        while (timeWaited < maxWaitTime && !isServed)
+        while (timeWaited < MaxWaitTime && !isServed)
         {
             timeWaited += Time.deltaTime;
             yield return null;
@@ -186,7 +189,7 @@ public class Customer : MonoBehaviour
         }
         else if (tutorialManager.IsInTutorialMode && !isServed)
         {
-            if (barInteractable.Stock > 0 || !handController.HasFreeHands())
+            if (barInteractable.Stock > 0 || handController.HasMug())
             {
                 tutorialManager.StartStep(TutorialStep.SecondNPCJoinsAndWaitForBeer);
             }

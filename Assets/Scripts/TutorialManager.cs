@@ -383,7 +383,7 @@ public class TutorialManager : MonoBehaviour
 
     private void SkipStepIfNecessary()
     {
-        if (!FindObjectOfType<HandController>().HasFreeHands())
+        if (!FindObjectOfType<HandController>().HasMug())
         {
             ProgressToNextStep();
         }
@@ -465,7 +465,7 @@ public class TutorialManager : MonoBehaviour
         directionIndicator.ClearTarget();
         StopAllCoroutines();
         EnableMovement();
-        handController.ReleaseMug();
+        handController.ReleaseAllMugs();
         FindObjectOfType<LightsManager>().SetDayLights();
         currentStep = TutorialStep.Completed;
         chairManager.ResetChairs();

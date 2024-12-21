@@ -60,7 +60,9 @@ public class Employee : MonoBehaviour
         _employeeManager = FindObjectOfType<EmployeeManager>();
         _interaction = GetComponentInChildren<EmployeeInteraction>();
         StartCoroutine(GrabABeer());
-
+        if(UpgradeHandler.Instance.IntelligenceLevel >= 1){
+            agent.speed *= 2;
+        }
     }
     
     public bool OnNotify(Vector3 position)
@@ -140,6 +142,10 @@ public class Employee : MonoBehaviour
             }
         }
         return nearestBarInteractable;
+    }
+
+    public void OnUpgradeSpeed(){
+        agent.speed *= 2;
     }
 
     public void GotBeer(){

@@ -28,7 +28,7 @@ public class CustomerInteraction : IInteractFunctionality
 
     public override bool Interact()
     {
-        if (!handController.HasFreeHands() && customer.ServeBeer())
+        if (handController.HasMug() && customer.ServeBeer())
         {
             placeBeerAudioSource.Play();
             handController.ReleaseMug();

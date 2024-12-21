@@ -13,7 +13,7 @@ public class FallingFromTheWorld : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) {
         other.GetComponentInParent<Animator>().SetTrigger("Falls");
-        handController.ReleaseMug();
+        handController.ReleaseAllMugs();
         OverSeerObserver.Instance.Notify(OverSeerEvent.Fall_Off_Table);
     }
 }

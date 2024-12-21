@@ -1,4 +1,5 @@
 using System;
+using System.Security.Cryptography;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -8,14 +9,53 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
     public Vector3 spawnPoint;
     public SpriteRenderer sprite;
+
+    public AudioSource audioSource;
     public bool inputEnabled = true;
+
+    public bool tripping = false;
     //private SpriteRenderer sprite;
+    public bool canTrip = false;
+    public float tripCD = 0f;
 
     private Vector3 startPosition;
 
     [SerializeField]
     [Range(0, 20)]
     private float speed = 10;
+
+    private float TrueSpeed
+    {
+        get
+        {
+            float result = speed;
+            if (Input.GetKey(KeyCode.LeftShift) && UpgradeHandler.Instance.DexterityLevel >= 1)
+            {
+                result *= 2;
+                tripCD -= Time.deltaTime;
+                if(tripCD <= 0)
+                {
+                    tripCD = .5f;
+                    if (UnityEngine.Random.Range(0f, 100f) > (90f + (UpgradeHandler.Instance.DexterityLevel*2)))
+                    {
+                        Trip();
+                    }
+                }
+                    
+            }
+            return result;
+        }
+    }
+
+    public void Trip()
+    {
+        tripping = true;
+        Debug.Log("Tripping");
+        animator.SetTrigger("Trips");
+        rb.velocity = new Vector3(0, 0, 0);
+        audioSource.Play();
+        
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +64,6 @@ public class PlayerMovement : MonoBehaviour
         animator = GetComponent<Animator>();
         startPosition = transform.position;
         //sprite = GetComponent<SpriteRenderer>();
-
     }
 
     float previousX = 0;
@@ -35,7 +74,8 @@ public class PlayerMovement : MonoBehaviour
         {
             var horizontalAxis = Input.GetAxisRaw("Horizontal");
             var verticalAxis = Input.GetAxisRaw("Vertical");
-            rb.velocity = new Vector3(horizontalAxis * speed, 0, verticalAxis * speed);
+            float endSpeed = TrueSpeed;
+            rb.velocity = new Vector3(horizontalAxis * endSpeed, 0, verticalAxis * endSpeed);
             if (horizontalAxis < 0)
             {
                 sprite.flipX = true;
@@ -46,6 +86,8 @@ public class PlayerMovement : MonoBehaviour
             }
             if (horizontalAxis != 0 || verticalAxis != 0) { animator.SetTrigger("IsMoving"); }
             else animator.ResetTrigger("IsMoving");
+        }else if(!animator.GetBool("CanMove")){
+            rb.velocity = new Vector3(0, 0, 0);
         }
 
         if (Mathf.Abs(transform.position.x - previousX) > 0.01f)

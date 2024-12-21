@@ -151,4 +151,12 @@ public class EmployeeManager : Interactable
             Gizmos.DrawWireCube(center, size);
         }
     }
+
+    public void NotifyEmployeeUpgrade()
+    {
+        foreach (Employee employee in Employees)
+        {
+            employee.OnUpgradeSpeed();
+        }
+    }
 }
