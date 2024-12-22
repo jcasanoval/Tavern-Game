@@ -32,12 +32,12 @@ public class PlayerMovement : MonoBehaviour
             float result = speed;
             if (Input.GetKey(KeyCode.LeftShift) && UpgradeHandler.Instance.DexterityLevel >= 1)
             {
-                result *= 2;
+                result *= 1.75f;
                 tripCD -= Time.deltaTime;
                 if(tripCD <= 0)
                 {
                     tripCD = .5f;
-                    if (UnityEngine.Random.Range(0f, 100f) > (90f + (UpgradeHandler.Instance.DexterityLevel*2)))
+                    if (UnityEngine.Random.Range(0f, 100f) > (85f + (UpgradeHandler.Instance.DexterityLevel*3)))
                     {
                         Trip();
                     }

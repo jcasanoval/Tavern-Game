@@ -64,13 +64,13 @@ public class DroppedBeerInteractable : Interactable{
         float time = 0;
         while (time < .15f)
         {
-            transform.position = new Vector3(transform.position.x + direction.x * Time.deltaTime, transform.position.y + Time.deltaTime*3, transform.position.z + direction.z * Time.deltaTime);
+            transform.position = new Vector3(transform.position.x + direction.x * Time.deltaTime*5, transform.position.y + Time.deltaTime*3, transform.position.z + direction.z * Time.deltaTime*5);
             time += Time.deltaTime;
             yield return null;
         }
         while (time < .30f)
         {
-            transform.position = new Vector3(transform.position.x + direction.x * Time.deltaTime, transform.position.y - Time.deltaTime*3, transform.position.z + direction.z * Time.deltaTime);
+            transform.position = new Vector3(transform.position.x + direction.x * Time.deltaTime*5, transform.position.y - Time.deltaTime*3, transform.position.z + direction.z * Time.deltaTime*5);
             time += Time.deltaTime;
             yield return null;
         }

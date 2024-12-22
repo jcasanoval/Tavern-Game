@@ -120,7 +120,7 @@ public class EmployeeManager : Interactable
     {
         _lastRestPlace = restArea1;
         _lastRestPlace = NextRestPlace;
-        dudeCostDisplay.text = "$" + costToBuyDude.ToString();
+        /*dudeCostDisplay.text = "$" + costToBuyDude.ToString();*/
     }
 
     public override bool Interact()
