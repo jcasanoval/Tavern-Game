@@ -126,6 +126,9 @@ public class MenuCamera : MonoBehaviour
             yield return null;
         }
 
+        transform.position = targetPosition;
+        transform.rotation = Quaternion.Euler(targetRotation);
+
         if (_cameraState == CameraState.Upgrades)
         {
             FindObjectOfType<UpgradesMenuAnimation>().IsDisplayed = false;

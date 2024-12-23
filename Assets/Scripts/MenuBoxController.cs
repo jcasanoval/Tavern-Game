@@ -75,6 +75,9 @@ public class MenuBoxController : MonoBehaviour
             yield return null;
         }
 
+        transform.position = targetPosition;
+        transform.rotation = Quaternion.Euler(targetRotation);
+
         _boxState = newState;
         animating = false;
         gameObject.SetActive(false);
