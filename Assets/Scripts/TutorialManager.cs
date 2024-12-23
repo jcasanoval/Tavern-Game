@@ -383,7 +383,7 @@ public class TutorialManager : MonoBehaviour
 
     private void SkipStepIfNecessary()
     {
-        if (!FindObjectOfType<HandController>().HasMug())
+        if (FindObjectOfType<HandController>().HasMug())
         {
             ProgressToNextStep();
         }
