@@ -64,6 +64,7 @@ public class AchievementPopUp : MonoBehaviour
         }
         timer = 0;
         while(!toggled && timer < 5f){
+            transform.localPosition = new Vector3(-350, 50 , 0);
             timer += Time.unscaledDeltaTime;
             yield return null;
         }
@@ -73,6 +74,7 @@ public class AchievementPopUp : MonoBehaviour
             timer += Time.unscaledDeltaTime;
             yield return null;
         }
+        transform.localPosition = new Vector3(0, 50, 0);
 
     }
     
