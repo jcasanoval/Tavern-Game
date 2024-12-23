@@ -14387,7 +14387,6 @@ MonoBehaviour:
   nightTime: 20
   nightMusics:
   - {fileID: 8300000, guid: c1b48b1a5869749498b8603cb426b721, type: 3}
-  - {fileID: 8300000, guid: d6932f78710b0be48a258cec0c1d1c7e, type: 3}
   dayMusics:
   - {fileID: 8300000, guid: 211111a7e2bfd1b499427984ca1a6be2, type: 3}
   door: {fileID: 1479358177}
