@@ -79,4 +79,17 @@ public class DroppedBeerInteractable : Interactable{
         animating = false;
 
     }
+
+    public static void KillAll(){
+        foreach(DroppedBeerInteractable beer in FindObjectsOfType<DroppedBeerInteractable>()){
+            if(beer == originalCopy){
+                continue;
+            }
+            if(beer.playerInteraction != null){
+                beer.playerInteraction.HideHover(beer);
+                beer.playerInteraction.RemoveInteractable(beer);
+            }
+            Destroy(beer.gameObject);
+        }
+    }
 }

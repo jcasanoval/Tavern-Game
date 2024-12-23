@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
         ResetTables();
         FindAnyObjectByType<EmployeeManager>().RemoveAllEmployees();
         GetComponent<UpgradeHandler>().ResetUpgrades();
+        DroppedBeerInteractable.KillAll();
         DestroyAllCustomers();
     }
 
