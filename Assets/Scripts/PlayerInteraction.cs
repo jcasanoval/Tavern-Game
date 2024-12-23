@@ -76,7 +76,7 @@ public class PlayerInteraction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && nearbyInteractables.Count > 0)
+        if (Input.GetKeyDown(KeyCode.E) && nearbyInteractables.Count > 0 && Time.timeScale > 0)
         {
             var sortedInteractables = nearbyInteractables.OrderBy(i => Vector3.Distance(transform.position, i.transform.position));
 

@@ -4,6 +4,7 @@ public class IButtonController : MonoBehaviour
 {
     Ray ray;
     RaycastHit hit;
+    public float delay = 0f;
 
     private bool hovering = false;
 
@@ -42,6 +43,10 @@ public class IButtonController : MonoBehaviour
 
     void Update()
     {
+        if (delay > 0){
+            delay -= Time.unscaledDeltaTime;
+        }
+
         ray = menuCamera.ScreenPointToRay(Input.mousePosition);
         var isHovering = false;
         if (Physics.Raycast(ray, out hit))
@@ -55,8 +60,9 @@ public class IButtonController : MonoBehaviour
         {
             Hovering = isHovering;
         }
-        if (Input.GetMouseButtonDown(0) && Hovering)
+        if (Input.GetMouseButtonDown(0) && Hovering && delay <= 0)
         {
+            delay = 1.5f;
             OnClick();
         }
     }
