@@ -8,6 +8,8 @@ public class DroppedBeerInteractable : Interactable{
     public Sprite hoverIcon;
     private PlayerInteraction playerInteraction;
 
+    private List<Interactor> fathers = new List<Interactor>();
+
     public static DroppedBeerInteractable originalCopy;
     public bool original = false;
 
@@ -18,6 +20,7 @@ public class DroppedBeerInteractable : Interactable{
     {
         handController = FindObjectOfType<HandController>();
         playerInteraction = FindObjectOfType<PlayerInteraction>();
+        fathers.Add(playerInteraction);
         originalPosition = transform.position;
         if(original){
             originalCopy = this;
@@ -38,12 +41,19 @@ public class DroppedBeerInteractable : Interactable{
         {
             handController.HoldMug();
             playerInteraction.HideHover(this);
-            playerInteraction.RemoveInteractable(this);
+            AbandonFathersBeforeDestroy();
             Destroy(gameObject);
             return true;
         }
 
         return false;
+    }
+
+    public void AbandonFathersBeforeDestroy()
+    {
+        foreach(Interactor father in fathers){
+            father.RemoveInteractable(this);
+        }
     }
 
     public override Sprite GetHoverIcon()
@@ -91,5 +101,10 @@ public class DroppedBeerInteractable : Interactable{
             }
             Destroy(beer.gameObject);
         }
+    }
+
+    public override void BecomeFather(Interactor interactor)
+    {
+        fathers.Add(interactor);
     }
 }

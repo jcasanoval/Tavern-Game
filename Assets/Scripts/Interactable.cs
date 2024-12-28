@@ -23,4 +23,8 @@ public class Interactable : MonoBehaviour
         Debug.Log("Getting hover icon from " + gameObject.name);
         return null;
     }
+
+    public virtual void BecomeFather(Interactor interactor)
+    {
+    }
 }

@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Linq;
 using Unity.VisualScripting;
 
-public class EmployeeInteraction : MonoBehaviour
+public class EmployeeInteraction : Interactor
 {
 
     public GameObject employee;
@@ -26,6 +26,7 @@ public class EmployeeInteraction : MonoBehaviour
         if (interactable != null)
         {
             nearbyInteractables.Add(interactable);
+            interactable.BecomeFather(this);
         }
     }
 
@@ -39,7 +40,7 @@ public class EmployeeInteraction : MonoBehaviour
     }
 
     // Update is called once per frame
-    public void TryToInteract()
+    public override void TryToInteract()
     {
         if (nearbyInteractables.Count > 0)
         {
@@ -56,7 +57,7 @@ public class EmployeeInteraction : MonoBehaviour
         }
     }
 
-    public void RemoveInteractable(Interactable interactable)
+    public override void RemoveInteractable(Interactable interactable)
     {
         if (nearbyInteractables.Contains(interactable)) {
             nearbyInteractables.Remove(interactable);

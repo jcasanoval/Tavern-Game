@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class PlayerInteraction : MonoBehaviour
+public class PlayerInteraction : Interactor
 {
     private TutorialManager tutorialManager;
     [SerializeField]
@@ -91,7 +91,7 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
-    public void RemoveInteractable(Interactable interactable)
+    public override void RemoveInteractable(Interactable interactable)
     {
         if (nearbyInteractables.Contains(interactable)) {
             nearbyInteractables.Remove(interactable);
